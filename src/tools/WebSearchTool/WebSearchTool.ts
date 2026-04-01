@@ -1,3 +1,11 @@
+/**
+ * @fileoverview WebSearchTool.ts — 网络搜索工具
+ * Web search tool using Anthropic's Claude model search capability.
+ *
+ * 功能说明：
+ * - WebSearchTool: 使用 Claude 进行网络搜索
+ */
+
 import type {
   BetaContentBlock,
   BetaWebSearchTool20250305,

@@ -1,3 +1,13 @@
+/**
+ * @fileoverview UI.tsx — WebFetchTool React 渲染组件
+ * React components for rendering WebFetchTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染网页获取消息
+ * - renderToolResultMessage: 渲染网页获取结果
+ * - renderToolUseProgressMessage: 渲染网页获取进度
+ */
+
 import React from 'react';
 import { MessageResponse } from '../../components/MessageResponse.js';
 import { TOOL_SUMMARY_MAX_LENGTH } from '../../constants/toolLimits.js';

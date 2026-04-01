@@ -1,3 +1,12 @@
+/**
+ * @fileoverview UI.tsx — TaskStopTool React 渲染组件
+ * React components for rendering TaskStopTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染停止任务消息
+ * - renderToolResultMessage: 渲染停止任务结果
+ */
+
 import React from 'react';
 import { MessageResponse } from '../../components/MessageResponse.js';
 import { stringWidth } from '../../ink/stringWidth.js';

@@ -1,3 +1,11 @@
+/**
+ * @fileoverview TeamDeleteTool.ts — 删除团队工具
+ * Team deletion tool for cleaning up teams.
+ *
+ * 功能说明：
+ * - TeamDeleteTool: 删除团队并清理资源
+ */
+
 import { z } from 'zod/v4'
 import { logEvent } from '../../services/analytics/index.js'
 import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from '../../services/analytics/metadata.js'

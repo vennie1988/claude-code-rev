@@ -1,3 +1,11 @@
+/**
+ * @fileoverview TaskOutputTool.tsx — 任务输出工具
+ * Task output tool for retrieving task results.
+ *
+ * 功能说明：
+ * - TaskOutputTool: 获取任务执行结果
+ */
+
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { z } from 'zod/v4';

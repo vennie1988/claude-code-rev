@@ -1,3 +1,14 @@
+/**
+ * @fileoverview UI.tsx — WebSearchTool React 渲染组件
+ * React components for rendering WebSearchTool messages.
+ *
+ * 组件说明：
+ * - getSearchSummary: 获取搜索结果摘要
+ * - renderToolUseMessage: 渲染网络搜索消息
+ * - renderToolResultMessage: 渲染搜索结果
+ * - renderToolUseProgressMessage: 渲染搜索进度
+ */
+
 import React from 'react';
 import { MessageResponse } from '../../components/MessageResponse.js';
 import { TOOL_SUMMARY_MAX_LENGTH } from '../../constants/toolLimits.js';

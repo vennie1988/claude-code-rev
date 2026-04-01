@@ -1,3 +1,11 @@
+/**
+ * @fileoverview prompt.ts — TodoWriteTool 提示词定义
+ * Defines prompt for TodoWriteTool.
+ *
+ * 常量说明：
+ * - PROMPT: 工具提示词
+ */
+
 import { FILE_EDIT_TOOL_NAME } from '../FileEditTool/constants.js'
 
 export const PROMPT = `Use this tool to create and manage a structured task list for your current coding session. This helps you track progress, organize complex tasks, and demonstrate thoroughness to the user.

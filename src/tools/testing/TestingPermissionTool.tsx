@@ -1,4 +1,12 @@
 /**
+ * @fileoverview TestingPermissionTool.tsx — 测试权限工具
+ * Testing-only tool that always triggers a permission dialog.
+ *
+ * 功能说明：
+ * - TestingPermissionTool: 测试用权限工具（仅供测试使用）
+ */
+
+/**
  * This testing-only tool will always pop up a permission dialog when called by
  * the model.
  */

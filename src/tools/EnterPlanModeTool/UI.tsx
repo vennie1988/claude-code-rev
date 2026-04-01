@@ -1,3 +1,12 @@
+/**
+ * @fileoverview UI.tsx — EnterPlanModeTool React 渲染组件
+ * React components for rendering EnterPlanModeTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染进入计划模式消息
+ * - renderToolResultMessage: 渲染进入计划模式结果
+ */
+
 import * as React from 'react';
 import { BLACK_CIRCLE } from 'src/constants/figures.js';
 import { getModeColor } from 'src/utils/permissions/PermissionMode.js';

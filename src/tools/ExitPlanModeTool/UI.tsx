@@ -1,3 +1,12 @@
+/**
+ * @fileoverview UI.tsx — ExitPlanModeTool React 渲染组件
+ * React components for rendering ExitPlanModeTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染退出计划模式消息
+ * - renderToolResultMessage: 渲染退出计划模式结果
+ */
+
 import * as React from 'react';
 import { Markdown } from 'src/components/Markdown.js';
 import { MessageResponse } from 'src/components/MessageResponse.js';

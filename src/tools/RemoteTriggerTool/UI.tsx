@@ -1,3 +1,12 @@
+/**
+ * @fileoverview UI.tsx — RemoteTriggerTool React 渲染组件
+ * React components for rendering RemoteTriggerTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染远程触发器消息
+ * - renderToolResultMessage: 渲染远程触发器结果
+ */
+
 import React from 'react';
 import { MessageResponse } from '../../components/MessageResponse.js';
 import { Text } from '../../ink.js';

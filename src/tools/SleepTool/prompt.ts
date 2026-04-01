@@ -1,3 +1,13 @@
+/**
+ * @fileoverview prompt.ts — SleepTool 常量定义
+ * Defines constants for the Sleep tool.
+ *
+ * 常量说明：
+ * - SLEEP_TOOL_NAME: 工具唯一标识名称
+ * - DESCRIPTION: 工具描述
+ * - SLEEP_TOOL_PROMPT: 工具提示词
+ */
+
 import { TICK_TAG } from '../../constants/xml.js'
 
 export const SLEEP_TOOL_NAME = 'Sleep'

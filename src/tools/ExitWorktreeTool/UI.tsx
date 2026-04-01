@@ -1,3 +1,12 @@
+/**
+ * @fileoverview UI.tsx — ExitWorktreeTool React 渲染组件
+ * React components for rendering ExitWorktreeTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染退出工作树消息
+ * - renderToolResultMessage: 渲染退出工作树结果
+ */
+
 import * as React from 'react';
 import { Box, Text } from '../../ink.js';
 import type { ToolProgressData } from '../../Tool.js';

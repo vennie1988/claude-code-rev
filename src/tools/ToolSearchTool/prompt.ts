@@ -1,3 +1,13 @@
+/**
+ * @fileoverview prompt.ts — ToolSearchTool 提示词和常量定义
+ * Defines prompt, constants, and helpers for ToolSearchTool.
+ *
+ * 常量说明：
+ * - TOOL_SEARCH_TOOL_NAME: 工具名称
+ * - getPrompt(): 获取工具提示词函数
+ * - isDeferredTool(): 判断是否为延迟工具
+ */
+
 import { feature } from 'bun:bundle'
 import { isReplBridgeActive } from '../../bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'

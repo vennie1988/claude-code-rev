@@ -1,3 +1,12 @@
+/**
+ * @fileoverview prompt.ts — TaskCreateTool 提示词定义
+ * Defines prompt and description for TaskCreateTool.
+ *
+ * 常量说明：
+ * - DESCRIPTION: 工具描述
+ * - getPrompt(): 获取工具提示词函数
+ */
+
 import { isAgentSwarmsEnabled } from '../../utils/agentSwarmsEnabled.js'
 
 export const DESCRIPTION = 'Create a new task in the task list'

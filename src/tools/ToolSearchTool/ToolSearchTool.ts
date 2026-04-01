@@ -1,3 +1,11 @@
+/**
+ * @fileoverview ToolSearchTool.ts — 工具搜索工具
+ * Tool search tool for finding deferred tools.
+ *
+ * 功能说明：
+ * - ToolSearchTool: 搜索并选择延迟加载的工具
+ */
+
 import type { ToolResultBlockParam } from '@anthropic-ai/sdk/resources/index.mjs'
 import memoize from 'lodash-es/memoize.js'
 import { z } from 'zod/v4'

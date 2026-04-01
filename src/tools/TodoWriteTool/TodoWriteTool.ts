@@ -1,4 +1,12 @@
 import { feature } from 'bun:bundle'
+/**
+ * @fileoverview TodoWriteTool.ts — 待办事项写入工具
+ * Todo write tool for updating the todo list (V1 compatibility).
+ *
+ * 功能说明：
+ * - TodoWriteTool: 更新待办事项列表
+ */
+
 import { z } from 'zod/v4'
 import { getSessionId } from '../../bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'

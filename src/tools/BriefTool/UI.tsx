@@ -1,3 +1,12 @@
+/**
+ * @fileoverview UI.tsx — BriefTool React 渲染组件
+ * React components for rendering BriefTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染简报工具使用消息
+ * - renderToolResultMessage: 渲染简报结果消息
+ */
+
 import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import React from 'react';

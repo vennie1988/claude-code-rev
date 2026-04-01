@@ -1,3 +1,14 @@
+/**
+ * @fileoverview UI.tsx — NotebookEditTool React 渲染组件
+ * React components for rendering NotebookEditTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染笔记本编辑消息
+ * - renderToolResultMessage: 渲染笔记本编辑结果
+ * - renderToolUseRejectedMessage: 渲染笔记本编辑被拒绝消息
+ * - renderToolUseErrorMessage: 渲染笔记本编辑错误消息
+ */
+
 import type { ToolResultBlockParam } from '@anthropic-ai/sdk/resources/index.mjs';
 import * as React from 'react';
 import type { Message, ProgressMessage } from 'src/types/message.js';

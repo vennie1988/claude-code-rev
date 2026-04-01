@@ -1,3 +1,12 @@
+/**
+ * @fileoverview UI.tsx — EnterWorktreeTool React 渲染组件
+ * React components for rendering EnterWorktreeTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染创建工作树消息
+ * - renderToolResultMessage: 渲染创建工作树结果
+ */
+
 import * as React from 'react';
 import { Box, Text } from '../../ink.js';
 import type { ToolProgressData } from '../../Tool.js';
