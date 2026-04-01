@@ -1,6 +1,11 @@
 /**
  * @fileoverview OAuthFlowStep.tsx — OAuth authentication flow step
- * Handles OAuth authentication to create long-lived tokens for GitHub Actions.
+ * OAuth 认证流程步骤
+ *
+ * 功能说明：
+ * - 处理 OAuth 认证以创建 GitHub Actions 使用的长期令牌
+ * - 支持基于浏览器的 OAuth 和手动代码输入备选方案
+ * - 创建仅用于推理的令牌
  *
  * @design Supports both browser-based OAuth and manual code entry fallback.
  * Creates inference-only tokens suitable for GitHub Actions use.

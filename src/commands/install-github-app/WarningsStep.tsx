@@ -1,6 +1,11 @@
 /**
  * @fileoverview WarningsStep.tsx — Setup warnings display
- * Shows potential issues found during setup that user should be aware of.
+ * 设置警告显示步骤
+ *
+ * 功能说明：
+ * - 显示设置过程中发现的潜在问题
+ * - 允许用户确认后继续
+ * - 提供手动设置文档链接
  */
 import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';

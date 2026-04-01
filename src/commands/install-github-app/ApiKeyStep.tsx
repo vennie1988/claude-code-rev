@@ -1,6 +1,12 @@
 /**
  * @fileoverview ApiKeyStep.tsx — API key selection step
- * Allows user to choose between existing API key, creating OAuth token, or entering new key.
+ * API 密钥选择步骤
+ *
+ * 功能说明：
+ * - 允许用户选择现有 API 密钥
+ * - 支持创建 OAuth 令牌
+ * - 支持输入新密钥
+ * - 支持密钥蒙版保护
  */
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback, useState } from 'react';

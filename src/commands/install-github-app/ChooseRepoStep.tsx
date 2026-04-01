@@ -1,6 +1,11 @@
 /**
  * @fileoverview ChooseRepoStep.tsx — Repository selection step
- * Allows user to select or enter a GitHub repository for installation.
+ * 仓库选择步骤
+ *
+ * 功能说明：
+ * - 允许用户选择当前仓库或输入其他仓库
+ * - 验证仓库名称非空
+ * - 支持键盘导航和文本输入
  */
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback, useState } from 'react';

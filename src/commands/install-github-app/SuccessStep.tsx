@@ -1,6 +1,12 @@
 /**
  * @fileoverview SuccessStep.tsx — Installation success step
- * Displays success message after GitHub App installation completes.
+ * 安装成功步骤
+ *
+ * 功能说明：
+ * - 显示安装成功消息
+ * - 显示工作流创建状态
+ * - 显示 API 密钥配置状态
+ * - 提供后续步骤指引
  */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';

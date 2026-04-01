@@ -1,6 +1,11 @@
 /**
  * @fileoverview ErrorStep.tsx — Error display step
- * Shows error message with instructions for manual setup.
+ * 错误显示步骤
+ *
+ * 功能说明：
+ * - 显示错误消息
+ * - 提供错误原因和修复说明
+ * - 提供手动设置文档链接
  */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';

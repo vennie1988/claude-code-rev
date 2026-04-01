@@ -1,3 +1,13 @@
+/**
+ * @fileoverview branch.ts — Conversation branching/forking command
+ * 创建会话分支命令
+ *
+ * 功能说明：
+ * - 从当前会话创建分支，保留所有原始消息和元数据
+ * - 分支有独立的 sessionId，但保留对原始会话的引用 (forkedFrom)
+ * - 支持自定义分支标题，自动处理名称冲突
+ * - 使用 createFork 创建分支，deriveFirstPrompt 生成默认标题
+ */
 import { randomUUID, type UUID } from 'crypto'
 import { mkdir, readFile, writeFile } from 'fs/promises'
 import { getOriginalCwd, getSessionId } from '../../bootstrap/state.js'

@@ -1,6 +1,11 @@
 /**
  * @fileoverview ExistingWorkflowStep.tsx — Existing workflow handling step
- * Offers options when a Claude workflow file already exists in the repository.
+ * 现有工作流处理步骤
+ *
+ * 功能说明：
+ * - 检测仓库中是否已存在 Claude 工作流文件
+ * - 提供更新、跳过或退出的选项
+ * - 显示最新工作流模板链接
  */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';

@@ -1,6 +1,19 @@
+/**
+ * @fileoverview config.tsx — Config panel component
+ * 配置面板组件
+ *
+ * 功能说明：
+ * - 渲染配置面板 UI
+ * - 默认打开配置标签页
+ */
 import * as React from 'react';
 import { Settings } from '../../components/Settings/Settings.js';
 import type { LocalJSXCommandCall } from '../../types/command.js';
+
+/**
+ * Config command call handler
+ * 配置命令调用处理函数
+ */
 export const call: LocalJSXCommandCall = async (onDone, context) => {
   return <Settings onClose={onDone} context={context} defaultTab="Config" />;
 };

@@ -1,6 +1,13 @@
 /**
  * @fileoverview statusline.tsx — Setup Claude Code status line UI
- * Delegates to a statusline-setup subagent to configure the shell PS1 integration.
+ * 设置 Claude Code 状态栏 UI
+ *
+ * 功能说明：
+ * - 委托给 statusline-setup 子代理配置 shell PS1 集成
+ * - 通过 AgentTool 创建子代理完成任务
+ * - 支持自定义配置提示
+ *
+ * 注意：仅从 cli.tsx 调用，非 slash 命令
  */
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/index.mjs';
 import type { Command } from '../commands.js';

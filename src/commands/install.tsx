@@ -1,7 +1,11 @@
 /**
  * @fileoverview install.tsx — Install Claude Code native build
- * Interactive TUI for installing the Claude Code native binary.
- * Handles download, setup, and cleanup of old npm installations.
+ * 安装 Claude Code 原生构建
+ *
+ * 功能说明：
+ * - 交互式 TUI 安装 Claude Code 原生二进制文件
+ * - 处理下载、设置和清理旧 npm 安装
+ * - 使用状态机跟踪安装进度：checking → cleaning-npm → installing → setting-up → set-up/success/error
  *
  * @design Uses a state machine to track installation progress: checking → cleaning-npm →
  * installing → setting-up → set-up/success/error

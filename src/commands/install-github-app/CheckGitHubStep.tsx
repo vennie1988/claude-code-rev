@@ -1,10 +1,18 @@
 import { c as _c } from "react/compiler-runtime";
 /**
  * @fileoverview CheckGitHubStep.tsx — GitHub CLI check step
- * Displays a message while checking if GitHub CLI is installed.
+ * GitHub CLI 检查步骤
+ *
+ * 功能说明：
+ * - 显示检查 GitHub CLI 是否已安装的消息
  */
 import React from 'react';
 import { Text } from '../../ink.js';
+
+/**
+ * CheckGitHubStep component
+ * 检查 GitHub CLI 是否安装的步骤组件
+ */
 export function CheckGitHubStep() {
   const $ = _c(1);
   let t0;

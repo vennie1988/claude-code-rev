@@ -1,6 +1,11 @@
 /**
  * @fileoverview CheckExistingSecretStep.tsx — Existing secret check step
- * Prompts user to choose between using existing API key secret or creating a new one.
+ * 现有密钥检查步骤
+ *
+ * 功能说明：
+ * - 检查仓库中是否已存在 API 密钥
+ * - 允许用户选择使用现有密钥或创建新密钥
+ * - 支持自定义密钥名称
  */
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback, useState } from 'react';

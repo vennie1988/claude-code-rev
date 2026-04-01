@@ -1,7 +1,11 @@
 /**
  * @fileoverview compact.ts — Context compaction command
- * Reduces conversation context size by summarizing older messages.
- * Tries session memory compaction first, then falls back to traditional compaction.
+ * 上下文压缩命令 - 通过摘要减少对话大小
+ *
+ * 功能说明：
+ * - 尝试会话记忆压缩（低成本，无需 API 调用）
+ * - 失败时回退到传统压缩方式
+ * - 支持响应式压缩（启用 REACTIVE_COMPACT 特性时）
  *
  * @design Supports multiple compaction strategies:
  * - Session memory compaction (cheap, no API calls)

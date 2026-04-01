@@ -1,7 +1,11 @@
 /**
  * @fileoverview btw.tsx — Side question/quick question command
- * Allows asking quick questions without disrupting the main conversation flow.
- * Creates a side branch with cached prompt params for efficient context reuse.
+ * 侧边问题命令 - 允许在不中断主对话的情况下快速提问
+ *
+ * 功能说明：
+ * - 创建一个独立的子问题分支来回答问题
+ * - 保留主对话上下文，不会中断主流程
+ * - 缓存 prompt 参数以避免缓存未命中
  *
  * @design Uses a separate agent fork (side question) to answer questions while
  * preserving the main conversation context. Caches prompt params to avoid cache misses.
