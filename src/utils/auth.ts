@@ -1,3 +1,25 @@
+/**
+ * @fileoverview auth.ts — Authentication and authorization utilities
+ *
+ * Comprehensive authentication system handling multiple auth methods:
+ * - OAuth tokens (Claude.ai, file descriptors, env vars)
+ * - API keys (direct, keychain, apiKeyHelper)
+ * - Cloud provider auth (AWS, GCP)
+ *
+ * Key design decisions:
+ * - CCR/Claude Desktop: OAuth only, never falls back to user's config file
+ * - SWR caching for apiKeyHelper with epoch-based invalidation
+ * - Cross-process token cache invalidation via mtime checking
+ * - Lock-based token refresh to prevent concurrent refresh storms
+ *
+ * Security features:
+ * - Trust dialog check before running project-level auth helpers
+ * - API key format validation before saving
+ * - Windows NPM detection in WSL
+ *
+ * 认证和授权工具集，支持多种认证方式：OAuth 令牌、API 密钥、云提供商认证。
+ */
+
 import chalk from 'chalk'
 import { exec } from 'child_process'
 import { execa } from 'execa'

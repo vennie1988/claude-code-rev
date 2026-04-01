@@ -1,3 +1,22 @@
+/**
+ * @fileoverview agentSwarmsEnabled.ts — Agent swarms/teammates feature gate
+ *
+ * Centralized runtime check for the agent teams/teammate features.
+ * This is the single gate that should be checked everywhere teammates
+ * are referenced (prompts, code, tools isEnabled, UI, etc.).
+ *
+ * Enables for:
+ * - Ant builds (always enabled)
+ * - External builds with CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS env var or --agent-teams flag
+ * - GrowthBook killswitch 'tengu_amber_flint' enabled
+ *
+ * @note The flag is only shown in help for ant users, but external users
+ * can still pass it if needed
+ *
+ * Agent swarms/teammates 功能的主开关。集中检查所有涉及 teammates 的地方
+ * （提示词、代码、工具 isEnabled、UI 等）。
+ */
+
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../services/analytics/growthbook.js'
 import { isEnvTruthy } from './envUtils.js'
 

@@ -1,3 +1,28 @@
+/**
+ * @fileoverview autoUpdater.ts — Auto-update functionality for Claude Code
+ *
+ * Handles checking for updates, downloading, and installing new versions.
+ * Supports multiple installation methods: npm global, native packages, and GCS bucket.
+ *
+ * Key features:
+ * - Lock file mechanism prevents concurrent updates
+ * - Per-channel version tracking (stable, latest)
+ * - Version history retrieval for rollback UI
+ * - Shell config cleanup for alias removal during upgrade
+ * - STS caller identity checks before AWS auth refresh
+ *
+ * Security notes:
+ * - Runs npm from home directory to avoid malicious project-level .npmrc
+ * - Checks for Windows NPM in WSL and fails gracefully
+ * - Validates API key format before saving
+ *
+ * @note Uses a global lock file at ~/.claude/.update.lock to prevent
+ * concurrent update processes from interfering
+ *
+ * Claude Code 自动更新功能：检查更新、下载和安装新版本。
+ * 支持多种安装方式：npm 全局安装，原生包和 GCS 存储桶。
+ */
+
 import axios from 'axios'
 import { constants as fsConstants } from 'fs'
 import { access, writeFile } from 'fs/promises'
