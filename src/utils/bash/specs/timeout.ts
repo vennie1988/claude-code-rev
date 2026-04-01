@@ -1,3 +1,10 @@
+/**
+ * @fileoverview timeout.ts — Command specification for GNU timeout
+ *
+ * 定义 timeout 命令的规范。
+ * timeout 用于在指定时间后终止命令执行。
+ */
+
 import type { CommandSpec } from '../registry.js'
 
 const timeout: CommandSpec = {

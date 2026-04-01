@@ -1,3 +1,15 @@
+/**
+ * @fileoverview shellQuoting.ts — Shell command quoting utilities
+ *
+ * 提供 shell 命令引用的辅助函数:
+ * - containsHeredoc(): 检测 heredoc 模式
+ * - containsMultilineString(): 检测多行字符串
+ * - quoteShellCommand(): 适当地引用 shell 命令
+ * - hasStdinRedirect(): 检测 stdin 重定向
+ * - shouldAddStdinRedirect(): 判断是否应添加 stdin 重定向
+ * - rewriteWindowsNullRedirect(): 将 Windows CMD 风格的 nul 重定向转换为 POSIX
+ */
+
 import { quote } from './shellQuote.js'
 
 /**

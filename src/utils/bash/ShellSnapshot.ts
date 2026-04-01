@@ -1,3 +1,21 @@
+/**
+ * @fileoverview ShellSnapshot.ts — Shell environment snapshot capture and persistence
+ *
+ * Shell snapshot mechanism captures the user's interactive shell environment
+ * (functions, aliases, shell options) into a sourced script file, allowing
+ * Claude Code to run commands with the user's expected environment without
+ * spawning a new login shell per command.
+ *
+ * 主要设计:
+ * - 从用户 shell 配置文件 (.bashrc/.zshrc/.profile) 提取函数、别名、选项
+ * - 使用 bun 内嵌的 bfs/ugrep 替换 find/grep 以获得一致的高性能
+ * - 对于内嵌 ripgrep，优先使用系统 rg；仅在内嵌不可用时降级
+ * - 快照通过 subprocess 执行 shell 脚本创建，10s 超时保护
+ *
+ * @note 快照创建失败时 CLI 仍可运行，但用户自定义别名/函数不可用。
+ *   Windows Git Bash 上的 winpty 别名会被过滤以避免 "stdin is not a tty" 错误。
+ */
+
 import { execFile } from 'child_process'
 import { execa } from 'execa'
 import { mkdir, stat } from 'fs/promises'

@@ -1,3 +1,18 @@
+/**
+ * @fileoverview registry.ts — Command specification registry with Fig spec loader
+ *
+ * 命令规范注册表，提供命令参数和选项的规范定义。
+ * 支持内置规范和从 @withfig/autocomplete 包动态加载的规范。
+ *
+ * 主要功能:
+ * - 内置规范: pyright, timeout, sleep, alias, nohup, time, srun
+ * - Fig 规范: 从 @withfig/autocomplete 动态加载（用于增强的命令补全）
+ * - LRU 缓存: 通过 memoizeWithLRU 避免重复解析
+ *
+ * @security 命令名验证: 拒绝包含 /, \, .., 或以 - 开头（除了单个 -）的名称，
+ *   防止路径遍历攻击和无效命令名
+ */
+
 import { memoizeWithLRU } from '../memoize.js'
 import specs from './specs/index.js'
 

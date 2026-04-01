@@ -1,3 +1,19 @@
+/**
+ * @fileoverview preconditions.ts — Remote session eligibility checks
+ *
+ * 远程会话 (teleport/remote session) 的前置条件检查。
+ * 提供一系列检查函数以确定用户是否有资格创建远程会话。
+ *
+ * 主要检查项:
+ * - Claude.ai 登录状态 (checkNeedsClaudeAiLogin)
+ * - Git 工作区清洁状态 (checkIsGitClean)
+ * - 远程环境可用性 (checkHasRemoteEnvironment)
+ * - Git 仓库存在性 (checkIsInGitRepo/checkHasGitRemote)
+ * - GitHub App 安装状态 (checkGithubAppInstalled)
+ * - GitHub Token 同步状态 (checkGithubTokenSynced)
+ * - 仓库远程访问权限 (checkRepoForRemoteAccess)
+ */
+
 import axios from 'axios'
 import { getOauthConfig } from 'src/constants/oauth.js'
 import { getOrganizationUUID } from 'src/services/oauth/client.js'

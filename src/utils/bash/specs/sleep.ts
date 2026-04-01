@@ -1,3 +1,10 @@
+/**
+ * @fileoverview sleep.ts — Command specification for bash sleep builtin
+ *
+ * 定义 sleep 命令的规范。
+ * sleep 用于暂停执行指定时间。
+ */
+
 import type { CommandSpec } from '../registry.js'
 
 const sleep: CommandSpec = {

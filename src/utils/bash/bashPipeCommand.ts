@@ -1,3 +1,19 @@
+/**
+ * @fileoverview bashPipeCommand.ts — Piped bash command rearrangement for stdin safety
+ *
+ * 当 bash 命令包含管道时，eval 会将整个命令作为单个单元处理，
+ * 导致 stdin 重定向应用于 eval 本身而非第一个命令。
+ * 本模块通过重新排列管道命令来解决此问题。
+ *
+ * 设计原则:
+ * - 安全优先：遇到 shell-quote 无法正确解析的模式时（如反引号、$()、控制结构），
+ *   回退到整体命令引用而非尝试解析
+ * - 支持 heredoc、多行字符串等复杂场景
+ * - 正确处理文件描述符重定向 (2>&1, 2>/dev/null)
+ *
+ * @note 此模块仅处理管道命令重排列；整体命令引用由 quoteWithEvalStdinRedirect() 完成
+ */
+
 import {
   hasMalformedTokens,
   hasShellQuoteSingleQuoteBug,

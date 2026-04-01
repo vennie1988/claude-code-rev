@@ -1,3 +1,16 @@
+/**
+ * @fileoverview remoteSession.ts — Background remote session management
+ *
+ * 远程会话 (teleport/remote session) 的后台管理。
+ * 定义 BackgroundRemoteSession 类型和会话资格检查逻辑。
+ *
+ * 会话状态: starting | running | completed | failed | killed
+ * 前置条件失败类型: not_logged_in, no_remote_environment, not_in_git_repo,
+ *   no_git_remote, github_app_not_installed, policy_blocked
+ *
+ * @note bundle seed 模式下，即使没有 GitHub remote 或 App 也可创建会话
+ */
+
 import type { SDKMessage } from 'src/entrypoints/agentSdkTypes.js'
 import { checkGate_CACHED_OR_BLOCKING } from '../../../services/analytics/growthbook.js'
 import { isPolicyAllowed } from '../../../services/policyLimits/index.js'
