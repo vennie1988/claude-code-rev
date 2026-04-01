@@ -20,6 +20,15 @@ type CheckResult = {
 } | {
   status: 'gh_not_authenticated';
 };
+/**
+ * checkLoginState — Check current authentication status for web setup
+ * 检查用户登录状态和GitHub CLI认证状态
+ *
+ * @returns CheckResult with status: not_signed_in | has_gh_token | gh_not_installed | gh_not_authenticated
+ *
+ * @note First call to getGhAuthStatus uses stdout:'ignore' for telemetry safety;
+ * second call with stdout:'pipe' reads the actual token
+ */
 async function checkLoginState(): Promise<CheckResult> {
   if (!(await isSignedIn())) {
     return {

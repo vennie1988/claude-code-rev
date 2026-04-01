@@ -1,3 +1,10 @@
+/**
+ * @fileoverview ultrareviewEnabled.ts — Feature gate for ultrareview command
+ * /ultrareview 功能开关，通过 GrowthBook 配置控制
+ *
+ * @note Controls visibility via getCommands() filtering — ungated users
+ * won't see the command at all when disabled
+ */
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'
 
 /**
