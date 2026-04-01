@@ -1,3 +1,15 @@
+/**
+ * @fileoverview notebook.ts — Jupyter Notebook 解析工具
+ * Jupyter notebook parsing and conversion utilities.
+ *
+ * 设计意图：
+ * - Jupyter Notebook (.ipynb) 文件解析
+ * - Notebook 与消息格式转换
+ * - Cell 输出处理和截断
+ *
+ * @note 支持 notebook v4 格式，包含 code/text/markdown cells
+ */
+
 import type {
   ImageBlockParam,
   TextBlockParam,

@@ -1,3 +1,13 @@
+/**
+ * @fileoverview promptEditor.ts — 外部编辑器集成工具
+ * External editor integration for prompt editing.
+ *
+ * 设计意图：
+ * - 外部编辑器启动和文件编辑
+ * - GUI/TUI 编辑器分类
+ * - 编辑器结果回调处理
+ */
+
 import {
   expandPastedTextRefs,
   formatPastedTextRef,
