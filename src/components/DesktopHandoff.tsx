@@ -1,3 +1,17 @@
+/**
+ * @fileoverview DesktopHandoff.tsx — Desktop app handoff dialog
+ * DesktopHandoff.tsx — 桌面应用交接对话框
+ *
+ * @description
+ * - Handles handoff to Claude Desktop app
+ * - Checks if desktop app is installed
+ * - Prompts for download if not installed
+ * - Flushes session storage and opens desktop app
+ * - 处理到Claude桌面应用的交接
+ * - 检查桌面应用是否已安装
+ * - 如果未安装则提示下载
+ * - 刷新会话存储并打开桌面应用
+ */
 import { c as _c } from "react/compiler-runtime";
 import React, { useEffect, useState } from 'react';
 import type { CommandResultDisplay } from '../commands.js';
@@ -9,7 +23,16 @@ import { errorMessage } from '../utils/errors.js';
 import { gracefulShutdown } from '../utils/gracefulShutdown.js';
 import { flushSessionStorage } from '../utils/sessionStorage.js';
 import { LoadingState } from './design-system/LoadingState.js';
+
+/** Desktop documentation URL / 桌面文档URL */
 const DESKTOP_DOCS_URL = 'https://clau.de/desktop';
+
+/**
+ * getDownloadUrl — Returns platform-specific download URL
+ * getDownloadUrl — 返回特定平台的下载URL
+ *
+ * @returns Download URL for the current platform / 当前平台的下载URL
+ */
 export function getDownloadUrl(): string {
   switch (process.platform) {
     case 'win32':
@@ -18,12 +41,32 @@ export function getDownloadUrl(): string {
       return 'https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect';
   }
 }
+
+/** DesktopHandoffState — State machine states for desktop handoff / 桌面交接的状态机状态 */
 type DesktopHandoffState = 'checking' | 'prompt-download' | 'flushing' | 'opening' | 'success' | 'error';
+
+/** Props — DesktopHandoff component properties / DesktopHandoff 组件属性 */
 type Props = {
   onDone: (result?: string, options?: {
-    display?: CommandResultDisplay;
-  }) => void;
+    display?: CommandResultDisplay; // How to display the result / 如何显示结果
+  }) => void; // Callback when handoff is complete / 交接完成时的回调
 };
+/**
+ * DesktopHandoff — Handles handoff to Claude Desktop app
+ * DesktopHandoff — 处理到Claude桌面应用的交接
+ *
+ * @description
+ * - State machine: checking -> prompt-download/flushing -> opening -> success/error
+ * - Checks desktop app installation status
+ * - Prompts user to download if needed (y/n)
+ * - Flushes session storage before opening desktop app
+ * - 状态机：checking -> prompt-download/flushing -> opening -> success/error
+ * - 检查桌面应用的安装状态
+ * - 如需要，提示用户下载（y/n）
+ * - 打开桌面应用前刷新会话存储
+ *
+ * @returns React node with handoff UI / 带交接UI的React节点
+ */
 export function DesktopHandoff(t0) {
   const $ = _c(20);
   const {

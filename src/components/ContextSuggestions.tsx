@@ -1,3 +1,17 @@
+/**
+ * @fileoverview ContextSuggestions.tsx — Token optimization suggestions display
+ * ContextSuggestions.tsx — Token优化建议显示
+ *
+ * @description
+ * - Displays context/token optimization suggestions
+ * - Shows severity icon (info, warning, error)
+ * - Displays potential token savings
+ * - Returns null if no suggestions
+ * - 显示上下文/token优化建议
+ * - 显示严重性图标（信息、警告、错误）
+ * - 显示潜在的token节省
+ * - 如果没有建议则返回null
+ */
 import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import * as React from 'react';
@@ -5,9 +19,25 @@ import { Box, Text } from '../ink.js';
 import type { ContextSuggestion } from '../utils/contextSuggestions.js';
 import { formatTokens } from '../utils/format.js';
 import { StatusIcon } from './design-system/StatusIcon.js';
+
+/** Props — ContextSuggestions component properties / ContextSuggestions 组件属性 */
 type Props = {
-  suggestions: ContextSuggestion[];
+  suggestions: ContextSuggestion[]; // List of context optimization suggestions / 上下文优化建议列表
 };
+/**
+ * ContextSuggestions — Renders token optimization suggestions
+ * ContextSuggestions — 渲染token优化建议
+ *
+ * @description
+ * - Maps suggestions to styled boxes with severity icons
+ * - Shows title, detail, and potential token savings
+ * - Returns null when suggestions array is empty
+ * - 将建议映射到带有严重性图标的样式化框
+ * - 显示标题、详情和潜在的token节省
+ * - 当建议数组为空时返回null
+ *
+ * @returns Column box with suggestions or null / 带建议的列框或null
+ */
 export function ContextSuggestions(t0) {
   const $ = _c(5);
   const {
