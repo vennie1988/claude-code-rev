@@ -1,3 +1,13 @@
+/**
+ * @fileoverview toolRendering.tsx — MCP tool rendering overrides for computer-use
+ *
+ * Rendering overrides for `mcp__computer-use__*` tools. Spread into the MCP
+ * tool object in `client.ts` after the default `userFacingName`, so these win.
+ * Mirror of `getClaudeInChromeMCPToolOverrides`.
+ *
+ * 设计：提供更友好的用户-facing 工具名称和渲染消息，如截图显示"Captured"而非原始数据。
+ */
+
 import * as React from 'react';
 import { MessageResponse } from '../../components/MessageResponse.js';
 import { Text } from '../../ink.js';

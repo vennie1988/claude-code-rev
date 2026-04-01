@@ -15,6 +15,18 @@ import { getPlatform } from './platform.js'
 import { jsonParse, jsonStringify } from './slowOperations.js'
 import { getAgentId } from './teammate.js'
 
+/**
+ * @fileoverview concurrentSessions.ts — Concurrent CLI session registry
+ *
+ * Manages per-session PID files in ~/.claude/sessions/ for `claude ps`
+ * visibility. Registers interactive CLI, SDK, bg/daemon spawns — skips
+ * teammates/subagents to avoid conflating swarm usage with genuine concurrency.
+ *
+ * 设计：会话注册与并发管理，支持 `claude ps` 查看所有运行中的会话。
+ * - 追踪 SessionKind: interactive | bg | daemon | daemon-worker
+ * - 追踪 SessionStatus: busy | idle | waiting
+ */
+
 export type SessionKind = 'interactive' | 'bg' | 'daemon' | 'daemon-worker'
 export type SessionStatus = 'busy' | 'idle' | 'waiting'
 
@@ -164,6 +176,9 @@ export async function updateSessionActivity(patch: {
  * Count live concurrent CLI sessions (including this one).
  * Filters out stale PID files (crashed sessions) and deletes them.
  * Returns 0 on any error (conservative).
+ *
+ * @note PID 文件名严格匹配 `\d+\.json$`，防止解析 `2026-03-14_notes.md` 为 PID 2026
+ * 导致静默删除用户数据 (anthropics/claude-code#34210)。
  */
 export async function countConcurrentSessions(): Promise<number> {
   const dir = getSessionsDir()
@@ -183,6 +198,7 @@ export async function countConcurrentSessions(): Promise<number> {
     // lenient prefix-parsing means `2026-03-14_notes.md` would otherwise
     // parse as PID 2026 and get swept as stale — silent user data loss.
     // See anthropics/claude-code#34210.
+    // 严格校验：仅处理 `<pid>.json` 格式文件，避免误删普通 JSON 文件。
     if (!/^\d+\.json$/.test(file)) continue
     const pid = parseInt(file.slice(0, -5), 10)
     if (pid === process.pid) {
@@ -197,6 +213,8 @@ export async function countConcurrentSessions(): Promise<number> {
       // or CLAUDE_CONFIG_DIR), a Windows PID won't be probeable from WSL
       // and we'd falsely delete a live session's file. This is just
       // telemetry so conservative undercount is acceptable.
+      // WSL 跳过清理：跨系统共享 sessions 目录时，Windows PID 在 WSL 下不可探查，
+      // 保守地不删除（宁可少计，不误删）。
       void unlink(join(dir, file)).catch(() => {})
     }
   }

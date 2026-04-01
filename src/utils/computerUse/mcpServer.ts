@@ -1,3 +1,18 @@
+/**
+ * @fileoverview mcpServer.ts — In-process MCP server for computer-use
+ *
+ * Constructs the in-process computer-use MCP server that answers ListTools requests.
+ * Delegates to the package's `createComputerUseMcpServer` for the Server object
+ * + stub CallTool handler, then replaces the ListTools handler with one that
+ * includes installed-app names in the `request_access` description.
+ *
+ * This server only answers ListTools; real dispatch goes through wrapper.tsx's
+ * `.call()` override. Async (1s app-enum timeout) so doesn't block startup —
+ * called from an `await import()` in client.ts on first CU connection.
+ *
+ * @note 这是进程内 MCP 服务器，仅负责回答 ListTools；实际工具调用走 wrapper.tsx。
+ */
+
 import {
   buildComputerUseTools,
   createComputerUseMcpServer,

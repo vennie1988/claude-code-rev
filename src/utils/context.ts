@@ -1,3 +1,20 @@
+/**
+ * @fileoverview context.ts — Context window, model capabilities, and token calculations
+ *
+ * Central utilities for model context window resolution, token budgeting,
+ * and output token limits. Handles 1M context detection, GrowthBook
+ * experiment overrides, and per-model capability caps.
+ *
+ * Context window resolution precedence (上下文窗口优先级):
+ * 1. [1m] suffix in model name — explicit client-side opt-in
+ * 2. CLAUDE_CODE_MAX_CONTEXT_TOKENS env var (ant-only override)
+ * 3. Model capability max_input_tokens from GrowthBook
+ * 4. 1M beta experiment (Sonnet 4.6 only)
+ * 5. MODEL_CONTEXT_WINDOW_DEFAULT (200k)
+ *
+ * @note 配置优先级：环境变量 > 模型标签 > GrowthBook > 默认值
+ */
+
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { CONTEXT_1M_BETA_HEADER } from '../constants/betas.js'
 import { getGlobalConfig } from './config.js'

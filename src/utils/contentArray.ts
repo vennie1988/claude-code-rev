@@ -1,9 +1,11 @@
 /**
+ * @fileoverview contentArray.ts — Content array manipulation utilities
+ *
  * Utility for inserting a block into a content array relative to tool_result
  * blocks. Used by the API layer to position supplementary content (e.g.,
  * cache editing directives) correctly within user messages.
  *
- * Placement rules:
+ * Placement rules (放置规则):
  * - If tool_result blocks exist: insert after the last one
  * - Otherwise: insert before the last block
  * - If the inserted block would be the final element, a text continuation

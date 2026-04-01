@@ -1,3 +1,18 @@
+/**
+ * @fileoverview setup.ts — Dynamic MCP config builder for computer-use
+ *
+ * Build the dynamic MCP config + allowed tool names. Mirror of setupClaudeInChrome.
+ * The `mcp__computer-use__*` tools are added to `allowedTools` so they bypass
+ * the normal permission prompt — the package's `request_access` handles
+ * approval for the whole session.
+ *
+ * The MCP layer isn't ceremony: the API backend detects `mcp__computer-use__*`
+ * tool names and emits a CU availability hint into the system prompt.
+ * Built-in tools with different names wouldn't trigger it.
+ *
+ * @note `command/args` 从不实际执行 — client.ts 按名称拦截并使用进程内服务器。
+ */
+
 import { buildComputerUseTools } from '@ant/computer-use-mcp'
 import { join } from 'path'
 import { fileURLToPath } from 'url'

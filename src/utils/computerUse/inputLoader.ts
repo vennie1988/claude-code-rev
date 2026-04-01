@@ -1,3 +1,20 @@
+/**
+ * @fileoverview inputLoader.ts — Lazy loader for @ant/computer-use-input native module
+ *
+ * Loads `@ant/computer-use-input` (Rust/enigo) on first use and caches it.
+ * The package's js/index.js reads COMPUTER_USE_INPUT_NODE_PATH env var
+ * (baked by build-with-plugins.ts on darwin targets).
+ *
+ * key()/keys() dispatch enigo work onto DispatchQueue.main via
+ * dispatch2::run_on_main, then block a tokio worker on a channel.
+ * Under Electron (CFRunLoop drains the main queue) this works;
+ * under libuv (Node/bun) the main queue never drains and the promise hangs.
+ * All callers must wrap these calls in drainRunLoop().
+ *
+ * @note Bun 下 libuv 不 drain DispatchQueue.main，key()/keys() 会挂起，
+ * 必须配合 drainRunLoop() 使用。
+ */
+
 import type {
   ComputerUseInput,
   ComputerUseInputAPI,

@@ -1,4 +1,6 @@
 /**
+ * @fileoverview controlMessageCompat.ts — Control message key normalization shim
+ *
  * Normalize camelCase `requestId` → snake_case `request_id` on incoming
  * control messages (control_request, control_response).
  *
@@ -9,6 +11,9 @@
  *
  * If both `request_id` and `requestId` are present, snake_case wins.
  * Mutates the object in place.
+ *
+ * @note 兼容处理：旧版 iOS 客户端发送 requestId，本模块将其规范化为 request_id，
+ * 避免消息被静默丢弃。
  */
 export function normalizeControlMessageKeys(obj: unknown): unknown {
   if (obj === null || typeof obj !== 'object') return obj

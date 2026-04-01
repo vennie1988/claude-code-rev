@@ -1,3 +1,19 @@
+/**
+ * @fileoverview swiftLoader.ts — Lazy loader for @ant/computer-use-swift native module
+ *
+ * Loads `@ant/computer-use-swift` on first use and caches it.
+ * The package's js/index.js reads COMPUTER_USE_SWIFT_NODE_PATH env var
+ * (baked by build-with-plugins.ts on darwin targets).
+ *
+ * The four @MainActor methods (captureExcluding, captureRegion,
+ * apps.listInstalled, resolvePrepareCapture) dispatch to DispatchQueue.main
+ * and will hang under libuv unless CFRunLoop is pumped — call sites wrap
+ * these in drainRunLoop().
+ *
+ * @note 四个 @MainActor 方法会分发到 DispatchQueue.main，在 Bun/libuv 下会挂起，
+ * 必须配合 drainRunLoop() 使用。
+ */
+
 import type { ComputerUseAPI } from '@ant/computer-use-swift'
 
 let cached: ComputerUseAPI | undefined

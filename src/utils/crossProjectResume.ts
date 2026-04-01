@@ -4,6 +4,19 @@ import type { LogOption } from '../types/logs.js'
 import { quote } from './bash/shellQuote.js'
 import { getSessionIdFromLog } from './sessionStorage.js'
 
+/**
+ * @fileoverview crossProjectResume.ts — Cross-project resume detection
+ *
+ * Check if a log is from a different project directory and determine
+ * whether it's a related worktree or a completely different project.
+ *
+ * For same-repo worktrees, we can resume directly without requiring cd.
+ * For different projects, we generate the cd command.
+ *
+ * @note 工作树检测仅限于 ants 用户，分阶段 rollout。
+ * 跨项目恢复：为不同仓库生成 `cd <path> && claude --resume <session>` 命令。
+ */
+
 export type CrossProjectResumeResult =
   | {
       isCrossProject: false

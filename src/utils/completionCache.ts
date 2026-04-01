@@ -1,3 +1,13 @@
+/**
+ * @fileoverview completionCache.ts — Shell completion script generation and caching
+ *
+ * Generates shell completion scripts via `claude completion`, caches them in
+ * ~/.claude/, and optionally appends a source line to the shell's rc file.
+ * Called during setup and after `claude update` to keep completions in sync.
+ *
+ * 设计：生成并缓存 shell 补全脚本，支持 zsh/bash/fish，自动追加 source 行。
+ */
+
 import chalk from 'chalk'
 import { mkdir, readFile, writeFile } from 'fs/promises'
 import { homedir } from 'os'
@@ -22,6 +32,11 @@ type ShellInfo = {
 }
 
 function detectShell(): ShellInfo | null {
+  // Detect current shell by parsing $SHELL env var.
+  // $SHELL is set at login time and reflects the user's preferred shell,
+  // not necessarily the shell currently running (which could be sh -c).
+  // This is intentional: completions are installed for the login shell.
+  // 检测当前 shell：解析 $SHELL，匹配 zsh/bash/fish 三种主流 shell。
   const shell = process.env.SHELL || ''
   const home = homedir()
   const claudeDir = join(home, '.claude')
@@ -87,8 +102,9 @@ export async function setupShellCompletion(theme: ThemeName): Promise<string> {
   }
 
   // Generate the completion script by writing directly to the cache file.
-  // Using --output avoids piping through stdout where process.exit() can
-  // truncate output before the pipe buffer drains.
+  // Using --output instead of piping through stdout avoids a race where
+  // process.exit() in the child truncates output before the pipe drains.
+  // 使用 --output 直接写入文件，避免 stdout pipe 的截断问题。
   const claudeBin = process.argv[1] || 'claude'
   const result = await execFileNoThrow(claudeBin, [
     'completion',
@@ -101,6 +117,7 @@ export async function setupShellCompletion(theme: ThemeName): Promise<string> {
   }
 
   // Check if rc file already sources completions
+  // 幂等检查：如果已包含 source 行则跳过追加，避免重复污染 rc 文件。
   let existing = ''
   try {
     existing = await readFile(shell.rcFile, { encoding: 'utf-8' })
@@ -118,10 +135,12 @@ export async function setupShellCompletion(theme: ThemeName): Promise<string> {
   }
 
   // Append source line to rc file
+  // 确保 rc 文件所在目录存在（zsh 等的配置文件可能在 ~/.config/ 下）。
   try {
     const configDir = dirname(shell.rcFile)
     await mkdir(configDir, { recursive: true })
 
+    // 如果原文件末尾无换行符，先加一个换行再追加内容，避免 source 行与前文粘在一行。
     const separator = existing && !existing.endsWith('\n') ? '\n' : ''
     const content = `${existing}${separator}\n# Claude Code shell completions\n${shell.completionLine}\n`
     await writeFile(shell.rcFile, content, { encoding: 'utf-8' })
