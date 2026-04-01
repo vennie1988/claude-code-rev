@@ -2,6 +2,9 @@ import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import * as React from 'react';
 import { Box, Text } from 'src/ink.js';
+
+// 提示用户存在已暂存的聊天内容，提交后自动恢复
+// Notifies user of stashed chat content that auto-restores after submit
 type Props = {
   hasStash: boolean;
 };

@@ -20,6 +20,8 @@ export const OVERLAY_MAX_ITEMS = 5;
 /**
  * Get the icon for a suggestion based on its type
  * Icons: + for files, ◇ for MCP resources, * for agents
+ * 根据建议项类型获取图标
+ * 图标: + 文件, ◇ MCP资源, * 代理
  */
 function getIcon(itemId: string): string {
   if (itemId.startsWith('file-')) return '+';
@@ -30,6 +32,7 @@ function getIcon(itemId: string): string {
 
 /**
  * Check if an item is a unified suggestion type (file, mcp-resource, or agent)
+ * 检查是否为统一建议类型（文件、MCP资源或代理）
  */
 function isUnifiedSuggestion(itemId: string): boolean {
   return itemId.startsWith('file-') || itemId.startsWith('mcp-resource-') || itemId.startsWith('agent-');

@@ -24,6 +24,17 @@ const PREVIEW_LINES = 20;
 /**
  * Quick Open dialog (ctrl+shift+p / cmd+shift+p).
  * Fuzzy file finder with a syntax-highlighted preview of the focused file.
+ *
+ * 快速打开对话框 (ctrl+shift+p / cmd+shift+p)。
+ * 模糊文件查找器,带有所选文件的语法高亮预览。
+ *
+ * Key design decisions:
+ * - Generation counter invalidates stale results when user types faster than index responds
+ *   生成计数器:当用户输入速度超过索引响应速度时,使陈旧结果失效
+ * - Preview loads in background; aborts previous read when navigating to avoid stale content
+ *   预览在后台加载;导航时中止前一次读取,避免显示陈旧内容
+ * - Side preview (right) vs bottom preview based on terminal width (>=120 cols)
+ *   终端宽度>=120列时使用侧边预览,否则使用底部预览
  */
 export function QuickOpenDialog(t0) {
   const $ = _c(35);
