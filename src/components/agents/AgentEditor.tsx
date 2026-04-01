@@ -1,3 +1,23 @@
+/**
+ * @fileoverview AgentEditor - Interactive editor for agent configuration
+ * @fileoverview AgentEditor - 代理配置的交互式编辑器
+ *
+ * @remarks
+ * This component provides an interactive menu for editing agent configurations.
+ * Users can modify tools, model, and color settings for custom agents.
+ * Built-in and plugin agents are read-only. Changes are persisted to the
+ * agent definition file and the global app state is updated.
+ *
+ * 此组件提供交互式菜单来编辑代理配置。
+ * 用户可以修改自定义代理的工具、模型和颜色设置。
+ * 内置代理和插件代理是只读的。更改会持久化到代理定义文件，
+ * 并更新全局应用状态。
+ *
+ * @param Props.agent - The agent to edit / 要编辑的代理
+ * @param Props.tools - Available tools / 可用的工具
+ * @param Props.onSaved - Callback when changes are saved / 保存更改时的回调
+ * @param Props.onBack - Callback when user goes back / 用户返回时的回调
+ */
 import chalk from 'chalk';
 import figures from 'figures';
 import * as React from 'react';

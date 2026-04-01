@@ -1,3 +1,20 @@
+/**
+ * @fileoverview ColorPicker - Color selection component for agent customization
+ * @fileoverview ColorPicker - 代理自定义的颜色选择组件
+ *
+ * @remarks
+ * This component provides an interactive color picker for agents with keyboard navigation.
+ * Users can cycle through predefined colors or select automatic (theme-based) coloring.
+ * The preview updates in real-time as the user navigates options.
+ *
+ * 此组件为代理提供交互式颜色选择器，支持键盘导航。
+ * 用户可以在预定义颜色之间切换，或选择自动（基于主题）的颜色。
+ * 当用户导航选项时，预览会实时更新。
+ *
+ * @param Props.agentName - Name of the agent for preview display / 用于预览显示的代理名称
+ * @param Props.currentColor - Currently selected color / 当前选择的颜色
+ * @param Props.onConfirm - Callback when color is confirmed / 确认颜色时的回调
+ */
 import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import React, { useState } from 'react';

@@ -1,3 +1,14 @@
+/**
+ * @fileoverview General - General help information tab
+ * @fileoverview General - 常规帮助信息标签页
+ *
+ * @remarks
+ * This component displays the general help information tab in the help dialog.
+ * It shows a brief description of Claude's capabilities and a list of keyboard shortcuts.
+ *
+ * 此组件在帮助对话框中显示常规帮助信息标签页。
+ * 它展示 Claude 功能的简要说明和键盘快捷键列表。
+ */
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { Box, Text } from '../../ink.js';

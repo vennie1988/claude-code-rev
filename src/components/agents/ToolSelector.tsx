@@ -1,3 +1,22 @@
+/**
+ * @fileoverview ToolSelector - Interactive tool selection component for agent configuration
+ * @fileoverview ToolSelector - 代理配置的交互式工具选择组件
+ *
+ * @remarks
+ * This component provides an interactive UI for selecting which tools an agent can use.
+ * Tools are organized into buckets (Read-only, Edit, Execution, MCP, Other) for easy navigation.
+ * Users can select individual tools or choose to allow all tools. MCP tools are dynamically
+ * grouped by their server.
+ *
+ * 此组件提供交互式 UI，用于选择代理可以使用哪些工具。
+ * 工具被组织成桶（只读、编辑、执行、MCP、其他）以便导航。
+ * 用户可以选择单个工具或选择允许所有工具。MCP 工具按其服务器动态分组。
+ *
+ * @param Props.tools - Available tools to select from / 可供选择的可用工具
+ * @param Props.initialTools - Pre-selected tools / 预选的工具
+ * @param Props.onComplete - Callback with selected tools / 选择工具后的回调
+ * @param Props.onCancel - Optional cancel handler / 可选的取消处理器
+ */
 import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import React, { useCallback, useMemo, useState } from 'react';
@@ -46,6 +65,10 @@ type ToolBuckets = {
   MCP: ToolBucket;
   OTHER: ToolBucket;
 };
+/**
+ * Returns static tool buckets for categorizing tools
+ * 返回用于分类工具的静态工具桶
+ */
 function getToolBuckets(): ToolBuckets {
   return {
     READ_ONLY: {
@@ -63,17 +86,20 @@ function getToolBuckets(): ToolBuckets {
     MCP: {
       name: 'MCP tools',
       toolNames: new Set(),
-      // Dynamic - no static list
+      // Dynamic - no static list / 动态 - 无静态列表
       isMcp: true
     },
     OTHER: {
       name: 'Other tools',
-      toolNames: new Set() // Dynamic - catch-all for uncategorized tools
+      toolNames: new Set() // Dynamic - catch-all for uncategorized tools / 动态 - 未分类工具的兜底桶
     }
   };
 }
 
-// Helper to get MCP server buckets dynamically
+/**
+ * Helper to get MCP server buckets dynamically
+ * 动态获取 MCP 服务器桶的辅助函数
+ */
 function getMcpServerBuckets(tools: Tools): Array<{
   serverName: string;
   tools: Tools;

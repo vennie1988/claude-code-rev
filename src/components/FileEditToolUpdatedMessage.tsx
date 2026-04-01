@@ -1,3 +1,23 @@
+/**
+ * @fileoverview FileEditToolUpdatedMessage - Displays file edit success message with diff summary
+ * @fileoverview FileEditToolUpdatedMessage - 显示文件编辑成功消息和差异摘要
+ *
+ * @remarks
+ * This component shows a success message after file edits are applied, including
+ * a summary of lines added/removed and optionally the full diff view. It supports
+ * different display styles (condensed vs verbose) based on context.
+ *
+ * 此组件在文件编辑应用后显示成功消息，包括添加/删除行的摘要，
+ * 并可选择显示完整差异视图。根据上下文支持不同的显示样式（简洁 vs 详细）。
+ *
+ * @param Props.filePath - Path to the edited file / 被编辑文件的路径
+ * @param Props.structuredPatch - The patch hunks showing changes / 显示更改的补丁块
+ * @param Props.firstLine - First line of the file / 文件的第一行
+ * @param Props.fileContent - Current file content / 当前文件内容
+ * @param Props.style - Display style: 'condensed' for brief output / 显示样式：'condensed' 用于简短输出
+ * @param Props.verbose - Whether to show full diff even in condensed mode / 是否在简洁模式下显示完整差异
+ * @param Props.previewHint - Optional hint text to display / 可选的提示文本
+ */
 import { c as _c } from "react/compiler-runtime";
 import type { StructuredPatchHunk } from 'diff';
 import * as React from 'react';

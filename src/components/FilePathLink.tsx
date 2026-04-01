@@ -1,3 +1,19 @@
+/**
+ * @fileoverview FilePathLink - Renders file paths as clickable OSC 8 hyperlinks
+ * @fileoverview FilePathLink - 将文件路径渲染为可点击的 OSC 8 超链接
+ *
+ * @remarks
+ * This component converts a file path to a file:// URL and renders it as an OSC 8 hyperlink.
+ * This enables proper clickability in terminals like iTerm, even when the path appears
+ * inside parentheses or other text that would otherwise break path detection.
+ *
+ * 此组件将文件路径转换为 file:// URL 并将其渲染为 OSC 8 超链接。
+ * 这使得在 iTerm 等终端中能够正确点击，即使路径出现在括号内
+ * 或其他可能破坏路径检测的文本中。
+ *
+ * @param Props.filePath - The absolute file path to render as a link / 要渲染为链接的绝对文件路径
+ * @param Props.children - Optional custom display text (defaults to filePath) / 可选的自定义显示文本（默认为 filePath）
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { pathToFileURL } from 'url';

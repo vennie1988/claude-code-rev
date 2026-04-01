@@ -1,3 +1,24 @@
+/**
+ * @fileoverview Commands - Command list component for help dialog
+ * @fileoverview Commands - 帮助对话框的命令列表组件
+ *
+ * @remarks
+ * This component displays a scrollable list of available commands in the help dialog.
+ * Commands are deduplicated by name (in case of duplicates from different sources)
+ * and sorted alphabetically. Custom commands can appear multiple times (e.g., same name
+ * at user and project scope) and are deduplicated to avoid React key collisions.
+ *
+ * 此组件在帮助对话框中显示可用命令的可滚动列表。
+ * 命令按名称去重（以防不同来源的重复），并按字母顺序排序。
+ * 自定义命令可能出现多次（例如，用户和项目范围的相同名称），去重以避免 React 键冲突。
+ *
+ * @param Props.commands - List of commands to display / 要显示的命令列表
+ * @param Props.maxHeight - Maximum height for the command list / 命令列表的最大高度
+ * @param Props.columns - Terminal width for layout calculations / 用于布局计算的终端宽度
+ * @param Props.title - Title text to display above the list / 列表上方显示的标题文本
+ * @param Props.onCancel - Callback when user cancels / 用户取消时的回调
+ * @param Props.emptyMessage - Message to show when no commands available / 没有可用命令时显示的消息
+ */
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { useMemo } from 'react';

@@ -1,3 +1,33 @@
+/**
+ * @fileoverview AgentDetail - Displays detailed information about an agent
+ * @fileoverview AgentDetail - 显示代理的详细信息
+ *
+ * @remarks
+ * This component shows comprehensive details about an agent configuration including:
+ * - Description (when to use the agent)
+ * - Tools the agent can use
+ * - Model configuration
+ * - Permission mode
+ * - Memory settings
+ * - Hooks and skills
+ * - Color display
+ * - System prompt (for non-built-in agents)
+ *
+ * 此组件显示代理配置的详细信息，包括：
+ * - 描述（何时使用代理）
+ * - 代理可以使用的工具
+ * - 模型配置
+ * - 权限模式
+ * - 内存设置
+ * - 钩子和技能
+ * - 颜色显示
+ * - 系统提示（对于非内置代理）
+ *
+ * @param Props.agent - The agent definition to display / 要显示的代理定义
+ * @param Props.tools - Available tools / 可用的工具
+ * @param Props.allAgents - Optional list of all agents / 可选的代理列表
+ * @param Props.onBack - Callback when user goes back / 用户返回时的回调
+ */
 import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import * as React from 'react';
