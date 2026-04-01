@@ -1,3 +1,12 @@
+/**
+ * @fileoverview tips/tipHistory.ts — Tip display history tracking
+ *
+ * Tracks which tips have been shown to users and when,
+ * to prevent repeatedly showing the same tips across sessions.
+ *
+ * 跟踪已向用户显示的提示及其时间,以防止跨会话重复显示相同提示。
+ */
+
 import { getGlobalConfig, saveGlobalConfig } from '../../utils/config.js'
 
 export function recordTipShown(tipId: string): void {
