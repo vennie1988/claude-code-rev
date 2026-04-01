@@ -226,7 +226,9 @@ type QueryMessage =
 
 /**
  * Type guard to check if a message from query() is a recordable Message type.
+ * 类型守卫：检查来自query()的消息是否为可记录的消息类型。
  * Matches the types we want to record: assistant, user, progress, or system compact_boundary.
+ * 匹配我们想要记录的类型：assistant、user、progress或system compact_boundary。
  */
 function isRecordableMessage(
   msg: QueryMessage,
@@ -861,7 +863,9 @@ export async function* runAgent({
 
 /**
  * Filters out assistant messages with incomplete tool calls (tool uses without results).
+ * 过滤掉具有不完整工具调用的assistant消息（没有结果的工具使用）。
  * This prevents API errors when sending messages with orphaned tool calls.
+ * 这可以防止发送带有孤立工具调用的消息时出现API错误。
  */
 export function filterIncompleteToolCalls(messages: Message[]): Message[] {
   // Build a set of tool use IDs that have results
@@ -933,14 +937,21 @@ async function getAgentSystemPrompt(
 
 /**
  * Resolve a skill name from agent frontmatter to a registered command name.
+ * 将代理frontmatter中的技能名称解析为注册的command名称。
  *
  * Plugin skills are registered with namespaced names (e.g., "my-plugin:my-skill")
  * but agents reference them with bare names (e.g., "my-skill"). This function
  * tries multiple resolution strategies:
  *
+ * 插件技能使用命名空间名称注册（例如"my-plugin:my-skill"），
+ * 但代理使用简单名称引用它们（例如"my-skill"）。此函数尝试多种解析策略：
+ *
  * 1. Exact match via hasCommand (name, userFacingName, aliases)
+ *    通过hasCommand进行精确匹配（名称、userFacingName、别名）
  * 2. Prefix with agent's plugin name (e.g., "my-skill" → "my-plugin:my-skill")
+ *    使用代理的插件名称作为前缀（例如"my-skill" → "my-plugin:my-skill"）
  * 3. Suffix match — find any command whose name ends with ":skillName"
+ *    后缀匹配 - 查找名称以":skillName"结尾的任何命令
  */
 function resolveSkillName(
   skillName: string,
