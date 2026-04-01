@@ -25,6 +25,7 @@ const DATE = dateToFilename(new Date())
 
 /**
  * Gets the path to the errors log file.
+ * 获取错误日志文件的路径。
  */
 export function getErrorsPath(): string {
   return join(CACHE_PATHS.errors(), DATE + '.jsonl')
@@ -32,6 +33,7 @@ export function getErrorsPath(): string {
 
 /**
  * Gets the path to MCP logs for a server.
+ * 获取服务器的 MCP 日志路径。
  */
 export function getMCPLogsPath(serverName: string): string {
   return join(CACHE_PATHS.mcpLogs(serverName), DATE + '.jsonl')
@@ -221,6 +223,10 @@ function logMCPDebugImpl(serverName: string, message: string): void {
  * Should be called BEFORE initializeAnalyticsSink() in the startup sequence.
  *
  * Idempotent: safe to call multiple times (subsequent calls are no-ops).
+ * 初始化错误日志接收器。在应用启动期间调用以附加错误日志后端。
+ * 在调用此函数之前记录的任何错误都将被排队并排干。
+ * 应在启动序列中在 initializeAnalyticsSink() 之前调用。
+ * 幂等：安全地多次调用（后续调用是空操作）。
  */
 export function initializeErrorLogSink(): void {
   attachErrorLogSink({

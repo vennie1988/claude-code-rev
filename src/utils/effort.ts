@@ -10,6 +10,7 @@ import type { EffortLevel } from 'src/entrypoints/sdk/runtimeTypes.js'
 
 export type { EffortLevel }
 
+// EFFORT_LEVELS — Supported effort levels / 支持的努力级别
 export const EFFORT_LEVELS = [
   'low',
   'medium',
@@ -17,6 +18,7 @@ export const EFFORT_LEVELS = [
   'max',
 ] as const satisfies readonly EffortLevel[]
 
+// EffortValue — Can be a named level or numeric value (ANT-only) / 可以是命名级别或数字值（仅 ANT）
 export type EffortValue = EffortLevel | number
 
 // @[MODEL LAUNCH]: Add the new model to the allowlist if it supports the effort parameter.

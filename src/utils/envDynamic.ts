@@ -48,6 +48,10 @@ if (process.platform === 'linux') {
  * In native linux builds, this is statically known at compile time via IS_LIBC_MUSL/IS_LIBC_GLIBC flags.
  * In node (unbundled), both flags are false and we fall back to a runtime async stat check
  * whose result is cached at module load. If the cache isn't populated yet, returns false.
+ * 检查系统是否使用 MUSL libc 而不是 glibc。在原生 linux 构建中，
+ * 这在编译时通过 IS_LIBC_MUSL/IS_LIBC_GLIBC 标志静态已知。
+ * 在 node（未捆绑）中，两个标志都为 false，我们回退到运行时异步 stat 检查，
+ * 其结果在模块加载时缓存。如果缓存尚未填充，则返回 false。
  */
 function isMuslEnvironment(): boolean {
   if (feature('IS_LIBC_MUSL')) return true
@@ -132,6 +136,8 @@ export function getTerminalWithJetBrainsDetection(): string | null {
  * Initialize JetBrains IDE detection asynchronously.
  * Call this early in app initialization to populate the cache.
  * After this resolves, getTerminalWithJetBrainsDetection() will return accurate results.
+ * 异步初始化 JetBrains IDE 检测。在应用初始化早期调用以填充缓存。
+ * 解析后，getTerminalWithJetBrainsDetection() 将返回准确的结果。
  */
 export async function initJetBrainsDetection(): Promise<void> {
   if (process.env.TERMINAL_EMULATOR === 'JetBrains-JediTerm') {
