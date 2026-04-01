@@ -1,3 +1,15 @@
+/**
+ * @fileoverview tokenBudget.ts — Token budget detection and parsing utilities
+ *
+ * Parses token budget expressions from natural language text. Supports multiple
+ * formats: shorthand (e.g., "+500k"), end-anchored (e.g., "budget +500k"), and
+ * verbose (e.g., "use 2M tokens"). Used for budget continuation prompts.
+ *
+ * @design Token 预算检测和解析工具。从自然语言文本中解析 token 预算表达式。
+ * 支持多种格式：简写（如 "+500k"）、末尾锚定（如 "budget +500k"）和详细格式（如 "use 2M tokens"）。
+ * 用于预算继续提示。
+ */
+
 // Shorthand (+500k) anchored to start/end to avoid false positives in natural language.
 // Verbose (use/spend 2M tokens) matches anywhere.
 const SHORTHAND_START_RE = /^\s*\+(\d+(?:\.\d+)?)\s*(k|m|b)\b/i
