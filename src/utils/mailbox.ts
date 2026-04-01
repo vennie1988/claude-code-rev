@@ -1,5 +1,30 @@
+/**
+ * @fileoverview mailbox.ts — 消息邮箱实现
+ * Message Mailbox Implementation
+ *
+ * 设计意图：提供进程内的消息传递机制，支持：
+ * - 消息队列存储
+ * - 同步轮询（poll）
+ * - 异步等待（receive）
+ * - 发布-订阅模式（subscribe）
+ *
+ * 类似于 Actor 模型中的邮箱，用于团队成员间的消息传递。
+ *
+ * Design intent: Provides in-process message passing mechanism with:
+ * - Message queue storage
+ * - Synchronous polling (poll)
+ * - Async waiting (receive)
+ * - Publish-subscribe pattern (subscribe)
+ *
+ * Similar to an actor's mailbox for team member communication.
+ */
+
 import { createSignal } from './signal.js'
 
+/**
+ * MessageSource — 消息来源类型
+ * Possible sources for a message in the mailbox.
+ */
 export type MessageSource = 'user' | 'teammate' | 'system' | 'tick' | 'task'
 
 export type Message = {

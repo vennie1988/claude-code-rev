@@ -1,3 +1,15 @@
+/**
+ * @fileoverview BaseTextInput.tsx — Base text input component with cursor and paste handling
+ * BaseTextInput.tsx — 带光标和粘贴处理的基础文本输入组件
+ *
+ * @description
+ * - Base component for text inputs with cursor position tracking
+ * - Handles ANSI rendering and placeholder display
+ * - Integrates with paste handler and cursor management
+ * - 带光标位置跟踪的文本输入基础组件
+ * - 处理ANSI渲染和占位符显示
+ * - 集成粘贴处理和光标管理
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { renderPlaceholder } from '../hooks/renderPlaceholder.js';
@@ -7,17 +19,30 @@ import { Ansi, Box, Text, useInput } from '../ink.js';
 import type { BaseInputState, BaseTextInputProps } from '../types/textInputTypes.js';
 import type { TextHighlight } from '../utils/textHighlighting.js';
 import { HighlightedInput } from './PromptInput/ShimmeredInput.js';
+
+/** Extended props combining BaseTextInputProps with additional component-specific props / 将 BaseTextInputProps 与额外组件特定属性结合的扩展属性 */
 type BaseTextInputComponentProps = BaseTextInputProps & {
-  inputState: BaseInputState;
-  children?: React.ReactNode;
-  terminalFocus: boolean;
-  highlights?: TextHighlight[];
-  invert?: (text: string) => string;
-  hidePlaceholderText?: boolean;
+  inputState: BaseInputState;        // Input state including cursor position / 包括光标位置的输入状态
+  children?: React.ReactNode;          // Additional child elements / 额外的子元素
+  terminalFocus: boolean;              // Whether terminal has focus / 终端是否有焦点
+  highlights?: TextHighlight[];        // Text highlighting rules / 文本高亮规则
+  invert?: (text: string) => string;  // Function to invert text colors / 反转文本颜色的函数
+  hidePlaceholderText?: boolean;       // Whether to hide placeholder / 是否隐藏占位符
 };
 
 /**
- * A base component for text inputs that handles rendering and basic input
+ * BaseTextInput — Base component for text inputs with cursor and paste handling
+ * BaseTextInput — 带光标和粘贴处理的基础文本输入组件
+ *
+ * @description
+ * - Renders text input with cursor position tracking
+ * - Supports placeholder rendering and ANSI color codes
+ * - Handles paste events and keyboard input
+ * - 渲染带光标位置跟踪的文本输入
+ * - 支持占位符渲染和ANSI颜色代码
+ * - 处理粘贴事件和键盘输入
+ *
+ * @returns Ink Box with rendered text input / 带有渲染文本输入的Ink Box
  */
 export function BaseTextInput(t0) {
   const $ = _c(14);

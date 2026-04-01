@@ -1,25 +1,45 @@
+/**
+ * @fileoverview AgentProgressLine.tsx — Renders a single agent's progress in the task tree
+ * AgentProgressLine.tsx — 在任务树中渲染单个代理的进度
+ *
+ * @description
+ * - Displays agent type, name, description, tool usage, and token count
+ * - Shows status: Initializing / Running in background / Done
+ * - Uses tree characters (├── └──) to show hierarchy
+ * 显示代理类型、名称、描述、工具使用次数和token数量
+ * 状态显示：初始化中 / 后台运行 / 完成
+ * 使用树形字符显示层级关系
+ */
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { Box, Text } from '../ink.js';
 import { formatNumber } from '../utils/format.js';
 import type { Theme } from '../utils/theme.js';
+/** Props — AgentProgressLine component properties / AgentProgressLine 组件属性 */
 type Props = {
-  agentType: string;
-  description?: string;
-  name?: string;
-  descriptionColor?: keyof Theme;
-  taskDescription?: string;
-  toolUseCount: number;
-  tokens: number | null;
-  color?: keyof Theme;
-  isLast: boolean;
-  isResolved: boolean;
-  isError: boolean;
-  isAsync?: boolean;
-  shouldAnimate: boolean;
-  lastToolInfo?: string | null;
-  hideType?: boolean;
+  agentType: string;               // Agent type label (e.g., 'Research', 'Coder') 代理类型标签
+  description?: string;           // Short description of this agent's task 此代理任务的简短描述
+  name?: string;                  // Custom name for this agent instance 此代理实例的自定义名称
+  descriptionColor?: keyof Theme; // Ink theme color key for description background 描述背景的 Ink 主题颜色键
+  taskDescription?: string;        // Description shown when running in background 后台运行时显示的描述
+  toolUseCount: number;           // Number of tool invocations 工具调用次数
+  tokens: number | null;          // Token usage (null if unknown) token使用量（未知时为null）
+  color?: keyof Theme;             // Ink theme color key for agent type background 代理类型背景的主题颜色键
+  isLast: boolean;                // Whether this is the last sibling in the tree 是否是树中最后一个兄弟节点
+  isResolved: boolean;            // Whether the agent has completed 是否已完成
+  isError: boolean;                // Whether the agent encountered an error 是否遇到错误
+  isAsync?: boolean;               // Whether this agent runs asynchronously (background) 是否异步运行（后台）
+  shouldAnimate: boolean;         // Whether to animate progress 进度条是否显示动画
+  lastToolInfo?: string | null;   // Last tool that was invoked 最近调用的工具
+  hideType?: boolean;             // Whether to hide the agent type label 是否隐藏代理类型标签
 };
+/**
+ * AgentProgressLine — Renders a single agent's progress row in the task tree
+ * AgentProgressLine — 在任务树中渲染单个代理的进度行
+ *
+ * @returns A two-line Ink Box: the main agent info line + optional status line
+ * 返回一个两行的 Ink Box：主代理信息行 + 可选的状态行
+ */
 export function AgentProgressLine(t0) {
   const $ = _c(32);
   const {
@@ -39,7 +59,9 @@ export function AgentProgressLine(t0) {
   } = t0;
   const isAsync = t1 === undefined ? false : t1;
   const hideType = t2 === undefined ? false : t2;
+  // Tree branch character: └── (last) or ├── (not last) / 树形分支字符：└──（最后）或 ├──（非最后）
   const treeChar = isLast ? "\u2514\u2500" : "\u251C\u2500";
+  // Backgrounded: async agent that has been resolved / 后台：已完成的异步代理
   const isBackgrounded = isAsync && isResolved;
   let t3;
   if ($[0] !== isBackgrounded || $[1] !== isResolved || $[2] !== lastToolInfo || $[3] !== taskDescription) {
@@ -60,6 +82,7 @@ export function AgentProgressLine(t0) {
   } else {
     t3 = $[4];
   }
+  // getStatusText — returns status string based on agent state / 根据代理状态返回状态字符串
   const getStatusText = t3;
   let t4;
   if ($[5] !== treeChar) {

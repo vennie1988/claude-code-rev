@@ -1,3 +1,19 @@
+/**
+ * @fileoverview useInboxPoller.ts — Teammate inbox polling hook
+ * 队友收件箱轮询hook：轮询队友消息并作为新turn提交或将消息加入队列。
+ * Polls teammate inbox for messages and submits as turns or queues for later delivery.
+ *
+ * @design
+ * - 每1秒轮询未读消息（队友或团队lead）
+ * - 空闲时立即提交消息为新turn
+ * - 忙碌时将消息加入AppState.inbox队列，turn结束时传递
+ * - 处理权限请求/响应、sandbox权限、shutdown请求、plan审批等
+ *
+ * @design Polls every 1s for unread messages (teammates or team leads)
+ * @design Idle: immediately submits messages as new turns
+ * @design Busy: queues messages in AppState.inbox, delivers when turn ends
+ * @design Handles permission requests/responses, sandbox permissions, shutdown, plan approvals
+ */
 import { randomUUID } from 'crypto'
 import { useCallback, useEffect, useRef } from 'react'
 import { useInterval } from 'usehooks-ts'

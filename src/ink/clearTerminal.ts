@@ -1,6 +1,11 @@
 /**
+ * Terminal Clearer / 终端清屏器
+ *
  * Cross-platform terminal clearing with scrollback support.
+ * 支持回滚清除的跨平台终端清屏。
+ *
  * Detects modern terminals that support ESC[3J for clearing scrollback.
+ * 检测支持 ESC[3J 清除回滚的现代终端。
  */
 
 import {

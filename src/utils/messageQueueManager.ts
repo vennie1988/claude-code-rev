@@ -1,3 +1,15 @@
+/**
+ * @fileoverview messageQueueManager.ts — 命令队列管理 / Command queue management
+ *
+ * Unified command queue for all input types: user input, task notifications,
+ * orphaned permissions. Uses priority-based dequeue ordering (now > next > later).
+ * React components subscribe via useSyncExternalStore.
+ *
+ * 所有输入类型的统一命令队列：用户输入、任务通知、孤立权限。
+ * 使用基于优先级的出队排序（now > next > later）。
+ * React 组件通过 useSyncExternalStore 订阅。
+ */
+
 import { feature } from 'bun:bundle'
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/messages.mjs'
 import type { Permutations } from 'src/types/utils.js'

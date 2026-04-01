@@ -1,8 +1,17 @@
 import { c as _c } from "react/compiler-runtime";
 /**
- * Shared state machine + install helper for plugin-recommendation hooks
- * (LSP, claude-code-hint). Centralizes the gate chain, async-guard,
- * and success/failure notification JSX so new sources stay small.
+ * @fileoverview usePluginRecommendationBase.tsx — Plugin recommendation shared state machine
+ * 插件推荐共享状态机：集中管理推荐钩子的门控链和异步保护。
+ * Shared state machine + install helper for plugin-recommendation hooks (LSP, claude-code-hint).
+ *
+ * @design
+ * - 集中门控链（远程模式、已显示、进行中）
+ * - 标准成功/失败通知JSX
+ * - installPluginAndNotify: 查找插件、运行安装、发送通知
+ *
+ * @design Centralized gate chain (remote mode, already showing, in-flight)
+ * @design Standard success/failure notification JSX
+ * @design installPluginAndNotify: lookup, install, and notify
  */
 
 import figures from 'figures';

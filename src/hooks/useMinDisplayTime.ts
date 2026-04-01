@@ -1,3 +1,17 @@
+/**
+ * @fileoverview useMinDisplayTime.ts — Minimum display time throttle hook
+ * 最小显示时间节流hook：确保每个值至少显示minMs毫秒才切换。
+ * Ensures each distinct value stays visible for at least minMs before being replaced.
+ *
+ * @design
+ * - 与debounce（等待安静）和throttle（限制频率）不同
+ * - 保证每个值都有最小屏幕时间
+ * - 用于防止快速变化的进度文本闪烁
+ *
+ * @design Different from debounce (wait for quiet) and throttle (limit rate)
+ * @design Guarantees each value gets minimum screen time
+ * @design Prevents fast-cycling progress text from flickering
+ */
 import { useEffect, useRef, useState } from 'react'
 
 /**

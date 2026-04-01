@@ -1,3 +1,15 @@
+/**
+ * @fileoverview BashModeProgress.tsx — Renders bash mode input and progress
+ * BashModeProgress.tsx — 渲染bash模式输入和进度
+ *
+ * @description
+ * - Displays the user's bash input command
+ * - Shows shell progress with output lines and elapsed time
+ * - Falls back to BashTool progress rendering if no ShellProgress
+ * - 显示用户的bash输入命令
+ * - 显示带有输出行和已用时间的shell进度
+ * - 如果没有ShellProgress则回退到BashTool进度渲染
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { Box } from '../ink.js';
@@ -5,11 +17,27 @@ import { BashTool } from '../tools/BashTool/BashTool.js';
 import type { ShellProgress } from '../types/tools.js';
 import { UserBashInputMessage } from './messages/UserBashInputMessage.js';
 import { ShellProgressMessage } from './shell/ShellProgressMessage.js';
+
+/** Props — BashModeProgress component properties / BashModeProgress 组件属性 */
 type Props = {
-  input: string;
-  progress: ShellProgress | null;
-  verbose: boolean;
+  input: string;                // The bash command input / bash命令输入
+  progress: ShellProgress | null; // Shell progress state / Shell进度状态
+  verbose: boolean;              // Enable verbose output / 启用详细输出
 };
+/**
+ * BashModeProgress — Renders bash input and shell progress display
+ * BashModeProgress — 渲染bash输入和shell进度显示
+ *
+ * @description
+ * - Shows the bash command the user entered
+ * - Displays progress bar and output lines for running commands
+ * - Falls back to BashTool progress rendering when ShellProgress is unavailable
+ * - 显示用户输入的bash命令
+ * - 为正在运行的命令显示进度条和输出行
+ * - 当ShellProgress不可用时回退到BashTool进度渲染
+ *
+ * @returns Box containing input and progress components / 包含输入和进度组件的Box
+ */
 export function BashModeProgress(t0) {
   const $ = _c(8);
   const {

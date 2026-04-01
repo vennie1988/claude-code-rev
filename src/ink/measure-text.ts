@@ -1,3 +1,15 @@
+/**
+ * Text Measurement / 文本测量
+ *
+ * Single-pass measurement of text dimensions for layout calculations.
+ * 用于布局计算的单遍文本尺寸测量。
+ *
+ * Computes both width and height in one iteration instead of two
+ * (widestLine + countVisualLines). Uses indexOf to avoid array allocation from split('\n').
+ * 一次迭代计算宽度和高度，而不是两次（widestLine + countVisualLines）。
+ * 使用 indexOf 避免 split('\n') 的数组分配。
+ */
+
 import { lineWidth } from './line-width-cache.js'
 
 type Output = {

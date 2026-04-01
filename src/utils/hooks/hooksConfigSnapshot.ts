@@ -1,3 +1,14 @@
+/**
+ * @fileoverview hooksConfigSnapshot.ts — Hook 配置快照管理 / Hook configuration snapshot management
+ *
+ * ## 功能说明 (Description)
+ * Hook 配置的快照管理，支持在应用启动时捕获配置，
+ * 并在配置变更时更新快照。处理 allowManagedHooksOnly 等策略设置。
+ *
+ * Snapshot management for hook configuration, capturing config at application
+ * startup and updating on changes. Handles policy settings like allowManagedHooksOnly.
+ */
+
 import { resetSdkInitState } from '../../bootstrap/state.js'
 import { isRestrictedToPluginOnly } from '../settings/pluginOnlyPolicy.js'
 // Import as module object so spyOn works in tests (direct imports bypass spies)

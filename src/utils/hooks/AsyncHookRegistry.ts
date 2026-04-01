@@ -1,3 +1,15 @@
+/**
+ * @fileoverview AsyncHookRegistry.ts — 异步 Hook 注册表 / Asynchronous hook registry
+ *
+ * ## 功能说明 (Description)
+ * 异步 Hook 的进程级注册表，管理正在运行的异步 Hook 进程。
+ * 跟踪待处理的异步 Hook，支持进度间隔报告、响应收集和最终化处理。
+ *
+ * Process-level registry for async hooks, managing running async hook processes.
+ * Tracks pending async hooks with progress interval reporting, response collection,
+ * and finalization handling.
+ */
+
 import type {
   AsyncHookJSONOutput,
   HookEvent,

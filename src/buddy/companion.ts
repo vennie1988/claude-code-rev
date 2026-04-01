@@ -1,3 +1,14 @@
+/**
+ * @fileoverview companion.ts — Companion sprite management
+ *
+ * Manages companion sprites (pets) in Claude Code.
+ * Provides companion creation, rendering, and state management.
+ *
+ * 设计说明：
+ * - companion.ts 管理 Claude Code 中的伙伴精灵（宠物）
+ * - 提供伙伴创建、渲染和状态管理
+ */
+
 import { getGlobalConfig } from '../utils/config.js'
 import {
   type Companion,

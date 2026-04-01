@@ -1,3 +1,18 @@
+/**
+ * @fileoverview tools.ts — Central tool registry
+ *
+ * This module is the central registry for all built-in tools.
+ * It provides functions to:
+ * - getAllBaseTools(): Get all tools (respecting feature flags)
+ * - getTools(): Get tools for current permission context
+ * - assembleToolPool(): Merge built-in and MCP tools
+ *
+ * 设计说明：
+ * - tools.ts 是所有内置工具的中央注册表
+ * - 提供函数获取所有工具、根据权限上下文过滤工具、合并内置工具和 MCP 工具
+ * - 支持特性标志控制工具的可用性
+ */
+
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { toolMatchesName, type Tool, type Tools } from './Tool.js'
 import { AgentTool } from './tools/AgentTool/AgentTool.js'

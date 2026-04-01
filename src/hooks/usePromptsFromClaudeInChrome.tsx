@@ -1,3 +1,22 @@
+/**
+ * @fileoverview usePromptsFromClaudeInChrome.tsx — Chrome extension prompt bridge hook
+ * Chrome扩展提示桥接hook：监听Chrome扩展的提示通知，同步权限模式。
+ * Listens for prompt notifications from Claude for Chrome extension,
+ * enqueues them as user prompts, and syncs permission mode changes to the extension.
+ *
+ * @design
+ * - 查找Claude in Chrome MCP客户端
+ * - 设置提示通知处理器，解析JSON-RPC 2.0格式通知
+ * - 支持图片提示（base64编码）
+ * - 追踪特定标签页的提示
+ * - 同步权限模式到Chrome扩展（bypassPermissions→skip_all_permission_checks）
+ *
+ * @design Finds Claude in Chrome MCP client
+ * @design Sets up prompt notification handler with JSON-RPC 2.0 schema
+ * @design Supports image prompts (base64 encoded)
+ * @design Only processes notifications from tracked tabs
+ * @design Syncs permission mode to Chrome extension
+ */
 import { c as _c } from "react/compiler-runtime";
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/messages.mjs';
 import { useEffect, useRef } from 'react';

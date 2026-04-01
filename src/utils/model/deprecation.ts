@@ -1,7 +1,11 @@
 /**
- * Model deprecation utilities
+ * @fileoverview deprecation.ts — 模型弃用检查 / Model deprecation checking
  *
  * Contains information about deprecated models and their retirement dates.
+ * Provides deprecation warnings for users when using deprecated models.
+ *
+ * 包含已弃用模型及其停用日期的信息。
+ * 在用户使用已弃用模型时提供弃用警告。
  */
 
 import { type APIProvider, getAPIProvider } from './providers.js'

@@ -1,11 +1,19 @@
 /**
- * Environment variables that control inference routing: which provider to use,
- * which endpoint to hit, and which model IDs to send.
+ * @fileoverview managedEnvConstants.ts — 环境变量常量定义
+ * Environment Variable Constants for Provider Routing
  *
- * When CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST is truthy in the spawn env, these
- * are stripped from settings-sourced env so the host's routing config isn't
- * overridden by a user's ~/.claude/settings.json — e.g. a Bedrock setup for
- * terminal CLI that would break a host that only supports first-party auth.
+ * 设计意图：
+ * - 定义控制推理路由的环境变量（提供商选择、端点、模型 ID）
+ * - 当 CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST 设置时，从 settings 源中剥离这些变量
+ * - 防止用户的 ~/.claude/settings.json 覆盖主机的路由配置
+ *
+ * @[MODEL LAUNCH]：新模型通常不需要修改此处 —
+ * VERTEX_REGION_CLAUDE_* 使用前缀匹配。新提供商或新的路由配置变量（endpoint、project、region、auth）需要修改。
+ *
+ * Design intent:
+ * - Defines environment variables that control inference routing: provider selection, endpoint, model IDs
+ * - When CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST is set, these are stripped from settings-sourced env
+ * - Prevents user's ~/.claude/settings.json from overriding host's routing config
  *
  * @[MODEL LAUNCH]: New models usually don't need changes here —
  * VERTEX_REGION_CLAUDE_* is prefix-matched. New providers or new routing

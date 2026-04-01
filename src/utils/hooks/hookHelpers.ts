@@ -1,3 +1,13 @@
+/**
+ * @fileoverview hookHelpers.ts — Hook 辅助工具函数 / Hook helper utility functions
+ *
+ * ## 功能说明 (Description)
+ * Hook 系统的辅助工具函数，包括参数替换、结构化输出工具创建、提示词参数添加等功能。
+ *
+ * Helper utility functions for the hook system, including argument substitution,
+ * structured output tool creation, and prompt argument addition.
+ */
+
 import { z } from 'zod/v4'
 import type { Tool } from '../../Tool.js'
 import {

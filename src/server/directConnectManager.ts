@@ -1,5 +1,16 @@
 /* eslint-disable eslint-plugin-n/no-unsupported-features/node-builtins */
 
+/**
+ * @fileoverview directConnectManager.ts — Direct connect session management
+ *
+ * Manages direct connect sessions for the SDK.
+ * Handles WebSocket connections and session lifecycle.
+ *
+ * 设计说明：
+ * - directConnectManager.ts 管理 SDK 的直接连接会话
+ * - 处理 WebSocket 连接和会话生命周期
+ */
+
 import type { SDKMessage } from '../entrypoints/agentSdkTypes.js'
 import type {
   SDKControlPermissionRequest,

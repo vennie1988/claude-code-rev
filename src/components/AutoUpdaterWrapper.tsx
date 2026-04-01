@@ -1,3 +1,13 @@
+/**
+ * @fileoverview AutoUpdaterWrapper.tsx — Wrapper that detects installation type and routes to appropriate updater
+ * AutoUpdaterWrapper.tsx — 检测安装类型并路由到适当更新程序的包装器
+ *
+ * @description
+ * - Detects whether running as native app, npm global, or npm local install
+ * - Routes to NativeAutoUpdater, PackageManagerAutoUpdater, or standard AutoUpdater
+ * - 检测是作为本机应用、npm全局还是npm本地安装运行
+ * - 路由到 NativeAutoUpdater、PackageManagerAutoUpdater 或标准 AutoUpdater
+ */
 import { c as _c } from "react/compiler-runtime";
 import { feature } from 'bun:bundle';
 import * as React from 'react';
@@ -8,14 +18,29 @@ import { getCurrentInstallationType } from '../utils/doctorDiagnostic.js';
 import { AutoUpdater } from './AutoUpdater.js';
 import { NativeAutoUpdater } from './NativeAutoUpdater.js';
 import { PackageManagerAutoUpdater } from './PackageManagerAutoUpdater.js';
+
+/** Props — AutoUpdaterWrapper component properties / AutoUpdaterWrapper 组件属性 */
 type Props = {
-  isUpdating: boolean;
-  onChangeIsUpdating: (isUpdating: boolean) => void;
-  onAutoUpdaterResult: (autoUpdaterResult: AutoUpdaterResult) => void;
-  autoUpdaterResult: AutoUpdaterResult | null;
-  showSuccessMessage: boolean;
-  verbose: boolean;
+  isUpdating: boolean;                                            // Whether an update is in progress / 是否有更新正在进行
+  onChangeIsUpdating: (isUpdating: boolean) => void;              // Callback to update isUpdating state / 更新isUpdating状态的回调
+  onAutoUpdaterResult: (autoUpdaterResult: AutoUpdaterResult) => void; // Callback with update result / 更新结果的回调
+  autoUpdaterResult: AutoUpdaterResult | null;                    // Result of the auto-updater / 自动更新程序的结果
+  showSuccessMessage: boolean;                                     // Whether to show success message / 是否显示成功消息
+  verbose: boolean;                                                // Enable verbose logging / 启用详细日志
 };
+/**
+ * AutoUpdaterWrapper — Routes to appropriate updater based on installation type
+ * AutoUpdaterWrapper — 根据安装类型路由到适当的更新程序
+ *
+ * @description
+ * - Detects installation type on mount (native, package-manager, or local)
+ * - Renders the appropriate updater component based on detection
+ * - 挂载时检测安装类型（native、package-manager或local）
+ * - 根据检测结果渲染相应的更新程序组件
+ *
+ * @returns The appropriate AutoUpdater component for the installation type
+ * 返回适合该安装类型的AutoUpdater组件
+ */
 export function AutoUpdaterWrapper(t0) {
   const $ = _c(17);
   const {

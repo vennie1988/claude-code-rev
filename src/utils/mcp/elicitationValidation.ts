@@ -1,3 +1,15 @@
+/**
+ * @fileoverview elicitationValidation.ts — MCP 工具参数验证 / MCP tool argument validation
+ *
+ * Provides schema-based validation for MCP elicitation tool inputs.
+ * Supports enum, multi-select enum, string formats (email, uri, date, date-time),
+ * number ranges, and natural language datetime parsing.
+ *
+ * 为 MCP 引发工具输入提供基于模式的验证。
+ * 支持枚举、多选枚举、字符串格式（email、uri、date、date-time）、
+ * 数字范围和自然语言日期时间解析。
+ */
+
 import type {
   EnumSchema,
   MultiSelectEnumSchema,

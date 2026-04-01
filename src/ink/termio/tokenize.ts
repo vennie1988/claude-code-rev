@@ -1,9 +1,18 @@
 /**
- * Input Tokenizer - Escape sequence boundary detection
+ * Input Tokenizer - Escape Sequence Boundary Detection / 输入分词器 - 转义序列边界检测
  *
  * Splits terminal input into tokens: text chunks and raw escape sequences.
  * Unlike the Parser which interprets sequences semantically, this just
  * identifies boundaries for use by keyboard input parsing.
+ *
+ * 将终端输入分割成标记：文本块和原始转义序列。
+ * 与语义解释序列的解析器不同，这只是识别边界以供键盘输入解析使用。
+ *
+ * The tokenizer is stateful and streaming - it maintains internal state
+ * across calls to handle incomplete escape sequences at chunk boundaries.
+ *
+ * 分词器是有状态的流式的——它在调用之间维护内部状态，
+ * 以处理块边界处不完整的转义序列。
  */
 
 import { C0, ESC_TYPE, isEscFinal } from './ansi.js'

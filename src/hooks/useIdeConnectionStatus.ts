@@ -1,3 +1,17 @@
+/**
+ * @fileoverview useIdeConnectionStatus.ts — IDE connection status hook
+ * IDE连接状态hook：通过MCP客户端列表查询当前IDE的连接状态。
+ * Queries IDE connection status from the MCP client list.
+ *
+ * @design
+ * - 查找名为'ide'的MCP客户端
+ * - 返回connected/pending/disconnected/null状态
+ * - 提取SSE/WS类型IDE的配置中的IDE名称
+ *
+ * @design Finds MCP client named 'ide'
+ * @design Returns connected/pending/disconnected/null status
+ * @design Extracts IDE name from SSE/WS type config
+ */
 import { useMemo } from 'react'
 import type { MCPServerConnection } from '../services/mcp/types.js'
 

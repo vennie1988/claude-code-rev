@@ -1,3 +1,14 @@
+/**
+ * @fileoverview REPL.tsx — Main REPL (Read-Eval-Print-Loop) component
+ *
+ * The main terminal UI component for interactive Claude Code sessions.
+ * Handles user input, message display, and command execution.
+ *
+ * 设计说明：
+ * - REPL.tsx 是交互式 Claude Code 会话的主要终端 UI 组件
+ * - 处理用户输入、消息显示和命令执行
+ */
+
 import { c as _c } from "react/compiler-runtime";
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { feature } from 'bun:bundle';

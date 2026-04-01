@@ -1,3 +1,15 @@
+/**
+ * @fileoverview mcpValidation.ts — MCP 工具参数验证 / MCP tool argument validation
+ *
+ * Provides schema-based validation for MCP tool inputs using Zod.
+ * Supports string, number, boolean, enum, and datetime formats.
+ * Includes natural language datetime parsing via Haiku model.
+ *
+ * 使用 Zod 提供基于模式的 MCP 工具输入验证。
+ * 支持字符串、数字、布尔值、枚举和日期时间格式。
+ * 包括通过 Haiku 模型进行自然语言日期时间解析。
+ */
+
 import type {
   ContentBlockParam,
   ImageBlockParam,

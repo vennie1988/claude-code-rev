@@ -1,3 +1,17 @@
+/**
+ * @fileoverview useMemoryUsage.ts — Node.js memory usage monitoring hook
+ * Node.js内存使用监控hook：每10秒轮询进程内存使用情况。
+ * Monitors Node.js process memory usage, polling every 10 seconds.
+ *
+ * @design
+ * - 每10秒轮询process.memoryUsage().heapUsed
+ * - 状态：normal (<1.5GB), high (>=1.5GB), critical (>=2.5GB)
+ * - normal状态返回null避免不必要的重渲染
+ *
+ * @design Polls every 10 seconds for process.memoryUsage().heapUsed
+ * @design Status: normal (<1.5GB), high (>=1.5GB), critical (>=2.5GB)
+ * @design normal status returns null to avoid unnecessary re-renders
+ */
 import { useState } from 'react'
 import { useInterval } from 'usehooks-ts'
 

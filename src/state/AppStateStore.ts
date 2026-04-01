@@ -1,3 +1,15 @@
+/**
+ * @fileoverview AppStateStore.ts — Application state store definitions
+ *
+ * Defines the main application state structure and default values.
+ * The AppState contains all global state for the Claude Code TUI.
+ *
+ * 设计说明：
+ * - AppStateStore.ts 定义主应用程序状态结构和默认值
+ * - AppState 包含 Claude Code TUI 的所有全局状态
+ * - 包括会话历史、工具权限、MCP 连接等
+ */
+
 import type { Notification } from 'src/context/notifications.js'
 import type { TodoList } from 'src/utils/todo/types.js'
 import type { BridgePermissionCallbacks } from '../bridge/bridgePermissionCallbacks.js'

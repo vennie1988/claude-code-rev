@@ -1,11 +1,39 @@
+/**
+ * @fileoverview CostThresholdDialog.tsx — Warning dialog when spending threshold is reached
+ * CostThresholdDialog.tsx — 达到消费阈值时的警告对话框
+ *
+ * @description
+ * - Displays a warning when user has reached $5 spending threshold
+ * - Provides link to cost monitoring documentation
+ * - Allows user to acknowledge and continue
+ * - 当用户达到5美元消费阈值时显示警告
+ * - 提供成本监控文档链接
+ * - 允许用户确认并继续
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { Box, Link, Text } from '../ink.js';
 import { Select } from './CustomSelect/index.js';
 import { Dialog } from './design-system/Dialog.js';
+
+/** Props — CostThresholdDialog component properties / CostThresholdDialog 组件属性 */
 type Props = {
-  onDone: () => void;
+  onDone: () => void; // Callback when user acknowledges / 用户确认时的回调
 };
+/**
+ * CostThresholdDialog — Warning dialog for spending threshold
+ * CostThresholdDialog — 消费阈值警告对话框
+ *
+ * @description
+ * - Shows when user reaches $5 cost threshold
+ * - Provides documentation link about cost monitoring
+ * - Single "Got it" button to dismiss
+ * - 当用户达到5美元成本阈值时显示
+ * - 提供关于成本监控的文档链接
+ * - 单个"知道了"按钮关闭
+ *
+ * @returns Dialog with cost warning and acknowledgment / 带有成本警告和确认的对话框
+ */
 export function CostThresholdDialog(t0) {
   const $ = _c(7);
   const {

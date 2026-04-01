@@ -1,8 +1,11 @@
 /**
- * ANSI Parser - Semantic Types
+ * ANSI Parser - Semantic Types / ANSI 解析器 - 语义类型
  *
  * These types represent the semantic meaning of ANSI escape sequences,
  * not their string representation. Inspired by ghostty's action-based design.
+ *
+ * 这些类型表示 ANSI 转义序列的语义含义，而非其字符串表示。
+ * 灵感来自 ghostty 的基于动作的设计。
  */
 
 // =============================================================================

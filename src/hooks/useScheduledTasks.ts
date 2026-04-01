@@ -1,3 +1,22 @@
+/**
+ * @fileoverview useScheduledTasks.ts — Cron scheduler REPL integration hook
+ * 定时任务REPL集成hook：挂载cron调度器，触发提示进入命令队列。
+ * REPL wrapper for the cron scheduler. Mounts the scheduler once and tears
+ * it down on unmount.
+ *
+ * @design
+ * - 通过createCronScheduler创建调度器
+ * - 触发的提示以'later'优先级进入命令队列
+ * - teammate任务通过injectUserMessageToTeammate注入
+ * - 系统生成提示标记为isMeta，隐藏于队列预览和转录UI
+ * - assistantMode支持在查询流式传输时绕过isLoading门控
+ *
+ * @design Creates scheduler via createCronScheduler
+ * @design Fired prompts go into command queue at 'later' priority
+ * @design Teammate tasks injected via injectUserMessageToTeammate
+ * @design System prompts marked isMeta (hidden from queue preview/transcript)
+ * @design assistantMode bypasses isLoading gate for enqueue during streaming
+ */
 import { useEffect, useRef } from 'react'
 import { useAppStateStore, useSetAppState } from '../state/AppState.js'
 import { isTerminalTaskStatus } from '../Task.js'

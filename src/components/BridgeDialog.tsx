@@ -1,3 +1,15 @@
+/**
+ * @fileoverview BridgeDialog.tsx — Remote control dialog with QR code for peer connection
+ * BridgeDialog.tsx — 用于点对点连接的远程控制对话框，带QR码
+ *
+ * @description
+ * - Displays a QR code and URL for remote peer connection
+ * - Shows connection status (ready, connecting, failed, disconnected)
+ * - Allows user to disconnect or close the dialog
+ * - 显示用于远程点对点连接的QR码和URL
+ * - 显示连接状态（就绪、连接中、失败、断开）
+ * - 允许用户断开连接或关闭对话框
+ */
 import { c as _c } from "react/compiler-runtime";
 import { basename } from 'path';
 import { toString as qrToString } from 'qrcode';
@@ -14,9 +26,25 @@ import { useAppState, useSetAppState } from '../state/AppState.js';
 import { saveGlobalConfig } from '../utils/config.js';
 import { getBranch } from '../utils/git.js';
 import { Dialog } from './design-system/Dialog.js';
+
+/** Props — BridgeDialog component properties / BridgeDialog 组件属性 */
 type Props = {
-  onDone: () => void;
+  onDone: () => void; // Callback when dialog is closed / 对话框关闭时的回调
 };
+/**
+ * BridgeDialog — Renders remote control connection dialog with QR code
+ * BridgeDialog — 渲染带有QR码的远程控制连接对话框
+ *
+ * @description
+ * - Generates and displays QR code for peer connection
+ * - Shows real-time connection status
+ * - Provides disconnect functionality with 'd' key
+ * - 生成并显示用于点对点连接的QR码
+ * - 显示实时连接状态
+ * - 提供使用'd'键断开连接的功能
+ *
+ * @returns Dialog with QR code and connection controls / 带有QR码和连接控制的对话框
+ */
 export function BridgeDialog(t0) {
   const $ = _c(87);
   const {

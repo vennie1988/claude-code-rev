@@ -1,8 +1,14 @@
 /**
- * SGR (Select Graphic Rendition) Parser
+ * SGR (Select Graphic Rendition) Parser / SGR（选择图形呈现）解析器
  *
  * Parses SGR parameters and applies them to a TextStyle.
  * Handles both semicolon (;) and colon (:) separated parameters.
+ *
+ * SGR sequences control text styling: colors (foreground/background),
+ * bold, italic, underline, and other visual attributes.
+ *
+ * SGR 序列控制文本样式：颜色（前景/背景）、
+ * 粗体、斜体、下划线和其他视觉属性。
  */
 
 import type { NamedColor, TextStyle, UnderlineStyle } from './types.js'

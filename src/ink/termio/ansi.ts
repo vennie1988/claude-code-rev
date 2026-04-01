@@ -1,7 +1,14 @@
 /**
- * ANSI Control Characters and Escape Sequence Introducers
+ * ANSI Control Characters and Escape Sequence Introducers / ANSI 控制字符和转义序列引导体
  *
  * Based on ECMA-48 / ANSI X3.64 standards.
+ * 基于 ECMA-48 / ANSI X3.64 标准。
+ *
+ * Defines C0 control characters (0x00-0x1F), escape sequence type introducers,
+ * and utility constants for generating ANSI escape sequences.
+ *
+ * 定义 C0 控制字符（0x00-0x1F）、转义序列类型引导体，
+ * 以及用于生成 ANSI 转义序列的工具常量。
  */
 
 /**

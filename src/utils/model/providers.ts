@@ -1,3 +1,12 @@
+/**
+ * @fileoverview providers.ts — API 提供商检测 / API provider detection
+ *
+ * Detects the current API provider (firstParty, Bedrock, Vertex, Foundry)
+ * based on environment variables.
+ *
+ * 基于环境变量检测当前 API 提供商（firstParty、Bedrock、Vertex、Foundry）。
+ */
+
 import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from '../../services/analytics/index.js'
 import { isEnvTruthy } from '../envUtils.js'
 

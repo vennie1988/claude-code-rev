@@ -1,3 +1,17 @@
+/**
+ * @fileoverview useMergedTools.ts — Tool pool assembly hook
+ * 工具池组装hook：使用assembleToolPool合并内置工具与MCP工具。
+ * Assembles the full tool pool by combining built-in tools with MCP tools.
+ *
+ * @design
+ * - 使用assembleToolPool处理内置工具+MCP拒绝规则过滤+去重
+ * - mergeAndFilterTools合并initialTools和assembled工具
+ * - 支持权限上下文过滤
+ *
+ * @design assembleToolPool handles built-in + MCP deny-rule filtering + dedup
+ * @design mergeAndFilterTools merges initialTools and assembled tools
+ * @design Respects toolPermissionContext for filtering
+ */
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { useMemo } from 'react'
 import type { Tools, ToolPermissionContext } from '../Tool.js'

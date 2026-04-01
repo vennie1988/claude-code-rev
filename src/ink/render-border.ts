@@ -1,3 +1,10 @@
+/**
+ * Border Renderer / 边框渲染器
+ *
+ * Renders box borders with optional text labels.
+ * 渲染带可选文本标签的盒子边框。
+ */
+
 import chalk from 'chalk'
 import cliBoxes, { type Boxes, type BoxStyle } from 'cli-boxes'
 import { applyColor } from './colorize.js'

@@ -4,16 +4,25 @@ import type { EventHandlerProps } from './events/event-handlers.js'
 import { nodeCache } from './node-cache.js'
 
 /**
+ * Hit Testing / 点击测试
+ *
  * Find the deepest DOM element whose rendered rect contains (col, row).
+ * 查找其渲染矩形包含 (col, row) 的最深 DOM 元素。
  *
  * Uses the nodeCache populated by renderNodeToOutput — rects are in screen
  * coordinates with all offsets (including scrollTop translation) already
  * applied. Children are traversed in reverse so later siblings (painted on
  * top) win. Nodes not in nodeCache (not rendered this frame, or lacking a
  * yogaNode) are skipped along with their subtrees.
+ * 使用 renderNodeToOutput 填充的 nodeCache——矩形使用屏幕坐标，
+ * 所有偏移（包括 scrollTop 平移）已应用。以相反顺序遍历子元素，
+ * 以便后绘制的兄弟节点（位于顶部）优先。未在 nodeCache 中的节点
+ * （本帧未渲染或缺少 yogaNode）会与其子树一起被跳过。
  *
  * Returns the hit node even if it has no onClick — dispatchClick walks up
  * via parentNode to find handlers.
+ * 返回点击测试节点，即使它没有 onClick——dispatchClick 通过
+ * parentNode 向上查找处理程序。
  */
 export function hitTest(
   node: DOMElement,

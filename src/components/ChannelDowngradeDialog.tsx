@@ -1,17 +1,41 @@
+/**
+ * @fileoverview ChannelDowngradeDialog.tsx — Dialog for channel switching confirmation
+ * ChannelDowngradeDialog.tsx — 频道切换确认对话框
+ *
+ * @description
+ * - Shown when user attempts to switch from latest to stable channel
+ * - Allows user to choose: downgrade, stay, or cancel
+ * - 当用户尝试从latest切换到stable频道时显示
+ * - 允许用户选择：降级、停留或取消
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { Text } from '../ink.js';
 import { Select } from './CustomSelect/index.js';
 import { Dialog } from './design-system/Dialog.js';
+
+/** ChannelDowngradeChoice — User's choice in the dialog / 对话框中用户的选项 */
 export type ChannelDowngradeChoice = 'downgrade' | 'stay' | 'cancel';
+
+/** Props — ChannelDowngradeDialog component properties / ChannelDowngradeDialog 组件属性 */
 type Props = {
-  currentVersion: string;
-  onChoice: (choice: ChannelDowngradeChoice) => void;
+  currentVersion: string;                              // Current installed version / 当前安装版本
+  onChoice: (choice: ChannelDowngradeChoice) => void;  // Callback with user's choice / 用户选择的回调
 };
 
 /**
- * Dialog shown when switching from latest to stable channel.
- * Allows user to choose whether to downgrade or stay on current version.
+ * ChannelDowngradeDialog — Dialog for switching from latest to stable channel
+ * ChannelDowngradeDialog — 从latest切换到stable频道的对话框
+ *
+ * @description
+ * - Displays when user switches from latest to stable channel
+ * - Shows current version and implications of switching
+ * - Provides three options: downgrade, stay, or cancel
+ * - 当用户从latest切换到stable频道时显示
+ * - 显示当前版本和切换的影响
+ * - 提供三个选项：降级、停留或取消
+ *
+ * @returns Dialog with downgrade/stay/cancel options / 带有降级/停留/取消选项的对话框
  */
 export function ChannelDowngradeDialog(t0) {
   const $ = _c(17);

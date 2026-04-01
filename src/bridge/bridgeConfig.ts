@@ -1,4 +1,17 @@
 /**
+ * @fileoverview bridgeConfig.ts — Bridge authentication and URL resolution
+ *
+ * Shared bridge auth/URL resolution utilities.
+ * Consolidates the ant-only CLAUDE_BRIDGE_* dev overrides that were previously
+ * copy-pasted across multiple files.
+ *
+ * 设计说明：
+ * - bridgeConfig.ts 提供桥接认证和 URL 解析的辅助函数
+ * - 整合了 ant-only 的 CLAUDE_BRIDGE_* 开发覆盖配置
+ * - 支持开发覆盖优先、回退到真实 OAuth store/config 的两层结构
+ */
+
+/**
  * Shared bridge auth/URL resolution. Consolidates the ant-only
  * CLAUDE_BRIDGE_* dev overrides that were previously copy-pasted across
  * a dozen files — inboundAttachments, BriefTool/upload, bridgeMain,

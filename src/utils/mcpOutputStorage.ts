@@ -1,3 +1,19 @@
+/**
+ * @fileoverview mcpOutputStorage.ts — MCP 输出存储与二进制内容处理 / MCP output storage and binary content handling
+ *
+ * Persists large MCP tool outputs to disk and generates instructions for Claude to read them.
+ * Handles mime-type detection, binary vs text classification, and file extension mapping.
+ *
+ * @note Binary content (images, PDFs, etc.) is written as raw bytes; text content uses writeFile.
+ *       Extension matters for Read tool dispatching (PDF, images need correct extension).
+ *
+ * 将大型 MCP 工具输出持久化到磁盘，并生成供 Claude 读取的指令。
+ * 处理 mime-type 检测、二进制与文本分类以及文件扩展名映射。
+ *
+ * 注意：二进制内容（图片、PDF 等）以原始字节写入；文本内容使用 writeFile。
+ * 扩展名对于读取工具分发很重要（PDF、图片需要正确的扩展名）。
+ */
+
 import { writeFile } from 'fs/promises'
 import { join } from 'path'
 import {

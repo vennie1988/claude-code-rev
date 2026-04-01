@@ -453,14 +453,20 @@ export const clearYogaNodeReferences = (node: DOMElement | TextNode): void => {
 }
 
 /**
+ * Owner Chain Finder / 所有者链查找器
+ *
  * Find the React component stack responsible for content at screen row `y`.
+ * 查找对屏幕行 `y` 处的内容负责的 React 组件堆栈。
  *
  * DFS the DOM tree accumulating yoga offsets. Returns the debugOwnerChain of
  * the deepest node whose bounding box contains `y`. Called from ink.tsx when
  * log-update triggers a full reset, to attribute the flicker to its source.
+ * 深度优先遍历 DOM 树并累积 yoga 偏移。返回包含 `y` 的最深节点的 debugOwnerChain。
+ * 当 log-update 触发完整重置时从 ink.tsx 调用，以将闪烁归因于其来源。
  *
  * Only useful when CLAUDE_CODE_DEBUG_REPAINTS is set (otherwise chains are
  * undefined and this returns []).
+ * 仅在设置了 CLAUDE_CODE_DEBUG_REPAINTS 时有用（否则链是未定义的，返回 []）。
  */
 export function findOwnerChainAtRow(root: DOMElement, y: number): string[] {
   let best: string[] = []

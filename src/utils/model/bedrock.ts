@@ -1,3 +1,13 @@
+/**
+ * @fileoverview bedrock.ts — AWS Bedrock 集成 / AWS Bedrock integration
+ *
+ * Provides AWS Bedrock inference profile management and model ID resolution.
+ * Handles cross-region inference profiles and bedrock ARN parsing.
+ *
+ * 提供 AWS Bedrock 推理配置文件管理和模型 ID 解析。
+ * 处理跨区域推理配置文件和 bedrock ARN 解析。
+ */
+
 import memoize from 'lodash-es/memoize.js'
 import { refreshAndGetAwsCredentials } from '../auth.js'
 import { getAWSRegion, isEnvTruthy } from '../envUtils.js'

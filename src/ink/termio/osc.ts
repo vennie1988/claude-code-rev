@@ -1,5 +1,11 @@
 /**
- * OSC (Operating System Command) Types and Parser
+ * OSC (Operating System Command) Types and Parser / OSC（操作系统命令）类型和解析器
+ *
+ * OSC sequences are used for terminal features like window title, hyperlinks,
+ * and clipboard operations. Format: ESC ] command ; parameters BEL/ST
+ *
+ * OSC 序列用于终端功能，如窗口标题、超链接和剪贴板操作。
+ * 格式：ESC ] 命令 ; 参数 BEL/ST
  */
 
 import { Buffer } from 'buffer'

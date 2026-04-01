@@ -1,3 +1,28 @@
+/**
+ * @fileoverview log.ts — 错误日志与会话日志工具
+ * Error and Session Logging Utilities
+ *
+ * 设计意图：
+ * - 提供多目标错误日志记录（调试日志、内存错误日志、持久化错误日志）
+ * - 支持错误日志的查询和检索
+ * - 捕获 API 请求以供 bug 报告使用
+ *
+ * 重要设计决策：
+ * - 错误日志采用队列机制：在 sink 未连接时，错误事件入队；连接后立即 drain
+ * - 内存错误日志限制为 100 条，防止无限增长
+ * - 云服务提供商环境（Bedrock/Vertex/Foundry）禁用遥测
+ *
+ * Design intent:
+ * - Multi-destination error logging (debug logs, in-memory error log, persistent error log)
+ * - Error log query and retrieval
+ * - API request capture for bug reports
+ *
+ * Key design decisions:
+ * - Queue mechanism: events queued before sink attachment, drained immediately after
+ * - In-memory error log bounded to 100 entries
+ * - Cloud provider environments (Bedrock/Vertex/Foundry) disable telemetry
+ */
+
 import { feature } from 'bun:bundle'
 import type { BetaMessageStreamParams } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import { readdir, readFile, stat } from 'fs/promises'
@@ -22,10 +47,15 @@ import { isEssentialTrafficOnly } from './privacyLevel.js'
 import { jsonParse } from './slowOperations.js'
 
 /**
+ * getLogDisplayTitle — 获取日志/会话的显示标题
  * Gets the display title for a log/session with fallback logic.
- * Skips firstPrompt if it starts with a tick/goal tag (autonomous mode auto-prompt).
- * Strips display-unfriendly tags (like <ide_opened_file>) from the result.
- * Falls back to a truncated session ID when no other title is available.
+ *
+ * 标题优先级：agentName > customTitle > summary > firstPrompt > defaultTitle > 'Autonomous session' > sessionId 前 8 位
+ * 同时会剥离 display-unfriendly 标签（如 <ide_opened_file>）。
+ *
+ * @param log - 日志选项
+ * @param defaultTitle - 默认标题（可选）
+ * @returns 显示标题字符串
  */
 export function getLogDisplayTitle(
   log: LogOption,

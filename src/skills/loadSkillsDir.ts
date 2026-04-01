@@ -1,3 +1,15 @@
+/**
+ * @fileoverview loadSkillsDir.ts — Skill directory loading and discovery
+ *
+ * Loads prompt commands from skill directories (~/.claude/commands/ and custom dirs).
+ * Supports dynamic skill discovery, argument substitution, and frontmatter parsing.
+ *
+ * 设计说明：
+ * - loadSkillsDir.ts 负责从技能目录加载提示命令
+ * - 支持动态技能发现、参数替换和 frontmatter 解析
+ * - 技能目录默认为 ~/.claude/commands/，可通过 --add-dir 添加更多目录
+ */
+
 import { realpath } from 'fs/promises'
 import ignore from 'ignore'
 import memoize from 'lodash-es/memoize.js'

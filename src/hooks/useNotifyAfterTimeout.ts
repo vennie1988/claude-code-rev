@@ -1,3 +1,17 @@
+/**
+ * @fileoverview useNotifyAfterTimeout.ts — Desktop notification timeout hook
+ * 桌面通知超时hook：在超时后显示桌面通知。
+ * Shows a desktop notification after a timeout period if user has been idle.
+ *
+ * @design
+ * - 空闲超过阈值(6秒)时立即显示通知
+ * - 否则在超时后显示通知
+ * - 通过updateLastInteractionTime重置交互时间戳
+ *
+ * @design Shows immediately if app has been idle > threshold (6s)
+ * @design Otherwise shows after timeout
+ * @design Resets interaction timestamp via updateLastInteractionTime
+ */
 import { useEffect } from 'react'
 import {
   getLastInteractionTime,

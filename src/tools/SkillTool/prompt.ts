@@ -1,3 +1,23 @@
+/**
+ * @fileoverview prompt.ts — SkillTool 提示词和格式化函数
+ * Defines prompt and formatting functions for the SkillTool.
+ *
+ * 常量说明：
+ * - SKILL_BUDGET_CONTEXT_PERCENT: 技能列表占用的上下文窗口百分比 (1%)
+ * - CHARS_PER_TOKEN: 每 token 字符数 (4)
+ * - DEFAULT_CHAR_BUDGET: 默认字符预算 (8000)
+ * - MAX_LISTING_DESC_CHARS: 列表描述最大字符数 (250)
+ *
+ * 函数说明：
+ * - getCharBudget(): 获取可用字符预算
+ * - formatCommandsWithinBudget(): 在预算内格式化命令列表
+ * - getPrompt(): 获取工具提示词 (带缓存)
+ * - getSkillToolInfo(): 获取技能工具统计信息
+ * - getLimitedSkillToolCommands(): 获取受限技能命令列表
+ * - clearPromptCache(): 清除提示词缓存
+ * - getSkillInfo(): 获取技能统计信息
+ */
+
 import { memoize } from 'lodash-es'
 import type { Command } from 'src/commands.js'
 import {

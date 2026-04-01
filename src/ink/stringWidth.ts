@@ -6,16 +6,24 @@ import { getGraphemeSegmenter } from '../utils/intl.js'
 const EMOJI_REGEX = emojiRegex()
 
 /**
+ * String Width Calculator / 字符串宽度计算器
+ *
  * Fallback JavaScript implementation of stringWidth when Bun.stringWidth is not available.
+ * 当 Bun.stringWidth 不可用时的 JavaScript 回退实现。
  *
  * Get the display width of a string as it would appear in a terminal.
+ * 获取字符串在终端中显示的宽度。
  *
  * This is a more accurate alternative to the string-width package that correctly handles
  * characters like ⚠ (U+26A0) which string-width incorrectly reports as width 2.
+ * 这是 string-width 包的更准确替代方案，可以正确处理
+ * ⚠ (U+26A0) 等字符串宽度错误报告为宽度 2 的字符。
  *
  * The implementation uses eastAsianWidth directly with ambiguousAsWide: false,
  * which correctly treats ambiguous-width characters as narrow (width 1) as
  * recommended by the Unicode standard for Western contexts.
+ * 该实现直接使用 eastAsianWidth，并将 ambiguousAsWide 设为 false，
+ * 按照 Unicode 标准的西方语境建议，将模糊宽度字符正确视为窄（宽度 1）。
  */
 function stringWidthJavaScript(str: string): number {
   if (typeof str !== 'string' || str.length === 0) {

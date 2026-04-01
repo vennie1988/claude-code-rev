@@ -1,3 +1,19 @@
+/**
+ * @fileoverview usePasteHandler.ts — Paste handling hook with image support
+ * 粘贴处理hook：支持图片文件路径粘贴和多图片拖放。
+ * Handles paste events with support for image file paths and multi-image drag-drop.
+ *
+ * @design
+ * - 通过InputEvent的isPasted标志检测粘贴（ bracketed paste mode）
+ * - 超过PASTE_THRESHOLD(>50字符)判定为粘贴
+ * - 支持图片文件路径检测和图片读取
+ * - macOS空粘贴检测剪贴板图片
+ *
+ * @design Detects paste via InputEvent's isPasted flag (bracketed paste mode)
+ * @design >50 chars threshold for paste detection
+ * @design Supports image file path detection and reading
+ * @design macOS empty paste checks clipboard for images
+ */
 import { basename } from 'path'
 import React from 'react'
 import { logError } from 'src/utils/log.js'

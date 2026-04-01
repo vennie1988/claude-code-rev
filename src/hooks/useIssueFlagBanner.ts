@@ -1,3 +1,19 @@
+/**
+ * @fileoverview useIssueFlagBanner.ts — Issue flag banner trigger hook
+ * 问题标记横幅触发hook：内部用户(ant)检测会话是否兼容容器并显示friction信号时触发横幅。
+ * Internal (ant) hook that triggers issue flag banner when session is container-compatible with friction signal.
+ *
+ * @design
+ * - 仅对内部用户(ant)生效
+ * - 检测会话是否兼容容器（无MCP工具、无外部命令）
+ * - 检测friction信号（否定词、纠正词、重试词）
+ * - 提交3次以上、30分钟冷却期
+ *
+ * @design Only effective for internal users (ant)
+ * @design Detects session container compatibility (no MCP tools, no external commands)
+ * @design Detects friction signal (negations, corrections, retry words)
+ * @design Submit count >3, 30-minute cooldown
+ */
 import { useMemo, useRef } from 'react'
 import { BASH_TOOL_NAME } from '../tools/BashTool/toolName.js'
 import type { Message } from '../types/message.js'

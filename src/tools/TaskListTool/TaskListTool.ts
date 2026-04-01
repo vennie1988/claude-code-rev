@@ -1,3 +1,11 @@
+/**
+ * @fileoverview TaskListTool.ts — 任务列表工具
+ * Task listing tool for displaying all tasks.
+ *
+ * 功能说明：
+ * - TaskListTool: 列出所有任务
+ */
+
 import { z } from 'zod/v4'
 import { buildTool, type ToolDef } from '../../Tool.js'
 import { lazySchema } from '../../utils/lazySchema.js'

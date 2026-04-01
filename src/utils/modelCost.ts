@@ -1,3 +1,13 @@
+/**
+ * @fileoverview modelCost.ts — 模型成本计算 / Model cost calculation
+ *
+ * Calculates USD costs based on token usage and model pricing tiers.
+ * Supports input/output tokens, prompt cache read/write, and web search requests.
+ *
+ * 根据令牌使用量和模型定价层级计算美元成本。
+ * 支持输入/输出令牌、提示缓存读取/写入和网络搜索请求。
+ */
+
 import type { BetaUsage as Usage } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import type { AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS } from 'src/services/analytics/index.js'
 import { logEvent } from 'src/services/analytics/index.js'

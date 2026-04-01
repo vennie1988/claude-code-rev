@@ -1,3 +1,10 @@
+/**
+ * Geometry Types / 几何类型
+ *
+ * Basic geometric primitives for terminal layout calculations.
+ * 终端布局计算的基本几何图元。
+ */
+
 export type Point = {
   x: number
   y: number

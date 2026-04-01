@@ -1,3 +1,15 @@
+/**
+ * @fileoverview bundledSkills.ts — Bundled skill definitions
+ *
+ * Defines bundled skills that ship with the CLI (claude-api, verify, etc.).
+ * These are registered programmatically at startup.
+ *
+ * 设计说明：
+ * - bundledSkills.ts 定义随 CLI 捆绑的技能
+ * - 包括 claude-api、verify 等内置技能
+ * - 在启动时以编程方式注册
+ */
+
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/index.mjs'
 import { constants as fsConstants } from 'fs'
 import { mkdir, open } from 'fs/promises'

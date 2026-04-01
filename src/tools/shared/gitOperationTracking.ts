@@ -1,5 +1,18 @@
 /**
  * Shell-agnostic git operation tracking for usage metrics.
+ * 壳无关的git操作追踪，用于使用指标。
+ *
+ * Detects `git commit`, `git push`, `gh pr create`, `glab mr create`, and
+ * curl-based PR creation in command strings, then increments OTLP counters
+ * and fires analytics events. The regexes operate on raw command text so they
+ * work identically for Bash and PowerShell (both invoke git/gh/glab/curl as
+ * external binaries with the same argv syntax).
+ *
+ * 检测命令字符串中的`git commit`、`git push`、`gh pr create`、`glab mr create`
+ * 以及基于curl的PR创建，然后递增OTLP计数器并触发分析事件。
+ * 正则表达式在原始命令文本上运行，因此对Bash和PowerShell的工作方式相同
+ *（两者都使用相同的argv语法调用git/gh/glab/curl作为外部二进制文件）。
+ */
  *
  * Detects `git commit`, `git push`, `gh pr create`, `glab mr create`, and
  * curl-based PR creation in command strings, then increments OTLP counters
@@ -186,6 +199,7 @@ export function detectGitOperation(
 }
 
 // Exported for testing purposes
+// 导出用于测试目的
 export function trackGitOperations(
   command: string,
   exitCode: number,

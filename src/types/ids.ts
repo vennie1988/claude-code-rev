@@ -1,4 +1,16 @@
 /**
+ * @fileoverview ids.ts — Branded types for session and agent IDs
+ *
+ * Provides branded types to prevent accidentally mixing up session IDs and agent IDs.
+ * These types help catch bugs at compile time rather than runtime.
+ *
+ * 设计说明：
+ * - ids.ts 为会话 ID 和代理 ID 提供品牌类型
+ * - 品牌类型在编译时防止意外混淆会话 ID 和代理 ID
+ * - 使用 TypeScript 交叉类型实现品牌化
+ */
+
+/**
  * Branded types for session and agent IDs.
  * These prevent accidentally mixing up session IDs and agent IDs at compile time.
  */

@@ -66,6 +66,8 @@ export type PathCommand =
  * Checks if an rm/rmdir command targets dangerous paths that should always
  * require explicit user approval, even if allowlist rules exist.
  * This prevents catastrophic data loss from commands like `rm -rf /`.
+ * 检查rm/rmdir命令是否针对危险路径，即使存在允许列表规则也应始终需要明确的用户批准。
+ * 这可以防止诸如`rm -rf /`之类的灾难性数据丢失命令。
  */
 function checkDangerousRemovalPaths(
   command: 'rm' | 'rmdir',
@@ -110,18 +112,26 @@ function checkDangerousRemovalPaths(
 /**
  * SECURITY: Extract positional (non-flag) arguments, correctly handling the
  * POSIX `--` end-of-options delimiter.
+ * 安全：提取位置（非标志）参数，正确处理POSIX `--`选项结束分隔符。
  *
  * Most commands (rm, cat, touch, etc.) stop parsing options at `--` and treat
  * ALL subsequent arguments as positional, even if they start with `-`. Naive
  * `!arg.startsWith('-')` filtering drops these, causing path validation to be
- * silently skipped for attack payloads like:
+ * 大多数命令（rm、cat、touch等）在`--`处停止解析选项，并将所有后续参数视为位置参数，
+ * 即使它们以`-`开头。简单的`!arg.startsWith('-')`过滤会丢弃这些参数，导致路径验证被静默跳过。
  *
+ * 这里 `-/../.claude/settings.local.json` 以`-`开头，所以简单过滤器会丢弃它，
+ * 验证看到零路径，返回passthrough，文件被删除而没有提示。
+ * 使用`--`处理时，路径确实被提取并验证（被isClaudeConfigFilePath/pathInAllowedWorkingPath阻止）。
+ *
+ * 详细示例：
  *   rm -- -/../.claude/settings.local.json
  *
  * Here `-/../.claude/settings.local.json` starts with `-` so the naive filter
  * drops it, validation sees zero paths, returns passthrough, and the file is
  * deleted without a prompt. With `--` handling, the path IS extracted and
  * validated (blocked by isClaudeConfigFilePath / pathInAllowedWorkingPath).
+ * 使用`--`处理时，路径确实被提取并验证（被isClaudeConfigFilePath/pathInAllowedWorkingPath阻止）。
  */
 function filterOutFlags(args: string[]): string[] {
   const result: string[] = []

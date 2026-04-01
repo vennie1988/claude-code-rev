@@ -1,3 +1,15 @@
+/**
+ * @fileoverview mcpWebSocketTransport.ts — MCP WebSocket 传输层 / MCP WebSocket transport
+ *
+ * Implements the MCP Transport interface using WebSocket.
+ * Supports both Bun's native WebSocket and the ws package.
+ * Handles JSON-RPC message parsing, error handling, and connection lifecycle.
+ *
+ * 使用 WebSocket 实现 MCP Transport 接口。
+ * 支持 Bun 原生 WebSocket 和 ws 包。
+ * 处理 JSON-RPC 消息解析、错误处理和连接生命周期。
+ */
+
 import type { Transport } from '@modelcontextprotocol/sdk/shared/transport.js'
 import {
   type JSONRPCMessage,

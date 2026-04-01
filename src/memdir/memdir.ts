@@ -1,3 +1,14 @@
+/**
+ * @fileoverview memdir.ts — Memory directory management
+ *
+ * Manages CLAUDE.md files and memory attachments for context enrichment.
+ * Handles loading, caching, and injection of memory content.
+ *
+ * 设计说明：
+ * - memdir.ts 管理 CLAUDE.md 文件和内存附件
+ * - 处理上下文丰富化的内存内容加载、缓存和注入
+ */
+
 import { feature } from 'bun:bundle'
 import { join } from 'path'
 import { getFsImplementation } from '../utils/fsOperations.js'

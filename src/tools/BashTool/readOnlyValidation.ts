@@ -32,6 +32,7 @@ import {
 import { sedCommandIsAllowedByAllowlist } from './sedValidation.js'
 
 // Unified command validation configuration system
+// 统一命令验证配置系统
 type CommandConfig = {
   // A Record mapping from the command (e.g. `xargs` or `git diff`) to its safe flags and the values they accept
   safeFlags: Record<string, FlagArgType>
@@ -1240,8 +1241,11 @@ const SAFE_TARGET_COMMANDS_FOR_XARGS = [
 
 /**
  * Unified command validation function that replaces individual validator functions.
+ * 统一命令验证函数，替代单个验证器函数。
  * Uses declarative configuration from COMMAND_ALLOWLIST to validate commands and their flags.
+ * 使用COMMAND_ALLOWLIST的声明式配置来验证命令及其标志。
  * Handles combined flags, argument validation, and shell quoting bypass detection.
+ * 处理组合标志、参数验证和shell引用绕过检测。
  */
 export function isCommandSafeViaFlagParsing(command: string): boolean {
   // Parse the command to get individual tokens using shell-quote for accuracy
@@ -1865,13 +1869,17 @@ function commandWritesToGitInternalPaths(command: string): boolean {
 
 /**
  * Checks read-only constraints for bash commands.
+ * 检查bash命令的只读约束。
  * This is the single exported function that validates whether a command is read-only.
+ * 这是验证命令是否为只读的唯一导出函数。
  * It handles compound commands, sandbox mode, and safety checks.
+ * 它处理复合命令、沙箱模式和安全性检查。
  *
- * @param input The bash command input to validate
+ * @param input The bash command input to validate / 要验证的bash命令输入
  * @param compoundCommandHasCd Pre-computed flag indicating if any cd command exists in the compound command.
  *                              This is computed by commandHasAnyCd() and passed in to avoid duplicate computation.
- * @returns PermissionResult indicating whether the command is read-only
+ *                              预计算的标志，指示复合命令中是否存在cd命令。
+ * @returns PermissionResult indicating whether the command is read-only / 返回表示命令是否为只读的PermissionResult
  */
 export function checkReadOnlyConstraints(
   input: z.infer<typeof BashTool.inputSchema>,

@@ -11,6 +11,17 @@ import {
 } from '../utils/settings/settings.js'
 
 /**
+ * @fileoverview migrateLegacyOpusToCurrent.ts — Legacy model migration
+ *
+ * Migrates first-party users off explicit Opus 4.0/4.1 model strings.
+ * The 'opus' alias already resolves to Opus 4.6 for 1P.
+ *
+ * 设计说明：
+ * - migrateLegacyOpusToCurrent.ts 将用户从显式 Opus 4.0/4.1 模型字符串迁移
+ * - 'opus' 别名已解析为 1P 的 Opus 4.6
+ */
+
+/**
  * Migrate first-party users off explicit Opus 4.0/4.1 model strings.
  *
  * The 'opus' alias already resolves to Opus 4.6 for 1P, so anyone still

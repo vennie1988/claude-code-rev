@@ -1,18 +1,29 @@
 /**
+ * Bidirectional Text Reordering / 双向文本重排序
+ *
  * Bidirectional text reordering for terminal rendering.
+ * 终端渲染的双向文本重排序。
  *
  * Terminals on Windows do not implement the Unicode Bidi Algorithm,
  * so RTL text (Hebrew, Arabic, etc.) appears reversed. This module
  * applies the bidi algorithm to reorder ClusteredChar arrays from
  * logical order to visual order before Ink's LTR cell placement loop.
+ * Windows 的终端不实现 Unicode 双向算法，因此 RTL 文本（希伯来语、阿拉伯语等）
+ * 看起来是反转的。本模块应用双向算法，在 Ink 的 LTR 单元格放置循环之前，
+ * 将 ClusteredChar 数组从逻辑顺序重排序为视觉顺序。
  *
  * On macOS terminals (Terminal.app, iTerm2) bidi works natively.
+ * macOS 终端（Terminal.app、iTerm2）原生支持双向文本。
+ *
  * Windows Terminal (including WSL) does not implement bidi
  * (https://github.com/microsoft/terminal/issues/538).
+ * Windows Terminal（包括 WSL）不实现双向文本。
  *
  * Detection: Windows Terminal sets WT_SESSION; native Windows cmd/conhost
  * also lacks bidi. We enable bidi reordering when running on Windows or
  * inside Windows Terminal (covers WSL).
+ * 检测方式：Windows Terminal 设置 WT_SESSION；原生 Windows cmd/conhost
+ * 也不支持双向文本。我们在 Windows 上或 Windows Terminal 内运行时启用双向重排序（覆盖 WSL）。
  */
 import bidiFactory from 'bidi-js'
 

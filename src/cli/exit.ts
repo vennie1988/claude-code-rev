@@ -1,4 +1,16 @@
 /**
+ * @fileoverview exit.ts — CLI exit helper functions
+ *
+ * CLI exit helpers for subcommand handlers.
+ * Consolidates error and success exit patterns.
+ *
+ * 设计说明：
+ * - exit.ts 提供 CLI 退出辅助函数
+ * - 统一错误退出和成功退出的处理模式
+ * - 减少子命令处理器中的重复代码
+ */
+
+/**
  * CLI exit helpers for subcommand handlers.
  *
  * Consolidates the 4-5 line "print + lint-suppress + exit" block that was

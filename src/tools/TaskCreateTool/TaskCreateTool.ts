@@ -1,3 +1,12 @@
+/**
+ * @fileoverview TaskCreateTool.ts — 创建任务工具
+ * Task creation tool for creating tasks in the task list.
+ *
+ * 功能说明：
+ * - createTask: 创建新任务
+ * - TaskCreateTool: 任务创建工具定义
+ */
+
 import { z } from 'zod/v4'
 import { buildTool, type ToolDef } from '../../Tool.js'
 import {

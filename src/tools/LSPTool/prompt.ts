@@ -1,5 +1,20 @@
+/**
+ * @fileoverview prompt.ts — LSPTool 常量定义
+ * Defines constants for the LSP (Language Server Protocol) tool.
+ *
+ * 功能说明：
+ * - LSP_TOOL_NAME: 工具唯一标识名称
+ * - DESCRIPTION: 工具描述，支持的 LSP 操作列表
+ */
+
+/**
+ * LSP tool name — 语言服务器协议工具名称
+ */
 export const LSP_TOOL_NAME = 'LSP' as const
 
+/**
+ * Tool description — 工具描述
+ */
 export const DESCRIPTION = `Interact with Language Server Protocol (LSP) servers to get code intelligence features.
 
 Supported operations:

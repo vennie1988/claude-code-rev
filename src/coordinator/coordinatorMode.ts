@@ -1,3 +1,14 @@
+/**
+ * @fileoverview coordinatorMode.ts — Coordinator mode implementation
+ *
+ * Coordinator mode enables multi-agent collaboration.
+ * One agent acts as coordinator, delegating tasks to worker agents.
+ *
+ * 设计说明：
+ * - coordinatorMode.ts 实现协调器模式
+ * - 支持多代理协作，一个代理作为协调器向工作代理分配任务
+ */
+
 import { feature } from 'bun:bundle'
 import { ASYNC_AGENT_ALLOWED_TOOLS } from '../constants/tools.js'
 import { checkStatsigFeatureGate_CACHED_MAY_BE_STALE } from '../services/analytics/growthbook.js'

@@ -1,3 +1,19 @@
+/**
+ * @fileoverview modelCapabilities.ts — 模型能力缓存（ANT 专用）/ Model capability cache (ANT-only)
+ *
+ * Fetches and caches model capabilities (max_input_tokens, max_tokens) from the Anthropic API.
+ * Used by ANT employees to determine context window sizes for models.
+ *
+ * @note Only eligible on first-party API (ANT users); cached to ~/.claude/cache/model-capabilities.json.
+ * @note Cache is sorted longest-id-first for substring matching preference (most specific match wins).
+ *
+ * 从 Anthropic API 获取并缓存模型能力（max_input_tokens、max_tokens）。
+ * 供 ANT 员工用于确定模型的上下文窗口大小。
+ *
+ * 注意：仅适用于第一方 API（ANT 用户）；缓存到 ~/.claude/cache/model-capabilities.json。
+ * 注意：缓存按最长 ID 优先排序，以利于子字符串匹配（最具体的匹配优先）。
+ */
+
 import { readFileSync } from 'fs'
 import { mkdir, writeFile } from 'fs/promises'
 import isEqual from 'lodash-es/isEqual.js'

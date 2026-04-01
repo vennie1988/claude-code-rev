@@ -1,3 +1,32 @@
+/**
+ * @fileoverview json.ts — JSON 解析与 JSONL 处理工具
+ * JSON Parsing and JSONL Processing Utilities
+ *
+ * 设计意图：
+ * - 提供安全的 JSON 解析（带缓存和错误处理）
+ * - 支持带注释的 JSON（JSONC，如 VS Code 配置文件）
+ * - 提供高效的 JSONL（JSON Lines）解析
+ * - 使用 LRU 缓存防止内存泄漏
+ *
+ * 重要设计决策：
+ * - 使用 discriminated union 包装解析结果，以区分 null 和 invalid JSON
+ * - LRU 缓存有 50 条条目上限，防止无限内存增长
+ * - 大于 8KB 的输入跳过缓存（避免大文件占用缓存空间）
+ * - BOM stripping 支持 PowerShell 5.x 写入的 UTF-8 文件
+ *
+ * Design intent:
+ * - Safe JSON parsing with caching and error handling
+ * - JSONC support (JSON with comments, e.g., VS Code config files)
+ * - Efficient JSONL (JSON Lines) parsing
+ * - LRU cache bounds prevent memory leaks
+ *
+ * Key design decisions:
+ * - Uses discriminated union to distinguish null from invalid JSON
+ * - LRU cache bounded to 50 entries to prevent unbounded growth
+ * - Inputs > 8KB skip cache (avoids large files dominating cache)
+ * - BOM stripping supports PowerShell 5.x UTF-8 files
+ */
+
 import { open, readFile, stat } from 'fs/promises'
 import {
   applyEdits,
@@ -9,6 +38,10 @@ import { logError } from './log.js'
 import { memoizeWithLRU } from './memoize.js'
 import { jsonStringify } from './slowOperations.js'
 
+/**
+ * CachedParse — 解析结果类型（区分成功/失败）
+ * Discriminated union for parse results: ok=true means success, ok=false means failure.
+ */
 type CachedParse = { ok: true; value: unknown } | { ok: false }
 
 // Memoized inner parse. Uses a discriminated-union wrapper because:

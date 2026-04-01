@@ -1,8 +1,30 @@
+/**
+ * @fileoverview AwsAuthStatusBox.tsx — Displays AWS authentication status in the UI
+ * AwsAuthStatusBox.tsx — 在UI中显示AWS认证状态
+ *
+ * @description
+ * - Shows authentication progress, errors, and output from AWS SSO/OAuth flow
+ * - Subscribes to AwsAuthStatusManager for real-time updates
+ * - Returns null when not authenticating and no errors/output
+ * - 显示AWS SSO/OAuth流程的认证进度、错误和输出
+ * - 订阅 AwsAuthStatusManager 以获取实时更新
+ * - 当未在进行认证且没有错误/输出时返回null
+ */
 import { c as _c } from "react/compiler-runtime";
 import React, { useEffect, useState } from 'react';
 import { Box, Link, Text } from '../ink.js';
 import { type AwsAuthStatus, AwsAuthStatusManager } from '../utils/awsAuthStatusManager.js';
+
+/** URL regex pattern for extracting links from text / 用于从文本中提取链接的URL正则表达式 */
 const URL_RE = /https?:\/\/\S+/;
+
+/**
+ * AwsAuthStatusBox — Displays AWS authentication status
+ * AwsAuthStatusBox — 显示AWS认证状态
+ *
+ * @returns Box with status text, links, and errors, or null if idle
+ * 返回带有状态文本、链接和错误的Box，如果空闲则返回null
+ */
 export function AwsAuthStatusBox() {
   const $ = _c(11);
   let t0;

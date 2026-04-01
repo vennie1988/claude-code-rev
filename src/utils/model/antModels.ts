@@ -1,3 +1,17 @@
+/**
+ * @fileoverview antModels.ts — ANT 专用模型覆盖与配置 / ANT-only model overrides and configurations
+ *
+ * Provides ANT-only (internal Anthropic employees) model configurations via GrowthBook.
+ * Includes custom model labels, descriptions, context windows, and effort level defaults.
+ *
+ * @note ANT codenames must be added to scripts/excluded-strings.txt to prevent leaking to external builds.
+ *
+ * 通过 GrowthBook 提供 ANT 专用（Anthropic 内部员工）模型配置。
+ * 包括自定义模型标签、描述、上下文窗口和努力级别默认值。
+ *
+ * 注意：ANT 代号必须添加到 scripts/excluded-strings.txt 以防止泄露到外部构建。
+ */
+
 import { getFeatureValue_CACHED_MAY_BE_STALE } from 'src/services/analytics/growthbook.js'
 import type { EffortLevel } from '../effort.js'
 

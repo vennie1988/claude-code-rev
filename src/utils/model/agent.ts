@@ -1,3 +1,13 @@
+/**
+ * @fileoverview agent.ts — 代理模型选择 / Agent model selection
+ *
+ * Handles subagent model selection with parent model tier inheritance.
+ * Supports Bedrock cross-region prefix propagation to subagents.
+ *
+ * 处理具有父模型层级继承的子代理模型选择。
+ * 支持 Bedrock 跨区域前缀传播到子代理。
+ */
+
 import type { PermissionMode } from '../permissions/PermissionMode.js'
 import { capitalize } from '../stringUtils.js'
 import { MODEL_ALIASES, type ModelAlias } from './aliases.js'

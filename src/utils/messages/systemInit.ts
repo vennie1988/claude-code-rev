@@ -1,3 +1,13 @@
+/**
+ * @fileoverview systemInit.ts — 系统初始化消息构建 / System init message building
+ *
+ * Builds the `system/init` SDKMessage — the first message on the SDK stream
+ * carrying session metadata (cwd, tools, model, commands, etc.).
+ *
+ * 构建 `system/init` SDKMessage —— SDK 流上的第一条消息，
+ * 携带会话元数据（cwd、tools、model、commands 等）。
+ */
+
 import { feature } from 'bun:bundle'
 import { randomUUID } from 'crypto'
 import { getSdkBetas, getSessionId } from 'src/bootstrap/state.js'

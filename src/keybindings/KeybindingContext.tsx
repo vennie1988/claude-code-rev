@@ -1,3 +1,15 @@
+/**
+ * @fileoverview KeybindingContext.tsx — Keyboard shortcut context provider
+ *
+ * React context for keyboard shortcut handling.
+ * Provides action resolution, chord support, and binding display text.
+ *
+ * 设计说明：
+ * - KeybindingContext.tsx 提供键盘快捷键的 React 上下文
+ * - 支持操作解析、和弦（chord）输入和绑定显示文本
+ * - 用于在 TUI 中管理键盘交互
+ */
+
 import { c as _c } from "react/compiler-runtime";
 import React, { createContext, type RefObject, useContext, useLayoutEffect, useMemo } from 'react';
 import type { Key } from '../ink.js';

@@ -1,3 +1,14 @@
+/**
+ * @fileoverview index.ts — Proactive mode management
+ *
+ * Manages proactive mode state and subscriptions.
+ * Proactive mode enables Claude to take initiative during conversations.
+ *
+ * 设计说明：
+ * - index.ts 管理主动模式状态和订阅
+ * - 主动模式使 Claude 能够在对话中采取主动
+ */
+
 let active = false
 let paused = false
 let contextBlocked = false

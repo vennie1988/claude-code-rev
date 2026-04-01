@@ -1,3 +1,23 @@
+/**
+ * @fileoverview modelStrings.ts — 提供商特定模型字符串解析 / Provider-specific model string resolution
+ *
+ * Maps canonical first-party model IDs to provider-specific model strings:
+ * - Builtin defaults (same across all providers)
+ * - Bedrock: resolved from AWS inference profiles (with fallback to builtin IDs)
+ * - User overrides from settings.json (modelOverrides)
+ *
+ * @note For Bedrock, model strings are resolved asynchronously from AWS inference profiles.
+ *       Falls back to builtin bedrock IDs if profile fetch fails.
+ *
+ * 将规范的第一方模型 ID 映射到提供商特定的模型字符串：
+ * - 内置默认值（所有提供商相同）
+ * - Bedrock：从 AWS 推理配置文件解析（回退到内置 ID）
+ * - 用户覆盖来自 settings.json（modelOverrides）
+ *
+ * 注意：对于 Bedrock，模型字符串从 AWS 推理配置文件异步解析。
+ *       如果配置文件获取失败，则回退到内置 bedrock ID。
+ */
+
 import {
   getModelStrings as getModelStringsState,
   setModelStrings as setModelStringsState,

@@ -94,13 +94,22 @@ export type Patch =
 export type Diff = Patch[]
 
 /**
+ * Frame Diff Engine / 帧差异引擎
+ *
  * Determines whether the screen should be cleared based on the current and previous frame.
+ * 根据当前帧和前一帧确定是否应清除屏幕。
+ *
  * Returns the reason for clearing, or undefined if no clear is needed.
+ * 返回清除的原因，如果不需要清除则返回 undefined。
  *
  * Screen clearing is triggered when:
+ * 屏幕清除在以下情况下触发：
  * 1. Terminal has been resized (viewport dimensions changed) → 'resize'
+ *    终端已调整大小（视口尺寸改变）→ 'resize'
  * 2. Current frame screen height exceeds available terminal rows → 'offscreen'
+ *    当前帧屏幕高度超过可用终端行数 → 'offscreen'
  * 3. Previous frame screen height exceeded available terminal rows → 'offscreen'
+ *    上一帧屏幕高度超过可用终端行数 → 'offscreen'
  */
 export function shouldClearScreen(
   prevFrame: Frame,

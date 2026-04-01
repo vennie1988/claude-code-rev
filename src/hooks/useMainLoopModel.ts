@@ -1,3 +1,17 @@
+/**
+ * @fileoverview useMainLoopModel.ts — Main loop model resolution hook
+ * 主循环模型解析hook：解析并返回当前主循环模型名称，支持GrowthBook刷新后重新解析。
+ * Resolves and returns the current main loop model name, re-resolving after GrowthBook refresh.
+ *
+ * @design
+ * - 使用useReducer触发GrowthBook刷新后的强制重渲染
+ * - 订阅onGrowthBookRefresh信号
+ * - parseUserSpecifiedModel处理模型别名解析
+ *
+ * @design useReducer triggers force re-render after GrowthBook refresh
+ * @design Subscribes to onGrowthBookRefresh signal
+ * @design parseUserSpecifiedModel handles model alias resolution
+ */
 import { useEffect, useReducer } from 'react'
 import { onGrowthBookRefresh } from '../services/analytics/growthbook.js'
 import { useAppState } from '../state/AppState.js'

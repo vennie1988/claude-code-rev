@@ -1,3 +1,15 @@
+/**
+ * @fileoverview BypassPermissionsModeDialog.tsx — Security warning dialog for bypass permissions mode
+ * BypassPermissionsModeDialog.tsx — 绕过权限模式的安全警告对话框
+ *
+ * @description
+ * - Displays a severe security warning about bypass permissions mode
+ * - Explains risks of running without permission checks
+ * - Decline exits the process; accept enables bypass mode
+ * - 显示关于绕过权限模式的严重安全警告
+ * - 解释在没有权限检查的情况下运行的风险
+ * - 拒绝退出进程；接受启用绕过模式
+ */
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback } from 'react';
 import { logEvent } from 'src/services/analytics/index.js';
@@ -6,9 +18,25 @@ import { gracefulShutdownSync } from '../utils/gracefulShutdown.js';
 import { updateSettingsForSource } from '../utils/settings/settings.js';
 import { Select } from './CustomSelect/index.js';
 import { Dialog } from './design-system/Dialog.js';
+
+/** Props — BypassPermissionsModeDialog component properties / BypassPermissionsModeDialog 组件属性 */
 type Props = {
-  onAccept(): void;
+  onAccept(): void; // Callback when user accepts the risks / 用户接受风险时的回调
 };
+/**
+ * BypassPermissionsModeDialog — Renders security warning dialog for bypass permissions
+ * BypassPermissionsModeDialog — 渲染绕过权限的安全警告对话框
+ *
+ * @description
+ * - Shows severe security warning with links to documentation
+ * - Accepting configures settings to skip dangerous mode permission prompt
+ * - Declining triggers graceful shutdown of the application
+ * - 显示带有文档链接的严重安全警告
+ * - 接受将配置设置以跳过危险模式权限提示
+ * - 拒绝会触发应用程序的正常关闭
+ *
+ * @returns Dialog with Accept/Decline options / 带有接受/拒绝选项的对话框
+ */
 export function BypassPermissionsModeDialog(t0) {
   const $ = _c(7);
   const {

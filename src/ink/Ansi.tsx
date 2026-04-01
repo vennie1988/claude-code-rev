@@ -22,12 +22,18 @@ type SpanProps = {
 };
 
 /**
+ * ANSI Escape Sequence Renderer / ANSI 转义序列渲染器
+ *
  * Component that parses ANSI escape codes and renders them using Text components.
+ * 解析 ANSI 转义码并使用 Text 组件渲染的组件。
  *
  * Use this as an escape hatch when you have pre-formatted ANSI strings from
  * external tools (like cli-highlight) that need to be rendered in Ink.
+ * 当你有来自外部工具（如 cli-highlight）的预格式化 ANSI 字符串需要
+ * 在 Ink 中渲染时，可以使用此组件作为逃生舱。
  *
  * Memoized to prevent re-renders when parent changes but children string is the same.
+ * 使用 React.memo 防止父组件变化但子字符串相同时的重新渲染。
  */
 export const Ansi = React.memo(function Ansi(t0) {
   const $ = _c(12);

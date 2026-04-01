@@ -1,3 +1,16 @@
+/**
+ * @fileoverview readEditContext.ts — 在文件中搜索指定字符串并返回上下文窗口
+ *
+ * 提供 readEditContext() 函数：在文件中查找 needle（目标字符串），返回包含匹配位置
+ * 前后指定行数的上下文切片。采用 8KB 分块扫描，带跨块重叠区以确保跨边界匹配被找到。
+ *
+ * 设计决策：
+ * - 使用 straddle overlap（跨越重叠）处理跨块边界匹配
+ * - 无需 stat，通过 bytesRead 检测 EOF
+ * - React 调用方：包裹在 useState lazy-init 中，然后使用 use() + Suspense
+ *
+ * @note 限流：最多扫描 MAX_SCAN_BYTES 字节。React 组件中建议用 useMemo 缓存。
+ */
 import { type FileHandle, open } from 'fs/promises'
 import { isENOENT } from './errors.js'
 
@@ -6,27 +19,29 @@ export const MAX_SCAN_BYTES = 10 * 1024 * 1024
 const NL = 0x0a
 
 export type EditContext = {
-  /** Slice of the file: contextLines before/after the match, on line boundaries. */
+  /** 文件切片：匹配位置前后各 contextLines 行，起始位于行边界。 */
   content: string
-  /** 1-based line number of content's first line in the original file. */
+  /** content 第一个字符在原文件中的行号（1-based）。 */
   lineOffset: number
-  /** True if MAX_SCAN_BYTES was hit without finding the needle. */
+  /** 若达到 MAX_SCAN_BYTES 仍未找到 needle，则为 true。 */
   truncated: boolean
 }
 
 /**
- * Finds `needle` in the file at `path` and returns a context-window slice
- * containing the match plus `contextLines` of surrounding context on each side.
+ * readEditContext — 在文件中查找 needle 并返回上下文窗口切片
  *
- * Scans in 8KB chunks with a straddle overlap so matches crossing a chunk
- * boundary are found. Capped at MAX_SCAN_BYTES. No stat — EOF detected via
- * bytesRead.
+ * 在文件 path 中查找 needle（目标字符串），返回包含匹配位置前后各 contextLines 行
+ * 的上下文切片。采用 8KB 分块扫描，带跨块重叠区（straddle overlap）确保跨块边界
+ * 匹配被找到。限流 MAX_SCAN_BYTES。通过 bytesRead 检测 EOF，无需 stat。
  *
- * React callers: wrap in useState lazy-init then use() + Suspense. useMemo
- * re-runs when callers pass fresh array literals.
+ * React 调用方：包裹在 useState lazy-init 中，然后使用 use() + Suspense。
+ * useMemo 在调用方传入新的数组字面量时重新运行。
  *
- * Returns null on ENOENT. Returns { truncated: true, content: '' } if the
- * needle isn't found within MAX_SCAN_BYTES.
+ * @param path - 文件路径
+ * @param needle - 要查找的目标字符串
+ * @param contextLines - 匹配前后各显示多少行上下文（默认 3）
+ * @returns 包含上下文切片的对象，或 null（文件不存在时）或 { truncated: true, content: '' }
+ *   （MAX_SCAN_BYTES 内未找到 needle 时）
  */
 export async function readEditContext(
   path: string,
@@ -43,7 +58,12 @@ export async function readEditContext(
 }
 
 /**
- * Opens `path` for reading. Returns null on ENOENT. Caller owns close().
+ * openForScan — 打开文件用于扫描
+ *
+ * 打开 path 对应的文件用于读取。返回 null（文件不存在时），调用方负责关闭文件句柄。
+ *
+ * @param path - 文件路径
+ * @returns 文件句柄，或 null（文件不存在时）
  */
 export async function openForScan(path: string): Promise<FileHandle | null> {
   try {
@@ -55,7 +75,15 @@ export async function openForScan(path: string): Promise<FileHandle | null> {
 }
 
 /**
- * Handle-accepting core of readEditContext. Caller owns open/close.
+ * scanForContext — readEditContext 的核心实现，调用方负责 open/close
+ *
+ * 打开已打开的文件句柄，扫描 needle，处理 CRLF 换行符匹配（needle 中用 LF，
+ * 文件中可能是 CRLF），通过 straddle overlap 找到跨块边界匹配。
+ *
+ * @param handle - 已打开的文件句柄
+ * @param needle - 要查找的目标字符串
+ * @param contextLines - 上下文行数
+ * @returns EditContext 对象
  */
 export async function scanForContext(
   handle: FileHandle,
@@ -113,12 +141,16 @@ export async function scanForContext(
 }
 
 /**
- * Reads the entire file via `handle` up to MAX_SCAN_BYTES. Returns null if the
- * file exceeds the cap. For the multi-edit path in FileEditToolDiff where
- * sequential replacements need the full string.
+ * readCapped — 读取文件内容（最多 MAX_SCAN_BYTES 字节）
  *
- * Single buffer, doubles on fill — ~log2(size/8KB) allocs instead of O(n)
- * chunks + concat. Reads directly into the right offset; no intermediate copies.
+ * 通过 handle 读取整个文件，最多 MAX_SCAN_BYTES 字节。文件超过上限时返回 null。
+ * 用于 FileEditToolDiff 的多编辑路径，顺序替换需要完整字符串。
+ *
+ * 采用单缓冲区填充翻倍策略——~log2(size/8KB) 次分配，而非 O(n) 块 + concat。
+ * 直接读取到正确偏移位置；无中间副本。
+ *
+ * @param handle - 已打开的文件句柄
+ * @returns 文件内容字符串，或 null（文件超过上限）
  */
 export async function readCapped(handle: FileHandle): Promise<string | null> {
   let buf = Buffer.allocUnsafe(CHUNK_SIZE)
@@ -163,10 +195,19 @@ function normalizeCRLF(buf: Buffer, len: number): string {
 }
 
 /**
- * Given an absolute match offset, read ±contextLines around it and return
- * the decoded slice with its starting line number. Reuses `scratch` (the
- * caller's scan buffer) for back/forward/output reads — zero new allocs
- * when the context fits, one alloc otherwise.
+ * sliceContext — 根据绝对匹配偏移量读取前后 contextLines 行
+ *
+ * 给定绝对匹配偏移量，读取匹配位置前后各 contextLines 行，
+ * 返回解码后的切片及其起始行号。复用调用方的 scan buffer 进行前向/后向/输出读取——
+ * 上下文能放入时零分配，否则仅一次分配。
+ *
+ * @param handle - 已打开的文件句柄
+ * @param scratch - 调用方的扫描缓冲区
+ * @param matchStart - 匹配开始位置（绝对偏移）
+ * @param matchLen - 匹配长度
+ * @param contextLines - 上下文行数
+ * @param linesBeforeMatch - 匹配前的行数
+ * @returns EditContext 对象
  */
 async function sliceContext(
   handle: FileHandle,

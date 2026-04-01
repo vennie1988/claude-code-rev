@@ -1,3 +1,15 @@
+/**
+ * @fileoverview bridgeMain.ts — Remote Bridge main entry point
+ *
+ * Main entry point for the Remote Bridge system.
+ * Handles environment registration, work polling, and session lifecycle.
+ *
+ * 设计说明：
+ * - bridgeMain.ts 是 Remote Bridge 系统的主入口点
+ * - 处理环境注册、工作轮询和会话生命周期
+ * - 管理多个并发会话和重连逻辑
+ */
+
 import { feature } from 'bun:bundle'
 import { randomUUID } from 'crypto'
 import { hostname, tmpdir } from 'os'

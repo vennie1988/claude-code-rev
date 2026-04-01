@@ -1,3 +1,15 @@
+/**
+ * @fileoverview types.ts — Task state type definitions
+ *
+ * Union of all concrete task state types for the task system.
+ * Used by components that need to work with any task type.
+ *
+ * 设计说明：
+ * - types.ts 定义任务状态的联合类型
+ * - 包括本地 shell 任务、本地代理任务、远程代理任务等
+ * - 用于需要处理各种任务类型的组件
+ */
+
 // Union of all concrete task state types
 // Use this for components that need to work with any task type
 

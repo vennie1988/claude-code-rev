@@ -1,4 +1,15 @@
 /**
+ * @fileoverview index.ts — Pure TypeScript file index implementation
+ *
+ * Pure-TypeScript port of vendor/file-index-src (Rust NAPI module).
+ * Provides high-performance fuzzy file searching without native dependencies.
+ *
+ * 设计说明：
+ * - index.ts 是 Rust NAPI 模块的纯 TypeScript 移植版本
+ * - 提供高性能模糊文件搜索，无原生依赖
+ */
+
+/**
  * Pure-TypeScript port of vendor/file-index-src (Rust NAPI module).
  *
  * The native module wraps nucleo (https://github.com/helix-editor/nucleo) for

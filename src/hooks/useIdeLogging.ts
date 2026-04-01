@@ -1,3 +1,17 @@
+/**
+ * @fileoverview useIdeLogging.ts — IDE log event notification hook
+ * IDE日志事件通知hook：通过MCP客户端注册日志事件通知处理器。
+ * Registers IDE log event notification handler via MCP client.
+ *
+ * @design
+ * - 通过MCP客户端注册log_event通知处理器
+ * - 将IDE事件转发到telemetry系统（tengu_ide_前缀）
+ * - 需要IDE客户端连接才生效
+ *
+ * @design Registers log_event notification handler with MCP client
+ * @design Forwards IDE events to telemetry with tengu_ide_ prefix
+ * @design Only active when IDE client is connected
+ */
 import { useEffect } from 'react'
 import { logEvent } from 'src/services/analytics/index.js'
 import { z } from 'zod/v4'

@@ -1,3 +1,14 @@
+/**
+ * @fileoverview apiQueryHookHelper.ts — API 查询 Hook 辅助工具 / API query hook helper utilities
+ *
+ * ## 功能说明 (Description)
+ * 用于创建基于 API 查询的 Hook 的辅助工具。
+ * 提供通用的消息构建、响应解析和错误处理模式。
+ *
+ * Helper utilities for creating API query-based hooks.
+ * Provides common message building, response parsing, and error handling patterns.
+ */
+
 import { randomUUID } from 'crypto'
 import type { QuerySource } from '../../constants/querySource.js'
 import { queryModelWithoutStreaming } from '../../services/api/claude.js'

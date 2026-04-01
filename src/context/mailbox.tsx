@@ -1,3 +1,14 @@
+/**
+ * @fileoverview mailbox.tsx — Message mailbox context provider
+ *
+ * React context for inter-component message passing.
+ * Provides a mailbox mechanism for components to communicate.
+ *
+ * 设计说明：
+ * - mailbox.tsx 提供组件间消息传递的 React 上下文
+ * - 实现邮箱机制用于组件通信
+ */
+
 import { c as _c } from "react/compiler-runtime";
 import React, { createContext, useContext, useMemo } from 'react';
 import { Mailbox } from '../utils/mailbox.js';

@@ -1,7 +1,14 @@
 /**
- * CSI (Control Sequence Introducer) Types
+ * CSI (Control Sequence Introducer) Types / CSI（控制序列引导器）类型
  *
  * Enums and types for CSI command parameters.
+ * CSI 命令参数的类型定义和枚举。
+ *
+ * CSI sequences have the format: ESC [ p1;p2;...;pN final-byte
+ * Examples: CSI 31m (SGR foreground color), CSI H (cursor position)
+ *
+ * CSI 序列格式：ESC [ p1;p2;...;pN 最终字节
+ * 示例：CSI 31m（SGR 前景色）、CSI H（光标位置）
  */
 
 import { ESC, ESC_TYPE, SEP } from './ansi.js'

@@ -5,10 +5,12 @@ import type { PermissionResult } from '../../utils/permissions/PermissionResult.
 
 /**
  * Helper: Validate flags against an allowlist
+ * 辅助函数：验证标志是否在允许列表中
  * Handles both single flags and combined flags (e.g., -nE)
- * @param flags Array of flags to validate
- * @param allowedFlags Array of allowed single-character and long flags
- * @returns true if all flags are valid, false otherwise
+ * 处理单个标志和组合标志（如-nE）
+ * @param flags Array of flags to validate / 要验证的标志数组
+ * @param allowedFlags Array of allowed single-character and long flags / 允许的单字符和长标志数组
+ * @returns true if all flags are valid, false otherwise / 所有标志都有效返回true，否则返回false
  */
 function validateFlagsAgainstAllowlist(
   flags: string[],
@@ -36,10 +38,13 @@ function validateFlagsAgainstAllowlist(
 
 /**
  * Pattern 1: Check if this is a line printing command with -n flag
+ * 模式1：检查是否为带-n标志的行打印命令
  * Allows: sed -n 'N' | sed -n 'N,M' with optional -E, -r, -z flags
+ * 允许：sed -n 'N' | sed -n 'N,M'，可选-E、-r、-z标志
  * Allows semicolon-separated print commands like: sed -n '1p;2p;3p'
- * File arguments are ALLOWED for this pattern
- * @internal Exported for testing
+ * 允许分号分隔的打印命令，如：sed -n '1p;2p;3p'
+ * File arguments are ALLOWED for this pattern / 此模式下允许文件参数
+ * @internal Exported for testing / 导出用于测试
  */
 export function isLinePrintingCommand(
   command: string,
@@ -118,12 +123,15 @@ export function isLinePrintingCommand(
 
 /**
  * Helper: Check if a single command is a valid print command
+ * 辅助函数：检查单个命令是否为有效的打印命令
  * STRICT ALLOWLIST - only these exact forms are allowed:
- * - p (print all)
- * - Np (print line N, where N is digits)
- * - N,Mp (print lines N through M)
+ * 严格允许列表 - 仅允许以下精确形式：
+ * - p (print all) / p（打印全部）
+ * - Np (print line N, where N is digits) / Np（打印第N行，N为数字）
+ * - N,Mp (print lines N through M) / N,Mp（打印第N到M行）
  * Anything else (including w, W, e, E commands) is rejected.
- * @internal Exported for testing
+ * 其他任何形式（包括w、W、e、E命令）都会被拒绝。
+ * @internal Exported for testing / 导出用于测试
  */
 export function isPrintCommand(cmd: string): boolean {
   if (!cmd) return false
@@ -134,10 +142,14 @@ export function isPrintCommand(cmd: string): boolean {
 
 /**
  * Pattern 2: Check if this is a substitution command
+ * 模式2：检查是否为替换命令
  * Allows: sed 's/pattern/replacement/flags' where flags are only: g, p, i, I, m, M, 1-9
+ * 允许：sed 's/pattern/replacement/flags'，其中flags仅能为：g、p、i、I、m、M、1-9
  * When allowFileWrites is true, allows -i flag and file arguments for in-place editing
+ * 当allowFileWrites为true时，允许-i标志和文件参数进行原地编辑
  * When allowFileWrites is false (default), requires stdout-only (no file arguments, no -i flag)
- * @internal Exported for testing
+ * 当allowFileWrites为false（默认）时，需要仅stdout（无文件参数，无-i标志）
+ * @internal Exported for testing / 导出用于测试
  */
 function isSubstitutionCommand(
   command: string,
