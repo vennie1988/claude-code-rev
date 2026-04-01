@@ -1,3 +1,27 @@
+/**
+ * @fileoverview contextAnalysis.ts — Context window token accounting and attribution
+ *
+ * Analyzes a message history to produce per-category token counts: human vs assistant
+ * messages, tool requests/results, local command outputs, and duplicate file reads.
+ * The duplicate-read detector identifies files read more than once and estimates
+ * wasted tokens from redundant reads — useful for context window optimization.
+ *
+ * @note Token counts are estimates via roughTokenCountEstimation, not exact API counts.
+ *       Duplicate detection uses a Map keyed by file path, so repeated reads of
+ *       different paths are not deduplicated.
+ */
+
+/**
+ * 文件概述: contextAnalysis.ts — 上下文窗口 Token 统计与归属分析
+ *
+ * 对消息历史进行分类 Token 计数统计：人类消息 vs 助手消息、工具调用/结果、
+ * 本地命令输出、重复文件读取。通过识别同一文件的多次读取来估算冗余 Token 开销，
+ * 为上下文窗口优化提供依据。
+ *
+ * @note Token 计数使用 roughTokenCountEstimation 估算，而非精确 API 计数。
+ *       重复检测以文件路径为 key Map，因此不同路径的重复读取不会去重。
+ */
+
 import type { BetaContentBlock } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import type {
   ContentBlock,
@@ -24,6 +48,21 @@ type TokenStats = {
   total: number
 }
 
+/**
+ * analyzeContext — Token accounting for a message history
+ *
+ * Walks every message in the array, normalizes to API format, and accumulates
+ * token estimates per category. Duplicate file reads (same path read multiple
+ * times) are tracked separately to surface wasted context tokens.
+ *
+ * @param messages - Full message history to analyze
+ * @returns TokenStats with per-category breakdowns
+ *
+ * analyzeContext — 消息历史的 Token 统计
+ *
+ * 遍历数组中每条消息，标准化为 API 格式，并按类别累积 token 估算值。
+ * 重复文件读取（同一路径多次读取）单独跟踪，以揭示浪费的上下文 token。
+ */
 export function analyzeContext(messages: Message[]): TokenStats {
   const stats: TokenStats = {
     toolRequests: new Map(),
@@ -96,14 +135,26 @@ export function analyzeContext(messages: Message[]): TokenStats {
   return stats
 }
 
+/**
+ * processBlock — Classify and accumulate token counts for a single content block
+ *
+ * Dispatches on block type and increments the appropriate counter in stats.
+ * For tool_use blocks, also tracks the tool name → tool-id mapping so that
+ * subsequent tool_result blocks can attribute tokens correctly.
+ *
+ * @param block - The content block to process
+ * @param message - The parent message containing this block
+ * @param stats - TokenStats accumulator (mutated in place)
+ * @param toolIds - Map from tool-use ID to tool name (populated as side effect)
+ * @param readToolPaths - Map from tool-use ID to file path for Read tools
+ * @param fileReads - Map from file path to read count/tokens (populated as side effect)
+ *
+ * processBlock — 对单个内容块进行分类并累积 token 计数
+ *
+ * 根据块类型分发并增加 stats 中相应的计数器。对于 tool_use 块，
+ * 还跟踪 tool name → tool-id 映射，以便后续 tool_result 块正确归因 token。
+ */
 function processBlock(
-  block: ContentBlockParam | ContentBlock | BetaContentBlock,
-  message: UserMessage | AssistantMessage,
-  stats: TokenStats,
-  toolIds: Map<string, string>,
-  readToolPaths: Map<string, string>,
-  fileReads: Map<string, { count: number; totalTokens: number }>,
-): void {
   const tokens = countTokens(jsonStringify(block))
   stats.total += tokens
 
@@ -188,10 +239,28 @@ function processBlock(
   }
 }
 
+/**
+ * increment — Increment a counter in a Map, creating the key if absent.
+ * 原子增加 Map 中的计数器，如不存在则创建键。
+ */
 function increment(map: Map<string, number>, key: string, value: number): void {
   map.set(key, (map.get(key) || 0) + value)
 }
 
+/**
+ * tokenStatsToStatsigMetrics — Convert TokenStats to a flat key/value object for Statsig
+ *
+ * Converts per-tool, per-attachment, and aggregate metrics into a flat Record
+ * suitable for Statsig logging. Percentages are only computed when total > 0.
+ *
+ * @param stats - TokenStats from analyzeContext()
+ * @returns Flat object with metric names as keys and numeric values
+ *
+ * tokenStatsToStatsigMetrics — 将 TokenStats 转换为适合 Statsig 的扁平键值对象
+ *
+ * 将每工具、每附件和汇总指标转换为扁平 Record，适合 Statsig 记录。
+ * 仅在 total > 0 时计算百分比。
+ */
 export function tokenStatsToStatsigMetrics(
   stats: TokenStats,
 ): Record<string, number> {
