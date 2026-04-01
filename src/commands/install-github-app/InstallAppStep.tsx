@@ -1,3 +1,7 @@
+/**
+ * @fileoverview InstallAppStep.tsx — GitHub App installation step
+ * Prompts user to install the Claude GitHub App in their repository.
+ */
 import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import React from 'react';

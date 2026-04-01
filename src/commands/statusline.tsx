@@ -1,3 +1,7 @@
+/**
+ * @fileoverview statusline.tsx — Setup Claude Code status line UI
+ * Delegates to a statusline-setup subagent to configure the shell PS1 integration.
+ */
 import type { ContentBlockParam } from '@anthropic-ai/sdk/resources/index.mjs';
 import type { Command } from '../commands.js';
 import { AGENT_TOOL_NAME } from '../tools/AgentTool/constants.js';

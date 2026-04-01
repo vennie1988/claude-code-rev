@@ -1,4 +1,8 @@
 import { c as _c } from "react/compiler-runtime";
+/**
+ * @fileoverview CheckGitHubStep.tsx — GitHub CLI check step
+ * Displays a message while checking if GitHub CLI is installed.
+ */
 import React from 'react';
 import { Text } from '../../ink.js';
 export function CheckGitHubStep() {

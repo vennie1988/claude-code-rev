@@ -1,3 +1,10 @@
+/**
+ * @fileoverview OAuthFlowStep.tsx — OAuth authentication flow step
+ * Handles OAuth authentication to create long-lived tokens for GitHub Actions.
+ *
+ * @design Supports both browser-based OAuth and manual code entry fallback.
+ * Creates inference-only tokens suitable for GitHub Actions use.
+ */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from 'src/services/analytics/index.js';
 import { KeyboardShortcutHint } from '../../components/design-system/KeyboardShortcutHint.js';

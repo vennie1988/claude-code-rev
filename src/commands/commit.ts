@@ -1,3 +1,12 @@
+/**
+ * @fileoverview commit.ts — Git commit creation command
+ * Git 提交命令：/commit 用于创建单个 git 提交
+ * Creates a single git commit by analyzing staged changes and drafting a
+ * commit message following the repository's commit style.
+ *
+ * @note 使用 executeShellCommandsInPrompt 执行 git 命令收集信息
+ *       遵循 Git Safety Protocol，禁止使用 --amend 等危险操作
+ */
 import type { Command } from '../commands.js'
 import { getAttributionTexts } from '../utils/attribution.js'
 import { executeShellCommandsInPrompt } from '../utils/promptShellExecution.js'
@@ -9,6 +18,11 @@ const ALLOWED_TOOLS = [
   'Bash(git commit:*)',
 ]
 
+/**
+ * getPromptContent — 生成提交流程的提示词内容
+ * Constructs the prompt for commit message generation including git context
+ * (status, diff, branch, recent commits) and Git Safety Protocol rules.
+ */
 function getPromptContent(): string {
   const { commit: commitAttribution } = getAttributionTexts()
 

@@ -1,3 +1,11 @@
+/**
+ * @fileoverview btw.tsx — Side question/quick question command
+ * Allows asking quick questions without disrupting the main conversation flow.
+ * Creates a side branch with cached prompt params for efficient context reuse.
+ *
+ * @design Uses a separate agent fork (side question) to answer questions while
+ * preserving the main conversation context. Caches prompt params to avoid cache misses.
+ */
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
@@ -181,23 +189,19 @@ function BtwSideQuestion(t0) {
 }
 
 /**
- * Build CacheSafeParams for the side question fork.
- *
- * The preferred source is getLastCacheSafeParams — the exact
- * systemPrompt/userContext/systemContext bytes the main thread sent on its
- * last request (captured in stopHooks). Reusing them guarantees a byte-
- * identical prefix and thus a prompt cache hit. We pair these with the
- * current toolUseContext (for thinkingConfig/tools) and current messages
- * (for up-to-date context).
- *
- * Fallback (first turn before stop hooks fire, or prompt-suggestion
- * disabled): rebuild from scratch. This may miss the cache if the main loop
- * applied buildEffectiveSystemPrompt extras (--agent, --system-prompt,
- * --append-system-prompt, coordinator mode).
+ * _temp — Frame counter for spinner animation
+ * Increments frame count for loading spinner display.
  */
 function _temp(f) {
   return f + 1;
 }
+
+/**
+ * stripInProgressAssistantMessage — Remove incomplete assistant message
+ * Strips the last message if it's an assistant message with no stop_reason,
+ * indicating it's still in progress and shouldn't be included in the fork context.
+ */
+function stripInProgressAssistantMessage(messages: Message[]): Message[] {
 function stripInProgressAssistantMessage(messages: Message[]): Message[] {
   const last = messages.at(-1);
   if (last?.type === 'assistant' && last.message.stop_reason === null) {

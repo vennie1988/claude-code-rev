@@ -1,3 +1,7 @@
+/**
+ * @fileoverview ChooseRepoStep.tsx — Repository selection step
+ * Allows user to select or enter a GitHub repository for installation.
+ */
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback, useState } from 'react';
 import TextInput from '../../components/TextInput.js';

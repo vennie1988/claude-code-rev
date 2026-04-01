@@ -1,3 +1,7 @@
+/**
+ * @fileoverview CreatingStep.tsx — Workflow creation progress step
+ * Shows progress during GitHub Actions workflow creation.
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { Box, Text } from '../../ink.js';
