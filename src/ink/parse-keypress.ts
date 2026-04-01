@@ -1,8 +1,13 @@
 /**
- * Keyboard input parser - converts terminal input to key events
+ * Keypress Parser / 按键解析器
+ *
+ * Keyboard input parser - converts terminal input to key events.
+ * 键盘输入解析器——将终端输入转换为按键事件。
  *
  * Uses the termio tokenizer for escape sequence boundary detection,
  * then interprets sequences as keypresses.
+ * 使用 termio 分词器进行转义序列边界检测，
+ * 然后将序列解释为按键。
  */
 import { Buffer } from 'buffer'
 import { PASTE_END, PASTE_START } from './termio/csi.js'
