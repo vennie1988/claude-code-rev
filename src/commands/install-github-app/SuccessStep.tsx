@@ -1,3 +1,7 @@
+/**
+ * @fileoverview SuccessStep.tsx — Installation success step
+ * Displays success message after GitHub App installation completes.
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { Box, Text } from '../../ink.js';

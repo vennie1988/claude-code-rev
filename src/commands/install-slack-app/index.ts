@@ -1,3 +1,7 @@
+/**
+ * @fileoverview index.ts — Install Slack app command entry
+ * Entry point for /install-slack-app command.
+ */
 import type { Command } from '../../commands.js'
 
 const installSlackApp = {

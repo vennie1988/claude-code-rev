@@ -9,6 +9,16 @@ import { PluginSettings } from '../plugin/PluginSettings.js';
 
 // TODO: This is a hack to get the context value from toggleMcpServer (useContext only works in a component)
 // Ideally, all MCP state and functions would be in global state.
+/**
+ * MCPToggle — Enable or disable MCP server(s) via toggle action
+ * MCP服务器启用/禁用切换组件
+ *
+ * @param action - 'enable' or 'disable'
+ * @param target - Server name or 'all'
+ * @param onComplete - Callback with result message
+ *
+ * @note Uses useRef to prevent running effect multiple times on re-render
+ */
 function MCPToggle(t0) {
   const $ = _c(7);
   const {

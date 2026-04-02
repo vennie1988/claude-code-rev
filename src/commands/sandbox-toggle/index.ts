@@ -1,3 +1,9 @@
+/**
+ * @fileoverview index.ts — Sandbox toggle command loader
+ * /sandbox 命令入口，配置沙箱执行环境
+ *
+ * @note Hidden on unsupported platforms (non-macOS/Linux/WSL2)
+ */
 import figures from 'figures'
 import type { Command } from '../../commands.js'
 import { SandboxManager } from '../../utils/sandbox/sandbox-adapter.js'

@@ -1,3 +1,8 @@
+/**
+ * @fileoverview index.ts — Upgrade command loader
+ * /upgrade 命令入口，引导用户升级到Max订阅
+ * 仅在claude.ai环境且未禁用时可用
+ */
 import type { Command } from '../../commands.js'
 import { getSubscriptionType } from '../../utils/auth.js'
 import { isEnvTruthy } from '../../utils/envUtils.js'

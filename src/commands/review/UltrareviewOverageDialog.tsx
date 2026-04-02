@@ -1,3 +1,14 @@
+/**
+ * @fileoverview UltrareviewOverageDialog.tsx — Billing overage confirmation dialog
+ * 超额使用确认对话框组件
+ *
+ * Displays when user has exhausted free ultrareview quota and needs to confirm
+ * pay-per-use billing before launching a remote review session.
+ * Shows warning message and proceed/cancel options.
+ *
+ * @note Uses AbortSignal to allow cancellation during launch; if onProceed
+ * rejects, the dialog restores the Select so the user can retry
+ */
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback, useRef, useState } from 'react';
 import { Select } from '../../components/CustomSelect/select.js';

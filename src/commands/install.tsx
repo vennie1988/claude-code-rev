@@ -1,3 +1,13 @@
+/**
+ * @fileoverview install.tsx — Install Claude Code native build
+ * Interactive TUI for installing the Claude Code native binary.
+ * Handles download, setup, and cleanup of old npm installations.
+ *
+ * @design Uses a state machine to track installation progress: checking → cleaning-npm →
+ * installing → setting-up → set-up/success/error
+ *
+ * @note Only invoked from cli.tsx, not as a slash command.
+ */
 import { c as _c } from "react/compiler-runtime";
 import { homedir } from 'node:os';
 import { join } from 'node:path';
@@ -18,6 +28,12 @@ interface InstallProps {
   force?: boolean;
   target?: string; // 'latest', 'stable', or version like '1.0.34'
 }
+
+/**
+ * getInstallationPath — Returns platform-specific installation path
+ * Returns ~/.local/bin/claude (Unix) or converted Windows path.
+ */
+function getInstallationPath(): string {
 type InstallState = {
   type: 'checking';
 } | {
@@ -50,6 +66,12 @@ function getInstallationPath(): string {
   }
   return '~/.local/bin/claude';
 }
+
+/**
+ * SetupNotes — Renders setup notes/warnings after installation
+ * Displays a warning box with bullet points for post-installation guidance.
+ */
+function SetupNotes(t0) {
 function SetupNotes(t0) {
   const $ = _c(5);
   const {

@@ -1,3 +1,10 @@
+/**
+ * @fileoverview install-github-app.tsx — GitHub App installation wizard
+ * Interactive TUI for installing Claude GitHub App and setting up GitHub Actions.
+ *
+ * @design Multi-step wizard: check-gh → warnings? → choose-repo → api-key/oauth →
+ * install-app → check-existing-secret → creating → success
+ */
 import { execa } from 'execa';
 import React, { useCallback, useState } from 'react';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from 'src/services/analytics/index.js';

@@ -41,6 +41,9 @@ const DEFAULT_PLACEHOLDERS: Record<FeedbackType, string> = {
  * - Input mode toggling (Tab to expand feedback input)
  * - Analytics events for feedback interactions
  * - Transforming options to Select-compatible format
+ *
+ * 带有可选反馈输入的权限提示共享组件。
+ * 处理：问题提示、特性标志检查、输入模式切换、分析事件和选项转换。
  */
 export function PermissionPrompt(t0) {
   const $ = _c(54);

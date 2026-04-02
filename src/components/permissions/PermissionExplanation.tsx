@@ -73,6 +73,8 @@ type ExplainerState = {
 /**
  * Creates an explanation promise that never rejects.
  * Errors are caught and returned as null.
+ * 创建一个永不拒绝的解释承诺。
+ * 错误会被捕获并返回 null。
  */
 function createExplanationPromise(props: PermissionExplanationProps): Promise<PermissionExplanationType | null> {
   return generatePermissionExplanation({

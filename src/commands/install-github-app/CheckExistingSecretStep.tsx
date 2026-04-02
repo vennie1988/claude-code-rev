@@ -1,3 +1,7 @@
+/**
+ * @fileoverview CheckExistingSecretStep.tsx — Existing secret check step
+ * Prompts user to choose between using existing API key secret or creating a new one.
+ */
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback, useState } from 'react';
 import TextInput from '../../components/TextInput.js';

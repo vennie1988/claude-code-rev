@@ -1,4 +1,9 @@
 import { getIsRemoteMode } from '../../bootstrap/state.js'
+/**
+ * @fileoverview index.ts — Remote session display command
+ * /session 命令入口，显示远程会话URL和二维码
+ * 仅在远程模式下可用（getIsRemoteMode()返回true时）
+ */
 import type { Command } from '../../commands.js'
 
 const session = {

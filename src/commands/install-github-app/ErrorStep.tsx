@@ -1,3 +1,7 @@
+/**
+ * @fileoverview ErrorStep.tsx — Error display step
+ * Shows error message with instructions for manual setup.
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { GITHUB_ACTION_SETUP_DOCS_URL } from '../../constants/github-app.js';

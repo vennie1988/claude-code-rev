@@ -1,3 +1,7 @@
+/**
+ * @fileoverview ExistingWorkflowStep.tsx — Existing workflow handling step
+ * Offers options when a Claude workflow file already exists in the repository.
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { Select } from 'src/components/CustomSelect/index.js';

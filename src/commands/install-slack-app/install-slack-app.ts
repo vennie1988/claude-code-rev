@@ -1,3 +1,7 @@
+/**
+ * @fileoverview install-slack-app.ts — Install Claude Slack app
+ * Opens the Slack app marketplace page in the browser for manual installation.
+ */
 import type { LocalCommandResult } from '../../commands.js'
 import { logEvent } from '../../services/analytics/index.js'
 import { openBrowser } from '../../utils/browser.js'

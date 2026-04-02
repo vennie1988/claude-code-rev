@@ -1,3 +1,7 @@
+/**
+ * @fileoverview index.ts — Skills menu command loader
+ * /skills 命令入口，加载技能菜单组件
+ */
 import type { Command } from '../../commands.js'
 
 const skills = {

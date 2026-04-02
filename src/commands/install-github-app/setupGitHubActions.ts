@@ -1,3 +1,10 @@
+/**
+ * @fileoverview setupGitHubActions.ts — GitHub Actions setup implementation
+ * Core logic for setting up GitHub Actions workflows and secrets.
+ *
+ * @design Handles workflow file creation, secret management, and branch creation
+ * via the GitHub CLI. Creates PR for workflow updates.
+ */
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,

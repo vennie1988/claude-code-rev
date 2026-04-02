@@ -1,3 +1,13 @@
+/**
+ * @fileoverview compact.ts — Context compaction command
+ * Reduces conversation context size by summarizing older messages.
+ * Tries session memory compaction first, then falls back to traditional compaction.
+ *
+ * @design Supports multiple compaction strategies:
+ * - Session memory compaction (cheap, no API calls)
+ * - Traditional summarization via compactConversation
+ * - Reactive compaction (when REACTIVE_COMPACT feature is enabled)
+ */
 import { feature } from 'bun:bundle'
 import chalk from 'chalk'
 import { markPostCompaction } from 'src/bootstrap/state.js'

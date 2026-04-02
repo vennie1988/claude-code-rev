@@ -13,6 +13,7 @@ type PlanApprovalRequestProps = {
 /**
  * Renders a plan approval request with a planMode-colored border,
  * showing the plan content and instructions for approving/rejecting.
+ * 渲染计划审批请求，显示计划内容和批准/拒绝说明。
  */
 export function PlanApprovalRequestDisplay(t0) {
   const $ = _c(10);
@@ -62,6 +63,7 @@ type PlanApprovalResponseProps = {
 
 /**
  * Renders a plan approval response with a success (green) or error (red) border.
+ * 渲染计划审批响应，成功显示绿色边框，失败显示红色边框。
  */
 export function PlanApprovalResponseDisplay(t0) {
   const $ = _c(13);

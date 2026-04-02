@@ -1,3 +1,7 @@
+/**
+ * @fileoverview ApiKeyStep.tsx — API key selection step
+ * Allows user to choose between existing API key, creating OAuth token, or entering new key.
+ */
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback, useState } from 'react';
 import TextInput from '../../components/TextInput.js';

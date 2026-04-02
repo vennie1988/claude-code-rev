@@ -16,6 +16,8 @@ const EMPTY_SET = new Set<string>();
 /**
  * Check if a command value is an idle notification that should be hidden.
  * Idle notifications are processed silently without showing to the user.
+ * 检查命令值是否为应隐藏的空闲通知。
+ * 空闲通知会被静默处理，不会展示给用户。
  */
 function isIdleNotification(value: string): boolean {
   try {
