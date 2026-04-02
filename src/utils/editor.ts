@@ -41,10 +41,15 @@ const VSCODE_FAMILY = new Set(['code', 'cursor', 'windsurf', 'codium'])
  * for goto-line argv selection, or undefined for terminal editors.
  * Note: this is classification only — spawn the user's actual binary, not
  * this return value, so `code-insiders` / absolute paths are preserved.
+ * 将编辑器分类为 GUI 或非 GUI。返回用于 goto-line argv 选择的匹配 GUI 系列名称，
+ * 或对终端编辑器返回 undefined。注意：这只是分类——生成用户实际的二进制文件，
+ * 而不是此返回值，因此 `code-insiders` / 绝对路径会被保留。
  *
  * Uses basename so /home/alice/code/bin/nvim doesn't match 'code' via the
  * directory component. code-insiders → still matches 'code', /usr/bin/code →
  * 'code' → matches.
+ * 使用 basename 使得 /home/alice/code/bin/nvim 不会通过目录组件匹配 'code'。
+ * code-insiders → 仍然匹配 'code'，/usr/bin/code → 'code' → 匹配。
  */
 export function classifyGuiEditor(editor: string): string | undefined {
   const base = basename(editor.split(' ')[0] ?? '')
@@ -54,6 +59,8 @@ export function classifyGuiEditor(editor: string): string | undefined {
 /**
  * Build goto-line argv for a GUI editor. VS Code family uses -g file:line;
  * subl uses bare file:line; others don't support goto-line.
+ * 为 GUI 编辑器构建 goto-line argv。VS Code 系列使用 -g file:line；
+ * subl 使用裸 file:line；其他不支持 goto-line。
  */
 function guiGotoArgv(
   guiFamily: string,
@@ -68,15 +75,22 @@ function guiGotoArgv(
 
 /**
  * Launch a file in the user's external editor.
+ * 在用户的外部门编辑器中启动文件。
  *
  * For GUI editors (code, subl, etc.): spawns detached — the editor opens
  * in a separate window and Claude Code stays interactive.
+ * 对于 GUI 编辑器（code、subl 等）：生成分离的进程——编辑器在单独的窗口中打开，
+ * Claude Code 保持交互式。
  *
  * For terminal editors (vim, nvim, nano, etc.): blocks via Ink's alt-screen
  * handoff until the editor exits. This is the same dance as editFileInEditor()
  * in promptEditor.ts, minus the read-back.
+ * 对于终端编辑器（vim、nvim、nano 等）：通过 Ink 的 alt-screen 切换阻塞，
+ * 直到编辑器退出。这与 promptEditor.ts 中的 editFileInEditor() 相同，
+ * 只是没有读回。
  *
  * Returns true if the editor was launched, false if no editor is available.
+ * 如果编辑器已启动则返回 true，如果没有可用的编辑器则返回 false。
  */
 export function openFileInExternalEditor(
   filePath: string,
@@ -161,6 +175,19 @@ export function openFileInExternalEditor(
   }
 }
 
+/**
+ * Get the user's preferred external editor.
+ * 获取用户首选的外部门编辑器。
+ *
+ * Priority: VISUAL env var > EDITOR env var > platform-specific defaults.
+ * 优先级：VISUAL 环境变量 > EDITOR 环境变量 > 平台特定默认值。
+ *
+ * On Windows: returns 'start /wait notepad' if no editor found.
+ * 在 Windows 上：如果未找到编辑器则返回 'start /wait notepad'。
+ *
+ * On POSIX: searches for 'code', 'vi', 'nano' in order.
+ * 在 POSIX 上：按顺序搜索 'code'、'vi'、'nano'。
+ */
 export const getExternalEditor = memoize((): string | undefined => {
   // Prioritize environment variables
   if (process.env.VISUAL?.trim()) {

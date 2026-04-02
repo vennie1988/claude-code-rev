@@ -1,3 +1,15 @@
+/**
+ * @fileoverview UI.tsx — AgentTool React 渲染组件
+ * React components for rendering AgentTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染代理工具使用消息
+ * - renderToolUseProgressMessage: 渲染代理执行进度
+ * - renderToolResultMessage: 渲染代理执行结果
+ * - renderToolUseRejectedMessage: 渲染代理被拒绝消息
+ * - renderToolUseErrorMessage: 渲染代理错误消息
+ */
+
 import { c as _c } from "react/compiler-runtime";
 import type { ToolResultBlockParam, ToolUseBlockParam } from '@anthropic-ai/sdk/resources/index.mjs';
 import * as React from 'react';

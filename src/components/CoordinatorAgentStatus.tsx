@@ -1,10 +1,15 @@
 import { c as _c } from "react/compiler-runtime";
+
 /**
  * CoordinatorTaskPanel — Steerable list of background agents.
+ * CoordinatorTaskPanel — 可操控的后台代理列表
  *
  * Renders below the prompt input footer whenever local_agent tasks exist.
  * Visibility is driven by evictAfter: undefined (running/retained) shows
  * always; a timestamp shows until passed. Enter to view/steer, x to dismiss.
+ * 当存在 local_agent 任务时，渲染在提示输入页脚下方。
+ * 可见性由 evictAfter 控制：undefined（运行中/保留）始终显示；
+ * 时间戳显示直到过期。按Enter查看/操控，x键关闭。
  */
 
 import figures from 'figures';
@@ -21,16 +26,39 @@ import { evictTerminalTask } from '../utils/task/framework.js';
 import { isTerminalStatus } from './tasks/taskStatusUtils.js';
 
 /**
- * Which panel-managed tasks currently have a visible row.
- * Presence in AppState.tasks IS visibility — the 1s tick in
- * CoordinatorTaskPanel evicts tasks past their evictAfter deadline. The
- * evictAfter !== 0 check handles immediate dismiss (x key) without making
- * the filter time-dependent. Shared by panel render, useCoordinatorTaskCount,
- * and index resolvers so the math can't drift.
+ * getVisibleAgentTasks — Filter visible agent tasks from AppState
+ * getVisibleAgentTasks — 从AppState中过滤可见的代理任务
+ *
+ * @description
+ * - Returns panel-managed tasks that have a visible row
+ * - Filters out tasks with evictAfter === 0 (immediate dismiss)
+ * - Sorts by startTime
+ * - 返回有可见行的面板管理任务
+ * - 过滤掉 evictAfter === 0 的任务（立即关闭）
+ * - 按 startTime 排序
+ *
+ * @param tasks - AppState.tasks to filter / 要过滤的AppState.tasks
+ * @returns Sorted array of visible LocalAgentTaskState / 排序后的可见LocalAgentTaskState数组
  */
 export function getVisibleAgentTasks(tasks: AppState['tasks']): LocalAgentTaskState[] {
   return Object.values(tasks).filter((t): t is LocalAgentTaskState => isPanelAgentTask(t) && t.evictAfter !== 0).sort((a, b) => a.startTime - b.startTime);
 }
+/**
+ * CoordinatorTaskPanel — Renders the background agents list panel
+ * CoordinatorTaskPanel — 渲染后台代理列表面板
+ *
+ * @description
+ * - Displays list of background/local_agent tasks
+ * - Shows elapsed time and status for each task
+ * - 1s tick updates elapsed time and evicts expired tasks
+ * - Enter to view/steer, x to dismiss
+ * - 显示后台/local_agent任务列表
+ * - 显示每个任务的已用时间和状态
+ * - 1秒tick更新已用时间并驱逐过期任务
+ * - 按Enter查看/操控，x键关闭
+ *
+ * @returns React node with agent task list / 带代理任务列表的React节点
+ */
 export function CoordinatorTaskPanel(): React.ReactNode {
   const tasks = useAppState(s => s.tasks);
   const viewingAgentTaskId = useAppState(s_0 => s_0.viewingAgentTaskId);

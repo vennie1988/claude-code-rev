@@ -1,3 +1,21 @@
+/**
+ * @fileoverview HelpV2 - Main help dialog with tabbed interface
+ * @fileoverview HelpV2 - 带标签界面的主帮助对话框
+ *
+ * @remarks
+ * This component displays the main help dialog which contains multiple tabs:
+ * - General: Overview and keyboard shortcuts
+ * - Commands: Built-in and custom commands
+ * - MCP: Model Context Protocol tools (if available)
+ *
+ * 此组件显示主帮助对话框，包含多个标签页：
+ * - General（常规）：概览和键盘快捷键
+ * - Commands（命令）：内置和自定义命令
+ * - MCP：模型上下文协议工具（如果有）
+ *
+ * @param Props.onClose - Callback when help dialog is dismissed / 关闭帮助对话框时的回调
+ * @param Props.commands - Available commands to display / 可用的命令列表
+ */
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { useExitOnCtrlCDWithKeybindings } from 'src/hooks/useExitOnCtrlCDWithKeybindings.js';

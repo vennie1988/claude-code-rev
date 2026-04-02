@@ -1,3 +1,19 @@
+/**
+ * @fileoverview ParsedCommand.ts — Command parsing with tree-sitter and regex fallback
+ *
+ * 提供 shell 命令解析的抽象接口 IParsedCommand，支持两种实现:
+ * - TreeSitterParsedCommand: 使用 tree-sitter 解析（精确、quote-aware）
+ * - RegexParsedCommand_DEPRECATED: 使用 shell-quote 解析（降级备用）
+ *
+ * 主要功能:
+ * - getPipeSegments(): 提取管道段
+ * - withoutOutputRedirections(): 移除输出重定向
+ * - getOutputRedirections(): 获取输出重定向信息
+ * - getTreeSitterAnalysis(): 获取 tree-sitter 分析结果（可能为 null）
+ *
+ * @note 缓存机制: 单条命令缓存避免重复解析
+ */
+
 import memoize from 'lodash-es/memoize.js'
 import {
   extractOutputRedirections,

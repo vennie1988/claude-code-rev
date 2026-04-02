@@ -1,3 +1,12 @@
+/**
+ * @fileoverview UI.tsx — ConfigTool React 渲染组件
+ * React components for rendering ConfigTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染配置工具使用消息
+ * - renderToolResultMessage: 渲染配置结果消息
+ */
+
 import React from 'react';
 import { MessageResponse } from '../../components/MessageResponse.js';
 import { Text } from '../../ink.js';

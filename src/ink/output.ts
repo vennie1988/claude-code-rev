@@ -26,14 +26,22 @@ import { stringWidth } from './stringWidth.js'
 import { widestLine } from './widest-line.js'
 
 /**
+ * Screen Output Buffer / 屏幕输出缓冲区
+ *
  * A grapheme cluster with precomputed terminal width, styleId, and hyperlink.
  * Built once per unique line (cached via charCache), so the per-char hot loop
  * is just property reads + setCellAt — no stringWidth, no style interning,
  * no hyperlink extraction per frame.
+ * 具有预计算终端宽度、styleId 和超链接的字素簇。
+ * 每条唯一行构建一次（通过 charCache 缓存），因此每字符热循环
+ * 只是属性读取 + setCellAt——每帧无需 stringWidth、样式驻留或超链接提取。
  *
  * styleId is safe to cache: StylePool is session-lived (never reset).
  * hyperlink is stored as a string (not interned ID) since hyperlinkPool
  * resets every 5 min; setCellAt interns it per-frame (cheap Map.get).
+ * styleId 可以安全缓存：StylePool 是会话级别的（从不重置）。
+ * hyperlink 存储为字符串（不是驻留 ID），因为 hyperlinkPool 每 5 分钟重置一次；
+ * setCellAt 每帧将其驻留（便宜的 Map.get）。
  */
 type ClusteredChar = {
   value: string

@@ -1,3 +1,19 @@
+/**
+ * @fileoverview modelAllowlist.ts — 模型白名单检查逻辑 / Model allowlist checking logic
+ *
+ * Checks if a model is permitted by the availableModels setting in Claude Code config.
+ * Supports family wildcards (opus/sonnet/haiku), version prefixes, and exact model IDs.
+ *
+ * @note Family aliases act as wildcards but can be narrowed by more specific entries.
+ *       e.g., ["opus", "opus-4-5"] means only opus 4.5 is allowed, not all opus models.
+ *
+ * 检查模型是否被 Claude Code 配置中的 availableModels 设置允许。
+ * 支持家族通配符（opus/sonnet/haiku）、版本前缀和精确模型 ID。
+ *
+ * 注意：家族别名作为通配符使用，但可以被更具体的条目缩小范围。
+ *       例如，["opus", "opus-4-5"] 表示只允许 opus 4.5，而非所有 opus 模型。
+ */
+
 import { getSettings_DEPRECATED } from '../settings/settings.js'
 import { isModelAlias, isModelFamilyAlias } from './aliases.js'
 import { parseUserSpecifiedModel } from './model.js'

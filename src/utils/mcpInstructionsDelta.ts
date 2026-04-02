@@ -1,3 +1,22 @@
+/**
+ * @fileoverview mcpInstructionsDelta.ts — MCP 服务器指令差异与公告 / MCP server instruction diff and announcement
+ *
+ * Diffs the current set of connected MCP servers against what's already been announced
+ * in the conversation. Produces McpInstructionsDelta with addedNames/addedBlocks/removedNames.
+ *
+ * @note Instructions are immutable for the life of a connection (set at handshake), so
+ *       the scan diffs on server NAME, not on content.
+ * @note Delta announcement uses persisted attachment (not uncached system prompt) to avoid
+ *       cache-busting on late connect.
+ *
+ * 将当前已连接的 MCP 服务器集合与对话中已公告的内容进行差异比较，
+ * 生成包含 addedNames/addedBlocks/removedNames 的 McpInstructionsDelta。
+ *
+ * 注意：指令在连接生命周期内不可变（在握手时设置），
+ * 因此扫描差异基于服务器名称而非内容。
+ * 注意：差异公告使用持久化附件（而非未缓存的系统提示），以避免延迟连接时的缓存失效。
+ */
+
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../services/analytics/growthbook.js'
 import { logEvent } from '../services/analytics/index.js'
 import type {

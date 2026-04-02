@@ -1,6 +1,11 @@
 /**
  * @fileoverview install-slack-app.ts — Install Claude Slack app
- * Opens the Slack app marketplace page in the browser for manual installation.
+ * 安装 Claude Slack 应用
+ *
+ * 功能说明：
+ * - 在浏览器中打开 Slack 应用市场页面
+ * - 跟踪用户点击安装次数
+ * - 处理浏览器打开失败的情况
  */
 import type { LocalCommandResult } from '../../commands.js'
 import { logEvent } from '../../services/analytics/index.js'

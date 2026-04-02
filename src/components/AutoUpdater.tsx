@@ -1,3 +1,15 @@
+/**
+ * @fileoverview AutoUpdater.tsx — Automatic update checker and installer
+ * AutoUpdater.tsx — 自动更新检查和安装程序
+ *
+ * @description
+ * - Checks for new versions at startup and periodically (every 30 minutes)
+ * - Shows update progress and handles installation
+ * - Respects server-side max version kill switch
+ * - 启动时和定期（每30分钟）检查新版本
+ * - 显示更新进度并处理安装
+ * - 遵守服务器端的最大版本终止开关
+ */
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from 'src/services/analytics/index.js';
@@ -12,14 +24,30 @@ import { installOrUpdateClaudePackage, localInstallationExists } from '../utils/
 import { removeInstalledSymlink } from '../utils/nativeInstaller/index.js';
 import { gt, gte } from '../utils/semver.js';
 import { getInitialSettings } from '../utils/settings/settings.js';
+
+/** Props — AutoUpdater component properties / AutoUpdater 组件属性 */
 type Props = {
-  isUpdating: boolean;
-  onChangeIsUpdating: (isUpdating: boolean) => void;
-  onAutoUpdaterResult: (autoUpdaterResult: AutoUpdaterResult) => void;
-  autoUpdaterResult: AutoUpdaterResult | null;
-  showSuccessMessage: boolean;
-  verbose: boolean;
+  isUpdating: boolean;                                          // Whether an update is in progress / 是否有更新正在进行
+  onChangeIsUpdating: (isUpdating: boolean) => void;           // Callback to update isUpdating state / 更新isUpdating状态的回调
+  onAutoUpdaterResult: (autoUpdaterResult: AutoUpdaterResult) => void; // Callback with update result / 更新结果的回调
+  autoUpdaterResult: AutoUpdaterResult | null;                 // Result of the auto-updater / 自动更新程序的结果
+  showSuccessMessage: boolean;                                   // Whether to show success message / 是否显示成功消息
+  verbose: boolean;                                             // Enable verbose logging / 启用详细日志
 };
+/**
+ * AutoUpdater — Automatic update checker and installer component
+ * AutoUpdater — 自动更新检查和安装程序组件
+ *
+ * @description
+ * - Uses useInterval to check for updates every 30 minutes
+ * - Handles version comparison with semver
+ * - Manages installation state and error handling
+ * - 使用 useInterval 每30分钟检查更新
+ * - 使用semver处理版本比较
+ * - 管理安装状态和错误处理
+ *
+ * @returns React node with update status display / 返回带有更新状态显示的React节点
+ */
 export function AutoUpdater({
   isUpdating,
   onChangeIsUpdating,

@@ -1,3 +1,11 @@
+/**
+ * @fileoverview TaskGetTool.ts — 获取任务工具
+ * Task retrieval tool for getting a specific task by ID.
+ *
+ * 功能说明：
+ * - TaskGetTool: 根据 ID 获取任务详情
+ */
+
 import { z } from 'zod/v4'
 import { buildTool, type ToolDef } from '../../Tool.js'
 import { lazySchema } from '../../utils/lazySchema.js'

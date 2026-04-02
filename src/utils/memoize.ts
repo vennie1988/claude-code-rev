@@ -1,3 +1,14 @@
+/**
+ * @fileoverview memoize.ts — 函数记忆化工具 / Function memoization utilities
+ *
+ * Provides memoization with TTL (time-to-live) and LRU (least-recently-used) eviction.
+ * Features: stale-while-revalidate pattern, in-flight request deduplication,
+ * cache management methods (clear, size, delete).
+ *
+ * 提供 TTL（生存时间）和 LRU（最近最少使用）驱逐的记忆化功能。
+ * 特性：stale-while-revalidate 模式、飞行中请求去重、缓存管理方法（clear、size、delete）。
+ */
+
 import { LRUCache } from 'lru-cache'
 import { logError } from './log.js'
 import { jsonStringify } from './slowOperations.js'

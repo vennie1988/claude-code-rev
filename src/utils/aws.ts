@@ -1,3 +1,20 @@
+/**
+ * @fileoverview aws.ts — AWS credentials and STS utilities
+ *
+ * AWS credential handling for Bedrock and other AWS-based authentication:
+ * - STS caller identity verification
+ * - Session token generation via get-session-token
+ * - Credential provider cache clearing
+ *
+ * Key types:
+ * - AwsCredentials — short-term credentials format
+ * - AwsStsOutput — output from STS commands
+ *
+ * @note Used by auth.ts for AWS auth refresh flows
+ *
+ * AWS 凭证和 STS 工具集，用于 Bedrock 等 AWS 认证。
+ */
+
 import { logForDebugging } from './debug.js'
 
 /** AWS short-term credentials format. */

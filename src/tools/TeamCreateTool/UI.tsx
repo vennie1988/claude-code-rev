@@ -1,3 +1,11 @@
+/**
+ * @fileoverview UI.tsx — TeamCreateTool React 渲染组件
+ * React components for rendering TeamCreateTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染创建团队消息
+ */
+
 import React from 'react';
 import type { Input } from './TeamCreateTool.js';
 export function renderToolUseMessage(input: Partial<Input>): React.ReactNode {

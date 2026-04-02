@@ -1,4 +1,16 @@
 /**
+ * @fileoverview hookEvents.ts — Hook 事件广播系统 / Hook event broadcasting system
+ *
+ * ## 功能说明 (Description)
+ * 通用的 Hook 事件广播系统，独立于主消息流。
+ * 处理器可注册接收事件并决定如何处理（如转换为 SDK 消息、记录日志等）。
+ *
+ * Generic event system for broadcasting hook execution events, separate from
+ * the main message stream. Handlers can register to receive events and decide
+ * what to do with them (e.g., convert to SDK messages, log, etc.).
+ */
+
+/**
  * Hook event system for broadcasting hook execution events.
  *
  * This module provides a generic event system that is separate from the

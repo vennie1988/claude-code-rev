@@ -1,3 +1,19 @@
+/**
+ * @fileoverview commands.ts — Command registry and loading
+ *
+ * This module is the central registry for all Claude Code commands (slash commands).
+ * Commands are loaded from multiple sources:
+ * - Built-in commands (commit, diff, status, etc.)
+ * - Skill commands from ~/.claude/commands/
+ * - Plugin commands from enabled plugins
+ * - Bundled skills (claude-api, verify, etc.)
+ *
+ * 设计说明：
+ * - commands.ts 是 Claude Code 命令（斜杠命令）的中央注册表
+ * - 命令从多个来源加载：内置命令、技能命令、插件命令和捆绑技能
+ * - 支持动态技能发现和按需加载
+ */
+
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import addDir from './commands/add-dir/index.js'
 import autofixPr from './commands/autofix-pr/index.js'

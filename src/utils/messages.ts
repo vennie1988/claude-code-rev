@@ -1,3 +1,13 @@
+/**
+ * @fileoverview messages.ts — 消息工具与助手函数 / Message utilities and helper functions
+ *
+ * Central utilities for working with messages: content extraction, XML tag stripping,
+ * message creation, and content block manipulation.
+ *
+ * 消息处理的核心工具：内容提取、XML 标签剥离、
+ * 消息创建和内容块操作。
+ */
+
 import { feature } from 'bun:bundle'
 import type { BetaUsage as Usage } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import type {

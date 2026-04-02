@@ -1,3 +1,17 @@
+/**
+ * @fileoverview prompt.ts — EnterWorktreeTool 提示词定义
+ * Defines the prompt text for the EnterWorktree tool.
+ *
+ * 功能说明：
+ * - 提供创建隔离 git 工作树的工具使用说明
+ * - 说明何时使用/不使用该工具
+ * - 定义可选的 name 参数
+ */
+
+/**
+ * 获取进入工作树工具的提示词
+ * Returns the prompt text for the EnterWorktree tool
+ */
 export function getEnterWorktreeToolPrompt(): string {
   return `Use this tool ONLY when the user explicitly asks to work in a worktree. This tool creates an isolated git worktree and switches the current session into it.
 

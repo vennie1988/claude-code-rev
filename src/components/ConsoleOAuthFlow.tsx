@@ -1,3 +1,15 @@
+/**
+ * @fileoverview ConsoleOAuthFlow.tsx — OAuth authentication flow for CLI
+ * ConsoleOAuthFlow.tsx — CLI的OAuth认证流程
+ *
+ * @description
+ * - Handles OAuth login flow in terminal (vs browser-based OAuth)
+ * - Supports multiple login methods: claude.ai, Console, and platform setup
+ * - State machine: idle -> platform_setup -> ready_to_start -> waiting_for_login -> creating_api_key -> success/error
+ * - 在终端中处理OAuth登录流程（与基于浏览器的OAuth不同）
+ * - 支持多种登录方法：claude.ai、Console和平台设置
+ * - 状态机：idle -> platform_setup -> ready_to_start -> waiting_for_login -> creating_api_key -> success/error
+ */
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS, logEvent } from 'src/services/analytics/index.js';
@@ -17,40 +29,45 @@ import { Select } from './CustomSelect/select.js';
 import { KeyboardShortcutHint } from './design-system/KeyboardShortcutHint.js';
 import { Spinner } from './Spinner.js';
 import TextInput from './TextInput.js';
+
+/** Props — ConsoleOAuthFlow component properties / ConsoleOAuthFlow 组件属性 */
 type Props = {
-  onDone(): void;
-  startingMessage?: string;
-  mode?: 'login' | 'setup-token';
-  forceLoginMethod?: 'claudeai' | 'console';
+  onDone(): void;                                    // Callback when OAuth flow completes / OAuth流程完成时的回调
+  startingMessage?: string;                          // Initial message to display / 初始显示消息
+  mode?: 'login' | 'setup-token';                   // OAuth flow mode / OAuth流程模式
+  forceLoginMethod?: 'claudeai' | 'console';        // Forced login method / 强制登录方法
 };
-type OAuthStatus = {
-  state: 'idle';
-} // Initial state, waiting to select login method
-| {
-  state: 'platform_setup';
-} // Show platform setup info (Bedrock/Vertex/Foundry)
-| {
-  state: 'ready_to_start';
-} // Flow started, waiting for browser to open
-| {
-  state: 'waiting_for_login';
-  url: string;
-} // Browser opened, waiting for user to login
-| {
-  state: 'creating_api_key';
-} // Got access token, creating API key
-| {
-  state: 'about_to_retry';
-  nextState: OAuthStatus;
-} | {
-  state: 'success';
-  token?: string;
-} | {
-  state: 'error';
-  message: string;
-  toRetry?: OAuthStatus;
-};
+
+/**
+ * OAuthStatus — State machine status for OAuth flow
+ * OAuthStatus — OAuth流程的状态机状态
+ */
+type OAuthStatus =
+  | { state: 'idle' }                        // Initial state, waiting to select login method / 初始状态，等待选择登录方法
+  | { state: 'platform_setup' }              // Show platform setup info (Bedrock/Vertex/Foundry) / 显示平台设置信息（Bedrock/Vertex/Foundry）
+  | { state: 'ready_to_start' }             // Flow started, waiting for browser to open / 流程已启动，等待浏览器打开
+  | { state: 'waiting_for_login'; url: string } // Browser opened, waiting for user to login / 浏览器已打开，等待用户登录
+  | { state: 'creating_api_key' }            // Got access token, creating API key / 已获取访问令牌，正在创建API密钥
+  | { state: 'about_to_retry'; nextState: OAuthStatus } // About to retry after error / 错误后即将重试
+  | { state: 'success'; token?: string }     // OAuth flow completed successfully / OAuth流程成功完成
+  | { state: 'error'; message: string; toRetry?: OAuthStatus }; // OAuth flow failed / OAuth流程失败
+
+/** Message shown when user is prompted to paste code / 提示用户粘贴代码时显示的消息 */
 const PASTE_HERE_MSG = 'Paste code here if prompted > ';
+/**
+ * ConsoleOAuthFlow — OAuth authentication flow in terminal
+ * ConsoleOAuthFlow — 终端中的OAuth认证流程
+ *
+ * @description
+ * - Implements terminal-based OAuth (console-style, not browser-based)
+ * - Handles multiple authentication methods and platform selection
+ * - State machine manages flow from login to API key creation
+ * - 实现基于终端的OAuth（控制台样式，非基于浏览器）
+ * - 处理多种认证方法和平台选择
+ * - 状态机管理从登录到API密钥创建的流程
+ *
+ * @returns React node with OAuth flow UI / 带OAuth流程UI的React节点
+ */
 export function ConsoleOAuthFlow({
   onDone,
   startingMessage,

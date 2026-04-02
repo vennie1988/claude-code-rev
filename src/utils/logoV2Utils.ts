@@ -1,3 +1,21 @@
+/**
+ * @fileoverview logoV2Utils.ts — Logo v2 显示布局工具
+ * Logo v2 Display Layout Utilities
+ *
+ * 设计意图：提供 Logo v2 TUI 组件的布局计算功能，包括：
+ * - 根据终端宽度确定布局模式（水平/紧凑）
+ * - 计算面板尺寸和内容截断
+ * - 格式化欢迎消息和发布说明
+ * - 预加载最近活动用于显示
+ *
+ * Design intent: Provides layout calculation utilities for the Logo v2 TUI
+ * component, including:
+ * - Determining layout mode based on terminal width (horizontal/compact)
+ * - Calculating panel dimensions and content truncation
+ * - Formatting welcome messages and release notes
+ * - Preloading recent activity for display
+ */
+
 import { getDirectConnectServerUrl, getSessionId } from '../bootstrap/state.js'
 import { stringWidth } from '../ink/stringWidth.js'
 import type { LogOption } from '../types/logs.js'
@@ -14,7 +32,7 @@ import { gt } from './semver.js'
 import { loadMessageLogs } from './sessionStorage.js'
 import { getInitialSettings } from './settings/settings.js'
 
-// Layout constants
+// Layout constants / 布局常量
 const MAX_LEFT_WIDTH = 50
 const MAX_USERNAME_LENGTH = 20
 const BORDER_PADDING = 4

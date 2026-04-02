@@ -1,3 +1,11 @@
+/**
+ * @fileoverview prompt.ts — TeamCreateTool 提示词定义
+ * Defines prompt for TeamCreateTool.
+ *
+ * 函数说明：
+ * - getPrompt(): 获取工具提示词函数
+ */
+
 export function getPrompt(): string {
   return `
 # TeamCreate

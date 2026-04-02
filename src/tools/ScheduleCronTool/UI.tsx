@@ -1,3 +1,16 @@
+/**
+ * @fileoverview UI.tsx — ScheduleCronTool React 渲染组件
+ * React components for rendering ScheduleCronTool messages.
+ *
+ * 组件说明：
+ * - renderCreateToolUseMessage: 渲染创建定时任务消息
+ * - renderCreateToolResultMessage: 渲染创建定时任务结果
+ * - renderDeleteToolUseMessage: 渲染删除定时任务消息
+ * - renderDeleteToolResultMessage: 渲染删除定时任务结果
+ * - renderListToolUseMessage: 渲染列表定时任务消息
+ * - renderListToolResultMessage: 渲染列表定时任务结果
+ */
+
 import React from 'react';
 import { MessageResponse } from '../../components/MessageResponse.js';
 import { Text } from '../../ink.js';

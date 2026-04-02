@@ -1,3 +1,11 @@
+/**
+ * @fileoverview TungstenTool.ts — 钨工具（已禁用）
+ * Tungsten tool stub — internal terminal-session bridge (disabled).
+ *
+ * 功能说明：
+ * - TungstenTool: 已禁用的内部工具，保留用于兼容性
+ */
+
 import { buildTool } from '../../Tool.js'
 
 export const TungstenTool = buildTool({

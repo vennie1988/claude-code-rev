@@ -1,3 +1,15 @@
+/**
+ * @fileoverview ripgrep.ts — ripgrep 搜索工具封装
+ *
+ * 提供跨平台 ripgrep 调用支持：系统 ripgrep、bundled 内嵌 ripgrep、
+ * 或 vendored 内置 ripgrep。支持流式读取、文件计数、超时控制。
+ *
+ * 安全说明：
+ * - 使用命令名 'rg' 而非完整路径，防止 PATH 劫持攻击
+ * - 单例模式缓存 ripgrep 可用性检测结果
+ *
+ * @note WSL 环境下超时默认 60s（文件读取性能比原生慢 3-5 倍）
+ */
 import type { ChildProcess, ExecFileException } from 'child_process'
 import { execFile, spawn } from 'child_process'
 import memoize from 'lodash-es/memoize.js'
@@ -28,6 +40,16 @@ type RipgrepConfig = {
   argv0?: string
 }
 
+/**
+ * getRipgrepConfig — 获取 ripgrep 配置（系统/内嵌/内置）
+ *
+ * 优先使用用户指定的 ripgrep，若不可用则在 bundled 模式下使用内嵌 ripgrep，
+ * 最后回退到 vendored 内置 ripgrep。配置结果被 memoize 缓存。
+ *
+ * @returns RipgrepConfig（包含 mode, command, args, argv0）
+ *
+ * @security 使用命令名 'rg' 而非 systemPath 防止 PATH 劫持
+ */
 const getRipgrepConfig = memoize((): RipgrepConfig => {
   const userWantsSystemRipgrep = isEnvDefinedFalsy(
     process.env.USE_BUILTIN_RIPGREP,

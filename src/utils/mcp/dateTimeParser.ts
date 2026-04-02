@@ -1,3 +1,13 @@
+/**
+ * @fileoverview dateTimeParser.ts — 自然语言日期时间解析 / Natural language date/time parsing
+ *
+ * Parses natural language date/time input into ISO 8601 format using Haiku model.
+ * Examples: "tomorrow at 3pm" → "2025-10-15T15:00:00-07:00"
+ *
+ * 使用 Haiku 模型将自然语言日期/时间输入解析为 ISO 8601 格式。
+ * 示例："tomorrow at 3pm" → "2025-10-15T15:00:00-07:00"
+ */
+
 import { queryHaiku } from '../../services/api/claude.js'
 import { logError } from '../log.js'
 import { extractTextContent } from '../messages.js'

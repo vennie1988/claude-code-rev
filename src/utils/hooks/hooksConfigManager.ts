@@ -1,3 +1,14 @@
+/**
+ * @fileoverview hooksConfigManager.ts — Hook 事件元数据与分组 / Hook event metadata and grouping
+ *
+ * ## 功能说明 (Description)
+ * Hook 事件元数据配置。提供 Hook 事件的描述、匹配器元数据，
+ * 以及按事件和匹配器分组的功能。
+ *
+ * Hook event metadata configuration. Provides descriptions for hook events,
+ * matcher metadata, and grouping by event and matcher.
+ */
+
 import memoize from 'lodash-es/memoize.js'
 import type { HookEvent } from 'src/entrypoints/agentSdkTypes.js'
 import { getRegisteredHooks } from '../../bootstrap/state.js'

@@ -1,40 +1,38 @@
 // ---------------------------------------------------------------------------
-// readFileInRange — line-oriented file reader with two code paths
+// readFileInRange — 按行读取文件的两种实现路径
 // ---------------------------------------------------------------------------
 //
-// Returns lines [offset, offset + maxLines) from a file.
+// 从文件中返回 lines [offset, offset + maxLines)。
 //
-// Fast path (regular files < 10 MB):
-//   Opens the file, stats the fd, reads the whole file with readFile(),
-//   then splits lines in memory.  This avoids the per-chunk async overhead
-//   of createReadStream and is ~2x faster for typical source files.
+// 快速路径（< 10 MB 的常规文件）：
+//   打开文件，stat fd 句柄，用 readFile() 一次性读取整个文件，
+//   然后在内存中按行分割。避免 createReadStream 的逐块异步开销，
+//   对典型源文件提速约 2 倍。
 //
-// Streaming path (large files, pipes, devices, etc.):
-//   Uses createReadStream with manual indexOf('\n') scanning.  Content is
-//   only accumulated for lines inside the requested range — lines outside
-//   the range are counted (for totalLines) but discarded, so reading line
-//   1 of a 100 GB file won't balloon RSS.
+// 流式路径（大文件、管道、设备等）：
+//   使用 createReadStream 配合手动 indexOf('\n') 扫描。只累积请求范围内的行
+//   —— 范围外的行只计数（用于 totalLines）但不保存，因此读取
+//   100GB 文件的第 1 行也不会撑爆 RSS。
 //
-//   All event handlers (streamOnOpen/Data/End) are module-level named
-//   functions with zero closures.  State lives in a StreamState object;
-//   handlers access it via `this`, bound at registration time.
+//   所有事件处理器（streamOnOpen/Data/End）均为模块级命名函数，无闭包。
+//   状态保存在 StreamState 对象中；处理器通过 `this`（注册时绑定）访问。
 //
-//   Lifecycle: `open`, `end`, and `error` use .once() (auto-remove).
-//   `data` fires until the stream ends or is destroyed — either way the
-//   stream and state become unreachable together and are GC'd.
+//   生命周期：`open`、`end`、`error` 使用 .once()（自动移除）。
+//   `data` 持续触发直到流结束或被销毁——两种情况下流和 state
+//   会一起变得不可达并被 GC 回收。
 //
-//   On error (including maxBytes exceeded), stream.destroy(err) emits
-//   'error' → reject (passed directly to .once('error')).
+//   出错时（包括超过 maxBytes），stream.destroy(err) 触发 'error' → reject
+//   （直接传给 .once('error')）。
 //
-// Both paths strip UTF-8 BOM and \r (CRLF → LF).
+// 两种路径都去除 UTF-8 BOM 和 \r（CRLF → LF）。
 //
-// mtime comes from fstat/stat on the already-open fd — no extra open().
+// mtime 来自已打开 fd 的 fstat/stat——无需额外 open()。
 //
-// maxBytes behavior depends on options.truncateOnByteLimit:
-//   false (default): legacy semantics — throws FileTooLargeError if the FILE
-//     size (fast path) or total streamed bytes (streaming) exceed maxBytes.
-//   true: caps SELECTED OUTPUT at maxBytes.  Stops at the last complete line
-//     that fits; sets truncatedByBytes in the result.  Never throws.
+// maxBytes 行为取决于 options.truncateOnByteLimit：
+//   false（默认）：传统语义——若文件大小（快速路径）或
+//     流式总字节数超过 maxBytes 则抛出 FileTooLargeError。
+//   true：将输出截断至 maxBytes。在最后一个能完整放入的行停止；
+//     在结果中设置 truncatedByBytes。不会抛出异常。
 // ---------------------------------------------------------------------------
 
 import { createReadStream, fstat } from 'fs'
@@ -54,6 +52,15 @@ export type ReadFileRangeResult = {
   truncatedByBytes?: boolean
 }
 
+/**
+ * FileTooLargeError — 文件大小超限异常
+ *
+ * 当文件大小超过 maxBytes 限制时抛出。使用 offset 和 limit 参数
+ * 可以读取文件的特定部分，或使用搜索功能查找特定内容而非读取整个文件。
+ *
+ * @param sizeInBytes - 文件实际大小（字节）
+ * @param maxSizeBytes - 最大允许大小（字节）
+ */
 export class FileTooLargeError extends Error {
   constructor(
     public sizeInBytes: number,
@@ -67,8 +74,26 @@ export class FileTooLargeError extends Error {
 }
 
 // ---------------------------------------------------------------------------
-// Public entry point
+// Public entry point / 公共入口函数
 // ---------------------------------------------------------------------------
+
+/**
+ * readFileInRange — 按行范围读取文件
+ *
+ * 从文件中读取指定行范围 [offset, offset + maxLines)。
+ * 根据文件大小自动选择快速路径（< 10MB 常规文件）或流式路径（大文件/管道/设备）。
+ *
+ * @param filePath - 文件路径
+ * @param offset - 起始行号（默认 0）
+ * @param maxLines - 最大行数（默认全部）
+ * @param maxBytes - 最大字节数（可选）
+ * @param signal - AbortSignal（可选）
+ * @param options - 选项（如 truncateOnByteLimit）
+ * @returns ReadFileRangeResult 对象
+ *
+ * @throws Error - 目录操作时抛出 EISDIR
+ * @throws FileTooLargeError - 文件超过 maxBytes 且未设置 truncateOnByteLimit
+ */
 
 export async function readFileInRange(
   filePath: string,
@@ -122,7 +147,7 @@ export async function readFileInRange(
 }
 
 // ---------------------------------------------------------------------------
-// Fast path — readFile + in-memory split
+// Fast path — readFile + in-memory split / 快速路径
 // ---------------------------------------------------------------------------
 
 function readFileInRangeFast(
@@ -194,7 +219,7 @@ function readFileInRangeFast(
 }
 
 // ---------------------------------------------------------------------------
-// Streaming path — createReadStream + event handlers
+// Streaming path — createReadStream + event handlers / 流式路径
 // ---------------------------------------------------------------------------
 
 type StreamState = {

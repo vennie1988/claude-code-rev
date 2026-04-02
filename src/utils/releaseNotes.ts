@@ -31,8 +31,11 @@ const RAW_CHANGELOG_URL =
   'https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md'
 
 /**
- * Get the path for the cached changelog file.
- * The changelog is stored at ~/.claude/cache/changelog.md
+ * getChangelogCachePath — 获取缓存的 CHANGELOG 文件路径
+ *
+ * CHANGELOG 存储在 ~/.claude/cache/changelog.md
+ *
+ * @returns CHANGELOG 缓存文件的完整路径
  */
 function getChangelogCachePath(): string {
   return join(getClaudeConfigHomeDir(), 'cache', 'changelog.md')
@@ -48,9 +51,11 @@ export function _resetChangelogCacheForTesting(): void {
 }
 
 /**
- * Migrate changelog from old config-based storage to file-based storage.
- * This should be called once at startup to ensure the migration happens
- * before any other config saves that might re-add the deprecated field.
+ * migrateChangelogFromConfig — 将 CHANGELOG 从旧配置存储迁移到文件存储
+ *
+ * 在启动时调用一次，确保迁移在任何可能重新添加已弃用字段的配置保存之前发生。
+ * 将 cachedChangelog 从配置迁移到文件（~/.claude/cache/changelog.md），
+ * 然后从配置中删除已弃用的 cachedChangelog 字段。
  */
 export async function migrateChangelogFromConfig(): Promise<void> {
   const config = getGlobalConfig()
@@ -76,8 +81,12 @@ export async function migrateChangelogFromConfig(): Promise<void> {
 }
 
 /**
- * Fetch the changelog from GitHub and store it in cache file
- * This runs in the background and doesn't block the UI
+ * fetchAndStoreChangelog — 从 GitHub 获取 CHANGELOG 并存储到缓存文件
+ *
+ * 在后台运行，不阻塞 UI。若内容未变化则跳过写入。
+ * 非交互式会话或禁用非必要流量时跳过。
+ *
+ * @note 后台运行，不阻塞 UI
  */
 export async function fetchAndStoreChangelog(): Promise<void> {
   // Skip in noninteractive mode
@@ -119,9 +128,11 @@ export async function fetchAndStoreChangelog(): Promise<void> {
 }
 
 /**
- * Get the stored changelog from cache file if available.
- * Populates the in-memory cache for subsequent sync reads.
- * @returns The cached changelog content or empty string if not available
+ * getStoredChangelog — 从缓存文件获取存储的 CHANGELOG
+ *
+ * 从缓存文件读取 CHANGELOG 内容，填充内存缓存供后续同步读取使用。
+ *
+ * @returns 缓存的 CHANGELOG 内容，若不可用则返回空字符串
  */
 export async function getStoredChangelog(): Promise<string> {
   if (changelogMemoryCache !== null) {
@@ -139,19 +150,26 @@ export async function getStoredChangelog(): Promise<string> {
 }
 
 /**
- * Synchronous accessor for the changelog, reading only from the in-memory cache.
- * Returns empty string if the async getStoredChangelog() hasn't been called yet.
- * Intended for React render paths where async is not possible; setup.ts ensures
- * the cache is populated before first render via `await checkForReleaseNotes()`.
+ * getStoredChangelogFromMemory — 同步获取内存中缓存的 CHANGELOG
+ *
+ * 仅从内存缓存读取 CHANGELOG。若异步的 getStoredChangelog() 尚未调用则返回空字符串。
+ * 适用于 React render 路径（不支持 async）；setup.ts 通过 await checkForReleaseNotes()
+ * 确保首次渲染前缓存已填充。
+ *
+ * @returns 内存缓存的 CHANGELOG 内容或空字符串
  */
 export function getStoredChangelogFromMemory(): string {
   return changelogMemoryCache ?? ''
 }
 
 /**
- * Parses a changelog string in markdown format into a structured format
- * @param content - The changelog content string
- * @returns Record mapping version numbers to arrays of release notes
+ * parseChangelog — 解析 markdown 格式的 CHANGELOG 为结构化格式
+ *
+ * 将 CHANGELOG 字符串按 ## 标题（版本号）分割，提取各版本的发版说明。
+ * 支持 "1.2.3" 和 "1.2.3 - YYYY-MM-DD" 两种版本行格式。
+ *
+ * @param content - CHANGELOG 内容字符串
+ * @returns 版本号到发版说明数组的映射
  */
 export function parseChangelog(content: string): Record<string, string[]> {
   try {
@@ -196,13 +214,15 @@ export function parseChangelog(content: string): Record<string, string[]> {
 }
 
 /**
- * Gets release notes to show based on the previously seen version.
- * Shows up to MAX_RELEASE_NOTES_SHOWN items total, prioritizing the most recent versions.
+ * getRecentReleaseNotes — 获取相对于上一版本的最新发版说明
  *
- * @param currentVersion - The current app version
- * @param previousVersion - The last version where release notes were seen (or null if first time)
- * @param readChangelog - Function to read the changelog (defaults to readChangelogFile)
- * @returns Array of release notes to display
+ * 根据上一版本获取需要显示的发版说明，最多显示 MAX_RELEASE_NOTES_SHOWN 条，
+ * 优先显示最新版本。
+ *
+ * @param currentVersion - 当前应用版本
+ * @param previousVersion - 上次看到发版说明的版本（首次为 null）
+ * @param changelogContent - CHANGELOG 内容（默认为内存缓存）
+ * @returns 要显示的发版说明数组
  */
 export function getRecentReleaseNotes(
   currentVersion: string,
@@ -240,11 +260,12 @@ export function getRecentReleaseNotes(
 }
 
 /**
- * Gets all release notes as an array of [version, notes] arrays.
- * Versions are sorted with oldest first.
+ * getAllReleaseNotes — 获取所有发版说明
  *
- * @param readChangelog - Function to read the changelog (defaults to readChangelogFile)
- * @returns Array of [version, notes[]] arrays
+ * 以 [version, notes[]] 数组形式返回所有发版说明，版本按从旧到新排序。
+ *
+ * @param changelogContent - CHANGELOG 内容（默认为内存缓存）
+ * @returns [版本号, 发版说明[]] 数组
  */
 export function getAllReleaseNotes(
   changelogContent: string = getStoredChangelogFromMemory(),
@@ -276,13 +297,15 @@ export function getAllReleaseNotes(
 }
 
 /**
- * Checks if there are release notes to show based on the last seen version.
- * Can be used by multiple components to determine whether to display release notes.
- * Also triggers a fetch of the latest changelog if the version has changed.
+ * checkForReleaseNotes — 检查是否有需要显示的发版说明
  *
- * @param lastSeenVersion The last version of release notes the user has seen
- * @param currentVersion The current application version, defaults to MACRO.VERSION
- * @returns An object with hasReleaseNotes and the releaseNotes content
+ * 根据上次看到的版本检查是否有需要显示的发版说明。
+ * 多个组件可使用此方法决定是否显示发版说明。
+ * 若版本已变更，也会触发获取最新 CHANGELOG。
+ *
+ * @param lastSeenVersion - 用户上次看到的发版说明版本
+ * @param currentVersion - 当前应用版本（默认为 MACRO.VERSION）
+ * @returns 包含 hasReleaseNotes 和 releaseNotes 的对象
  */
 export async function checkForReleaseNotes(
   lastSeenVersion: string | null | undefined,
@@ -327,10 +350,15 @@ export async function checkForReleaseNotes(
 }
 
 /**
- * Synchronous variant of checkForReleaseNotes for React render paths.
- * Reads only from the in-memory cache populated by the async version.
- * setup.ts awaits checkForReleaseNotes() before first render, so this
- * returns accurate results in component render bodies.
+ * checkForReleaseNotesSync — checkForReleaseNotes 的同步版本
+ *
+ * 适用于 React render 路径。仅从异步版本填充的内存缓存读取。
+ * setup.ts 在首次渲染前会 await checkForReleaseNotes()，
+ * 因此此函数在组件 render body 中返回准确结果。
+ *
+ * @param lastSeenVersion - 用户上次看到的发版说明版本
+ * @param currentVersion - 当前应用版本（默认为 MACRO.VERSION）
+ * @returns 包含 hasReleaseNotes 和 releaseNotes 的对象
  */
 export function checkForReleaseNotesSync(
   lastSeenVersion: string | null | undefined,

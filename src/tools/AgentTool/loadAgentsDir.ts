@@ -222,9 +222,12 @@ export function getActiveAgentsFromList(
 
 /**
  * Checks if an agent's required MCP servers are available.
+ * 检查代理所需的MCP服务器是否可用。
  * Returns true if no requirements or all requirements are met.
- * @param agent The agent to check
+ * 如果没有要求或所有要求都满足，则返回true。
+ * @param agent The agent to check / 要检查的代理
  * @param availableServers List of available MCP server names (e.g., from mcp.clients)
+ * 可用MCP服务器名称列表（例如来自mcp.clients）
  */
 export function hasRequiredMcpServers(
   agent: AgentDefinition,
@@ -243,8 +246,10 @@ export function hasRequiredMcpServers(
 
 /**
  * Filters agents based on MCP server requirements.
+ * 根据MCP服务器要求过滤代理。
  * Only returns agents whose required MCP servers are available.
- * @param agents List of agents to filter
+ * 仅返回所需MCP服务器可用的代理。
+ * @param agents List of agents to filter / 要过滤的代理列表
  * @param availableServers List of available MCP server names
  */
 export function filterAgentsByMcpRequirements(
@@ -256,8 +261,11 @@ export function filterAgentsByMcpRequirements(
 
 /**
  * Check for and initialize agent memory from project snapshots.
+ * 检查并从项目快照初始化代理内存。
  * For agents with memory enabled, copies snapshot to local if no local memory exists.
+ * 对于启用内存的代理，如果不存在本地内存，则复制快照到本地。
  * For agents with newer snapshots, logs a debug message (user prompt TODO).
+ * 对于有更新快照的代理，记录调试消息（用户提示TODO）。
  */
 async function initializeAgentMemorySnapshots(
   agents: CustomAgentDefinition[],

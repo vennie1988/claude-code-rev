@@ -1,3 +1,20 @@
+/**
+ * @fileoverview ModelSelector - Model selection component for agent configuration
+ * @fileoverview ModelSelector - 代理配置的模型选择组件
+ *
+ * @remarks
+ * This component allows users to select which AI model an agent should use.
+ * If the agent's current model is a custom ID not in the standard list, it is
+ * automatically injected as the first option to preserve the current selection.
+ *
+ * 此组件允许用户选择代理应使用的 AI 模型。
+ * 如果代理的当前模型是自定义 ID（不在标准列表中），则会自动注入为第一个选项，
+ * 以保留当前选择。
+ *
+ * @param Props.initialModel - Pre-selected model / 预选的模型
+ * @param Props.onComplete - Callback with selected model / 选择模型后的回调
+ * @param Props.onCancel - Optional cancel handler / 可选的取消处理器
+ */
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { Box, Text } from '../../ink.js';

@@ -1,3 +1,10 @@
+/**
+ * @fileoverview pyright.ts — Command specification for pyright type checker
+ *
+ * Pyright 是 Microsoft 的 Python 类型检查器规范。
+ * 定义了 pyright 的所有命令行选项和参数。
+ */
+
 import type { CommandSpec } from '../registry.js'
 
 export default {

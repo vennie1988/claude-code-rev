@@ -1,3 +1,20 @@
+/**
+ * @fileoverview main.tsx — Main TUI application for Claude Code
+ *
+ * This is the main React/Ink-based terminal UI application.
+ * It handles:
+ * - Application initialization and state management
+ * - REPL (Read-Eval-Print-Loop) for interactive sessions
+ * - Telemetry, analytics, and error reporting
+ * - Configuration loading and management
+ *
+ * 设计说明：
+ * - main.tsx 是 Claude Code 的主要 React/Ink 终端 UI 应用
+ * - 处理应用程序初始化、状态管理和 REPL 交互
+ * - 负责遥测、分析和错误报告
+ * - 加载和管理配置
+ */
+
 // These side-effects must run before all other imports:
 // 1. profileCheckpoint marks entry before heavy module evaluation begins
 // 2. startMdmRawRead fires MDM subprocesses (plutil/reg query) so they run in

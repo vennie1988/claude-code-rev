@@ -1,3 +1,21 @@
+/**
+ * @fileoverview validateModel.ts — 通过 API 调用验证模型 / Model validation via API call
+ *
+ * Validates a model by attempting an actual API call (sideQuery with max_tokens=1).
+ * Caches valid models to avoid repeated API calls. Provides specific error messages
+ * for common failure cases (NotFoundError, AuthenticationError, etc.).
+ *
+ * @note Falls back to previous model version for 3P providers when selected model unavailable.
+ *       e.g., opus-4-6 unavailable → suggests opus-4-1.
+ *
+ * 通过尝试实际 API 调用（sideQuery，max_tokens=1）来验证模型。
+ * 缓存有效模型以避免重复 API 调用。为常见失败情况（NotFoundError、AuthenticationError 等）
+ * 提供具体的错误消息。
+ *
+ * 注意：当所选模型不可用时，3P 提供商会回退到先前版本的模型。
+ *       例如，opus-4-6 不可用时建议使用 opus-4-1。
+ */
+
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { MODEL_ALIASES } from './aliases.js'
 import { isModelAllowed } from './modelAllowlist.js'

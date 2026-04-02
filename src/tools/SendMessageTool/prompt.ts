@@ -1,5 +1,17 @@
 import { feature } from 'bun:bundle'
 
+/**
+ * @fileoverview prompt.ts — SendMessageTool 常量定义
+ * Defines constants for the SendMessage tool.
+ *
+ * 常量说明：
+ * - DESCRIPTION: 工具描述
+ * - getPrompt(): 获取工具提示词函数
+ */
+
+/**
+ * Tool description — 工具描述
+ */
 export const DESCRIPTION = 'Send a message to another agent'
 
 export function getPrompt(): string {

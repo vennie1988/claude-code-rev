@@ -1,3 +1,11 @@
+/**
+ * @fileoverview WebFetchTool.ts — 网络获取工具
+ * Web fetch tool for retrieving and processing web content.
+ *
+ * 功能说明：
+ * - WebFetchTool: 获取网页内容并进行处理
+ */
+
 import { z } from 'zod/v4'
 import { buildTool, type ToolDef } from '../../Tool.js'
 import type { PermissionUpdate } from '../../types/permissions.js'

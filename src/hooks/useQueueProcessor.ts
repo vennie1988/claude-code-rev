@@ -1,3 +1,19 @@
+/**
+ * @fileoverview useQueueProcessor.ts — Command queue processing hook
+ * 命令队列处理hook：通过优先级（now>next>later）处理排队的命令。
+ * Hook that processes queued commands when conditions are met.
+ *
+ * @design
+ * - 使用useSyncExternalStore订阅命令队列和查询守卫
+ * - 优先级处理：'now' > 'next'(用户输入) > 'later'(任务通知)
+ * - 处理触发条件：无活动查询、无阻塞UI、队列有内容
+ * - 队列由messageQueueManager统一管理
+ *
+ * @design Subscribes to command queue and query guard via useSyncExternalStore
+ * @design Priority order: 'now' > 'next' (user input) > 'later' (task notifications)
+ * @design Processing triggers: no active query, no blocking UI, queue has items
+ * @design Queue managed by messageQueueManager module
+ */
 import { useEffect, useSyncExternalStore } from 'react'
 import type { QueuedCommand } from '../types/textInputTypes.js'
 import {

@@ -1,3 +1,12 @@
+/**
+ * @fileoverview prompt.ts — WebFetchTool 常量定义
+ * Defines constants for WebFetchTool.
+ *
+ * 常量说明：
+ * - WEB_FETCH_TOOL_NAME: 工具名称
+ * - DESCRIPTION: 工具描述
+ */
+
 export const WEB_FETCH_TOOL_NAME = 'WebFetch'
 
 export const DESCRIPTION = `

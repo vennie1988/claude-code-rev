@@ -1,3 +1,12 @@
+/**
+ * @fileoverview UI.tsx — ListMcpResourcesTool React 渲染组件
+ * React components for rendering ListMcpResourcesTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染列表 MCP 资源消息
+ * - renderToolResultMessage: 渲染列表 MCP 资源结果
+ */
+
 import * as React from 'react';
 import { MessageResponse } from '../../components/MessageResponse.js';
 import { OutputLine } from '../../components/shell/OutputLine.js';

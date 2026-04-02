@@ -1,3 +1,13 @@
+/**
+ * @fileoverview App.tsx — Root application component with error boundary
+ * App.tsx — 带错误边界的根应用组件
+ *
+ * @description
+ * - Top-level wrapper for interactive sessions
+ * - Provides FPS metrics, stats context, and app state to the component tree
+ * - 交互会话的顶级包装器
+ * - 向组件树提供FPS指标、统计上下文和应用状态
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { Box, Text } from '../ink.js';
@@ -6,28 +16,43 @@ import { StatsProvider, type StatsStore } from '../context/stats.js';
 import { type AppState, AppStateProvider } from '../state/AppState.js';
 import { onChangeAppState } from '../state/onChangeAppState.js';
 import type { FpsMetrics } from '../utils/fpsTracker.js';
+
+/** Props — App component properties / App 组件属性 */
 type Props = {
-  getFpsMetrics: () => FpsMetrics | undefined;
-  stats?: StatsStore;
-  initialState: AppState;
-  children: React.ReactNode;
+  getFpsMetrics: () => FpsMetrics | undefined; // Function to get current FPS metrics / 获取当前FPS指标的函数
+  stats?: StatsProvider;                       // Optional stats store / 可选的统计存储
+  initialState: AppState;                       // Initial application state / 初始应用状态
+  children: React.ReactNode;                    // Child components to render / 要渲染的子组件
 };
 
+/** BootstrapBoundary state / 启动边界状态 */
 type BootstrapBoundaryState = {
-  error: Error | null;
+  error: Error | null; // Captured error / 捕获的错误
 };
 
+/**
+ * BootstrapBoundary — Error boundary that catches React render errors during bootstrap
+ * BootstrapBoundary — 在启动期间捕获React渲染错误的错误边界
+ *
+ * @description
+ * - Catches any render errors in child components
+ * - Displays error message instead of crashing the entire app
+ * - 捕获子组件中的任何渲染错误
+ * - 显示错误信息而不是让整个应用崩溃
+ */
 class BootstrapBoundary extends React.Component<{
   children: React.ReactNode;
 }, BootstrapBoundaryState> {
   override state: BootstrapBoundaryState = {
     error: null
   };
+  // Capture error and store in state / 捕获错误并存储在状态中
   static override getDerivedStateFromError(error: Error): BootstrapBoundaryState {
     return {
       error
     };
   }
+  // Log error to console / 将错误记录到控制台
   override componentDidCatch(error: Error): void {
     const message = error?.stack ?? error?.message ?? String(error);
     console.error(`[restored-app-bootstrap] ${message}`);
@@ -44,8 +69,16 @@ class BootstrapBoundary extends React.Component<{
 }
 
 /**
- * Top-level wrapper for interactive sessions.
- * Provides FPS metrics, stats context, and app state to the component tree.
+ * App — Top-level wrapper for interactive sessions
+ * App — 交互会话的顶级包装器
+ *
+ * @description
+ * - Wraps children with FpsMetricsProvider, StatsProvider, and AppStateProvider
+ * - Provides FPS metrics, stats context, and app state to the component tree
+ * - 使用 FpsMetricsProvider、StatsProvider 和 AppStateProvider 包装子组件
+ * - 向组件树提供FPS指标、统计上下文和应用状态
+ *
+ * @returns React component tree with all providers / 返回带有所有提供商的React组件树
  */
 export function App(t0) {
   const $ = _c(12);

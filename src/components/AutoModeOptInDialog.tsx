@@ -1,3 +1,15 @@
+/**
+ * @fileoverview AutoModeOptInDialog.tsx — Opt-in dialog for Auto mode feature
+ * AutoModeOptInDialog.tsx — Auto模式功能的opt-in对话框
+ *
+ * @description
+ * - Displays legal disclaimer and description of Auto mode
+ * - Auto mode automatically handles permission prompts
+ * - Shows acceptance/decline options
+ * - 显示Auto模式的法律免责声明和描述
+ * - Auto模式自动处理权限提示
+ * - 显示接受/拒绝选项
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { logEvent } from 'src/services/analytics/index.js';
@@ -7,13 +19,24 @@ import { Select } from './CustomSelect/index.js';
 import { Dialog } from './design-system/Dialog.js';
 
 // NOTE: This copy is legally reviewed — do not modify without Legal team approval.
+// 注意：此文案已通过法律审核 — 未经法务团队批准不得修改。
+/** AUTO_MODE_DESCRIPTION — Legally reviewed Auto mode description / 经过法律审核的Auto模式描述 */
 export const AUTO_MODE_DESCRIPTION = "Auto mode lets Claude handle permission prompts automatically — Claude checks each tool call for risky actions and prompt injection before executing. Actions Claude identifies as safe are executed, while actions Claude identifies as risky are blocked and Claude may try a different approach. Ideal for long-running tasks. Sessions are slightly more expensive. Claude can make mistakes that allow harmful commands to run, it's recommended to only use in isolated environments. Shift+Tab to change mode.";
+
+/** Props — AutoModeOptInDialog component properties / AutoModeOptInDialog 组件属性 */
 type Props = {
-  onAccept(): void;
-  onDecline(): void;
+  onAccept(): void;   // Callback when user accepts / 用户接受时的回调
+  onDecline(): void;  // Callback when user declines / 用户拒绝时的回调
   // Startup gate: decline exits the process, so relabel accordingly.
+  // 启动窗口：拒绝会退出进程，因此需要相应地重新标记。
   declineExits?: boolean;
 };
+/**
+ * AutoModeOptInDialog — Renders the Auto mode opt-in dialog with legal disclaimer
+ * AutoModeOptInDialog — 渲染带有法律免责声明的Auto模式opt-in对话框
+ *
+ * @returns Dialog with Accept/Decline/Select options / 带有接受/拒绝/选择选项的对话框
+ */
 export function AutoModeOptInDialog(t0) {
   const $ = _c(18);
   const {

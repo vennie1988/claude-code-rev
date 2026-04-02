@@ -1,3 +1,10 @@
+/**
+ * Text Wrapping and Truncation / 文本换行和截断
+ *
+ * Handles text wrapping, trimming, and truncation for terminal display.
+ * 处理终端显示的文本换行、修剪和截断。
+ */
+
 import sliceAnsi from '../utils/sliceAnsi.js'
 import { stringWidth } from './stringWidth.js'
 import type { Styles } from './styles.js'

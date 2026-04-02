@@ -116,8 +116,12 @@ function processDispatchQueue(
 // --
 
 /**
+ * Event Dispatcher / 事件分发器
+ *
  * Map terminal event types to React scheduling priorities.
  * Mirrors react-dom's getEventPriority() switch.
+ * 将终端事件类型映射到 React 调度优先级。
+ * 镜像 react-dom 的 getEventPriority() 开关。
  */
 function getEventPriority(eventType: string): number {
   switch (eventType) {

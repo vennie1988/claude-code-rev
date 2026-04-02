@@ -1,3 +1,21 @@
+/**
+ * @fileoverview advisor.ts — Advisor tool for AI-assisted review and guidance
+ *
+ * Provides the `advisor` tool that routes to a stronger reviewer model for
+ * guidance on complex tasks. The advisor sees the full conversation history
+ * and provides feedback before substantive work.
+ *
+ * Key functions:
+ * - isAdvisorEnabled() — checks if advisor feature is available
+ * - modelSupportsAdvisor() — checks if a model supports advisor tool
+ * - getAdvisorUsage() — extracts advisor iteration data from API usage
+ *
+ * @note SDK types for advisor blocks are incomplete; uses custom type definitions
+ *
+ * AI 辅助审查工具：通过 advisor 工具路由到更强的审查模型，为复杂任务提供指导。
+ * 审查者可以看到完整的对话历史，并在实质性工作之前提供反馈。
+ */
+
 import type { BetaUsage } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../services/analytics/growthbook.js'
 import { shouldIncludeFirstPartyOnlyBetas } from './betas.js'

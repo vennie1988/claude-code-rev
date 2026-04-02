@@ -1,4 +1,15 @@
 /**
+ * @fileoverview index.ts — Pure TypeScript color diff implementation
+ *
+ * Pure TypeScript port of vendor/color-diff-src.
+ * Provides syntax highlighting and word diffing.
+ *
+ * 设计说明：
+ * - index.ts 是 vendor/color-diff-src 的纯 TypeScript 移植版本
+ * - 提供语法高亮和词语差异对比
+ */
+
+/**
  * Pure TypeScript port of vendor/color-diff-src.
  *
  * The Rust version uses syntect+bat for syntax highlighting and the similar

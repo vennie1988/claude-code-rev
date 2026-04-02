@@ -1,3 +1,15 @@
+/**
+ * @fileoverview UI.tsx — SkillTool React 渲染组件
+ * React components for rendering SkillTool messages and progress.
+ *
+ * 组件说明：
+ * - renderToolResultMessage: 渲染技能执行结果消息
+ * - renderToolUseMessage: 渲染技能使用消息
+ * - renderToolUseProgressMessage: 渲染技能执行进度消息
+ * - renderToolUseRejectedMessage: 渲染技能被拒绝消息
+ * - renderToolUseErrorMessage: 渲染技能错误消息
+ */
+
 import type { ToolResultBlockParam } from '@anthropic-ai/sdk/resources/index.mjs';
 import * as React from 'react';
 import { SubAgentProvider } from 'src/components/CtrlOToExpand.js';

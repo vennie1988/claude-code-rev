@@ -1,5 +1,19 @@
 /**
+ * @fileoverview useSessionBackgrounding.ts — Session backgrounding (Ctrl+B) hook
+ * 会话后台挂起hook：管理Ctrl+B背景化/前景化会话。
  * Hook for managing session backgrounding (Ctrl+B to background/foreground sessions).
+ *
+ * @design
+ * - 前景任务消息/状态同步到主视图
+ * - 检测任务中止（Escape按下）并立即清除前景状态
+ * - 任务完成自动恢复到后台
+ * - 支持Ctrl+B重新后台化和新建后台任务
+ *
+ * @design Syncs foregrounded task messages/state to main view
+ * @design Detects task abort (Escape) and clears foreground state immediately
+ * @design Auto-restores to background when task completes
+ * @design Supports Ctrl+B to re-background or spawn new background task
+ */
  *
  * Handles:
  * - Calling onBackgroundQuery to spawn a background task for the current query

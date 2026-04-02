@@ -1,3 +1,19 @@
+/**
+ * @fileoverview modelSupportOverrides.ts — 第三方模型能力覆盖 / Third-party model capability overrides
+ *
+ * Checks if a third-party (Bedrock/Vertex/Foundry) model has capability overrides set via
+ * ANTHROPIC_DEFAULT_*_MODEL_SUPPORTED_CAPABILITIES env vars, matching against pinned
+ * ANTHROPIC_DEFAULT_*_MODEL env vars.
+ *
+ * @note Only applicable to 3P providers; returns undefined for firstParty.
+ *
+ * 检查第三方（Bedrock/Vertex/Foundry）模型是否通过
+ * ANTHROPIC_DEFAULT_*_MODEL_SUPPORTED_CAPABILITIES 环境变量设置了能力覆盖，
+ * 并与固定的 ANTHROPIC_DEFAULT_*_MODEL 环境变量进行匹配。
+ *
+ * 注意：仅适用于 3P 提供商；对 firstParty 返回 undefined。
+ */
+
 import memoize from 'lodash-es/memoize.js'
 import { getAPIProvider } from './providers.js'
 

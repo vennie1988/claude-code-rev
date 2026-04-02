@@ -1,6 +1,12 @@
 /**
  * @fileoverview setupGitHubActions.ts — GitHub Actions setup implementation
- * Core logic for setting up GitHub Actions workflows and secrets.
+ * GitHub Actions 设置核心实现
+ *
+ * 功能说明：
+ * - 通过 GitHub CLI 创建工作流文件和密钥
+ * - 创建新分支并提交工作流文件
+ * - 设置 API 密钥为仓库密钥
+ * - 打开 PR 创建页面
  *
  * @design Handles workflow file creation, secret management, and branch creation
  * via the GitHub CLI. Creates PR for workflow updates.

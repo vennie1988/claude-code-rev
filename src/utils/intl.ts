@@ -1,4 +1,11 @@
 /**
+ * @fileoverview intl.ts — Intl 对象缓存与文本分割工具 / Intl object caching and text segmentation utilities
+ *
+ * ## 功能说明 (Description)
+ * 共享的 Intl 对象实例，采用懒加载初始化。
+ * Intl 构造函数开销较大（约 0.05-0.1ms），因此缓存实例以复用。
+ * 懒加载确保只在真正需要时才付出初始化成本。
+ *
  * Shared Intl object instances with lazy initialization.
  *
  * Intl constructors are expensive (~0.05-0.1ms each), so we cache instances

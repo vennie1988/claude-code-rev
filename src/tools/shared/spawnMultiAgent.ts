@@ -1,6 +1,9 @@
 /**
  * Shared spawn module for teammate creation.
+ * 队友创建的共享生成模块。
+ *
  * Extracted from TeammateTool to allow reuse by AgentTool.
+ * 从TeammateTool提取，允许AgentTool重用。
  */
 
 import React from 'react'
@@ -69,6 +72,8 @@ import { writeToMailbox } from '../../utils/teammateMailbox.js'
 import type { CustomAgentDefinition } from '../AgentTool/loadAgentsDir.js'
 import { isCustomAgent } from '../AgentTool/loadAgentsDir.js'
 
+// 获取默认队友模型
+// Get the default teammate model
 function getDefaultTeammateModel(leaderModel: string | null): string {
   const configured = getGlobalConfig().teammateDefaultModel
   if (configured === null) {

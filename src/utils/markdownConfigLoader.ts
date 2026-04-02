@@ -1,3 +1,13 @@
+/**
+ * @fileoverview markdownConfigLoader.ts — Markdown 配置文件加载器 / Markdown configuration file loader
+ *
+ * Loads markdown files (.md) from managed, user, and project directories.
+ * Supports frontmatter parsing, file deduplication, and git worktree fallback.
+ *
+ * 从托管、用户和项目目录加载 markdown 文件（.md）。
+ * 支持 frontmatter 解析、文件去重和 git worktree 回退。
+ */
+
 import { feature } from 'bun:bundle'
 import { statSync } from 'fs'
 import { lstat, readdir, readFile, realpath, stat } from 'fs/promises'

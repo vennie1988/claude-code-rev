@@ -1,3 +1,12 @@
+/**
+ * @fileoverview index.ts — Feedback command definition
+ * 反馈命令定义文件：/feedback（别名 /bug）
+ * Defines the /feedback and /bug slash commands for submitting product feedback.
+ * Disabled for certain deployment modes and can be blocked by policy.
+ *
+ * @note 在以下情况下禁用：使用 Bedrock/Vertex/Foundry 时、ant 用户类型、
+ *       仅限基本流量模式、以及策略禁用时
+ */
 import type { Command } from '../../commands.js'
 import { isPolicyAllowed } from '../../services/policyLimits/index.js'
 import { isEnvTruthy } from '../../utils/envUtils.js'

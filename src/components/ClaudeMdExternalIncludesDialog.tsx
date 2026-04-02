@@ -1,3 +1,15 @@
+/**
+ * @fileoverview ClaudeMdExternalIncludesDialog.tsx — Security warning for external file includes in claude.md
+ * ClaudeMdExternalIncludesDialog.tsx — claude.md中外部文件包含的安全警告
+ *
+ * @description
+ * - Warns user about security risks of external file includes
+ * - Shows list of external files that would be included
+ * - User can accept (trust) or decline (block) the external includes
+ * - 警告用户外部文件包含的安全风险
+ * - 显示将要包含的外部文件列表
+ * - 用户可以接受（信任）或拒绝（阻止）外部包含
+ */
 import { c as _c } from "react/compiler-runtime";
 import React, { useCallback } from 'react';
 import { logEvent } from 'src/services/analytics/index.js';
@@ -6,11 +18,29 @@ import type { ExternalClaudeMdInclude } from '../utils/claudemd.js';
 import { saveCurrentProjectConfig } from '../utils/config.js';
 import { Select } from './CustomSelect/index.js';
 import { Dialog } from './design-system/Dialog.js';
+
+/** Props — ClaudeMdExternalIncludesDialog component properties / ClaudeMdExternalIncludesDialog 组件属性 */
 type Props = {
-  onDone(): void;
-  isStandaloneDialog?: boolean;
-  externalIncludes?: ExternalClaudeMdInclude[];
+  onDone(): void;                                  // Callback when dialog is dismissed / 对话框关闭时的回调
+  isStandaloneDialog?: boolean;                    // Whether this is a standalone dialog / 这是否是独立对话框
+  externalIncludes?: ExternalClaudeMdInclude[];    // List of external files to include / 要包含的外部文件列表
 };
+/**
+ * ClaudeMdExternalIncludesDialog — Security warning for external includes in claude.md
+ * ClaudeMdExternalIncludesDialog — claude.md中外部包含的安全警告
+ *
+ * @description
+ * - Displays security warning about external file includes
+ * - Lists all external files that would be included in claude.md
+ * - Accepting saves config to trust all external includes
+ * - Declining saves config to block external includes
+ * - 显示关于外部文件包含的安全警告
+ * - 列出将要包含在claude.md中的所有外部文件
+ * - 接受会保存配置以信任所有外部包含
+ * - 拒绝会保存配置以阻止外部包含
+ *
+ * @returns Dialog with Yes/No options / 带有是/否选项的对话框
+ */
 export function ClaudeMdExternalIncludesDialog(t0) {
   const $ = _c(18);
   const {

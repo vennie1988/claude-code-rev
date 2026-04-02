@@ -236,6 +236,7 @@ function detectTerminal(): string | null {
 /**
  * Detects the deployment environment/platform based on environment variables
  * @returns The deployment platform name, or 'unknown' if not detected
+ * 根据环境变量检测部署环境/平台。如果未检测到则返回 'unknown'。
  */
 export const detectDeploymentEnvironment = memoize((): string => {
   // Cloud development environments
@@ -313,6 +314,13 @@ function isSSHSession(): boolean {
   )
 }
 
+/**
+ * env — Centralized environment and platform detection / 集中化的环境和平台检测
+ *
+ * Aggregates environment information including internet access, CI status,
+ * platform, architecture, terminal type, and deployment environment.
+ * 聚合环境信息，包括互联网访问、CI 状态、平台、架构、终端类型和部署环境。
+ */
 export const env = {
   hasInternetAccess,
   isCI: isEnvTruthy(process.env.CI),
@@ -337,6 +345,9 @@ export const env = {
  * If CLAUDE_CODE_HOST_PLATFORM is set to a valid platform value, that overrides
  * the detected platform. This is useful for container/remote environments where
  * process.platform reports the container OS but the actual host platform differs.
+ * 返回用于分析报告的主机平台。如果设置了有效的 CLAUDE_CODE_HOST_PLATFORM 值，
+ * 则会覆盖检测到的平台。这对于容器/远程环境很有用，
+ * 在这些环境中 process.platform 报告容器操作系统，但实际主机平台不同。
  */
 export function getHostPlatformForAnalytics(): Platform {
   const override = process.env.CLAUDE_CODE_HOST_PLATFORM

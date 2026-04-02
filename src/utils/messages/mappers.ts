@@ -1,3 +1,13 @@
+/**
+ * @fileoverview mappers.ts — SDK 消息映射器 / SDK message mappers
+ *
+ * Bidirectional mappers between internal Message types and SDKMessage types.
+ * Handles compact metadata, rate limit info, and local command output conversion.
+ *
+ * 内部 Message 类型与 SDKMessage 类型之间的双向映射器。
+ * 处理紧凑元数据、速率限制信息和本地命令输出转换。
+ */
+
 import type { BetaContentBlock } from '@anthropic-ai/sdk/resources/beta/messages/messages.mjs'
 import { randomUUID, type UUID } from 'crypto'
 import { getSessionId } from 'src/bootstrap/state.js'

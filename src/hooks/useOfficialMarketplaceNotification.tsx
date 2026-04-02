@@ -1,3 +1,19 @@
+/**
+ * @fileoverview useOfficialMarketplaceNotification.tsx — Official marketplace auto-install hook
+ * 官方市场自动安装hook：处理官方市场的自动安装并显示成功/失败通知。
+ * Handles official marketplace auto-installation and shows success/failure notifications.
+ *
+ * @design
+ * - 调用checkAndInstallOfficialMarketplace检查并安装
+ * - 配置保存失败显示错误通知
+ * - 安装成功显示成功通知
+ * - 安装失败显示警告通知
+ *
+ * @design Calls checkAndInstallOfficialMarketplace to check and install
+ * @design Config save failure shows error notification
+ * @design Successful install shows success notification
+ * @design Failed install shows warning notification
+ */
 import * as React from 'react';
 import type { Notification } from '../context/notifications.js';
 import { Text } from '../ink.js';

@@ -1,3 +1,21 @@
+/**
+ * @fileoverview useSearchInput.ts — Search input with cursor/editing support
+ * 搜索输入hook：支持光标移动、杀环、yank-pop等高级编辑功能。
+ * Search input hook with cursor navigation, kill ring, and yank support.
+ *
+ * @design
+ * - 模拟emacs风格的行编辑（Ctrl+B/F/A/E/K等）
+ * - 杀环（kill ring）支持Ctrl+U/K/W删除并保存
+ * - yank-pop循环（Ctrl+Y后Meta+Y）
+ * - 支持backspaceExitsOnEmpty配置
+ * - 通过useInput向后兼容桥接，直到所有消费者迁移到handleKeyDown
+ *
+ * @design Emacs-style line editing (Ctrl+B/F/A/E/K)
+ * @design Kill ring for Ctrl+U/K/W deletion with save
+ * @design Yank-pop cycle (Ctrl+Y then Meta+Y)
+ * @design Configurable backspaceExitsOnEmpty behavior
+ * @design Backward-compat bridge via useInput until handleKeyDown migration
+ */
 import { useCallback, useState } from 'react'
 import { KeyboardEvent } from '../ink/events/keyboard-event.js'
 // eslint-disable-next-line custom-rules/prefer-use-keybindings -- backward-compat bridge until consumers wire handleKeyDown to <Box onKeyDown>

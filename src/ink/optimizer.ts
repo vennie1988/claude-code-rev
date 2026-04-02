@@ -1,17 +1,24 @@
 import type { Diff } from './frame.js'
 
 /**
+ * Diff Optimizer / 差异优化器
+ *
  * Optimize a diff by applying all optimization rules in a single pass.
+ * 通过单次遍历应用所有优化规则来优化差异。
+ *
  * This reduces the number of patches that need to be written to the terminal.
+ * 这减少了需要写入终端的补丁数量。
  *
  * Rules applied:
- * - Remove empty stdout patches
- * - Merge consecutive cursorMove patches
- * - Remove no-op cursorMove (0,0) patches
+ * 应用规则：
+ * - Remove empty stdout patches / 删除空的 stdout 补丁
+ * - Merge consecutive cursorMove patches / 合并连续的 cursorMove 补丁
+ * - Remove no-op cursorMove (0,0) patches / 删除无操作的 cursorMove (0,0) 补丁
  * - Concat adjacent style patches (transition diffs — can't drop either)
- * - Dedupe consecutive hyperlinks with same URI
- * - Cancel cursor hide/show pairs
- * - Remove clear patches with count 0
+ *   / 连接相邻的样式补丁（转换差异——不能丢弃任何一个）
+ * - Dedupe consecutive hyperlinks with same URI / 对相同 URI 的连续超链接去重
+ * - Cancel cursor hide/show pairs / 取消光标隐藏/显示配对
+ * - Remove clear patches with count 0 / 删除计数为 0 的清除补丁
  */
 export function optimize(diff: Diff): Diff {
   if (diff.length <= 1) {

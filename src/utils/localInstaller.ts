@@ -1,5 +1,23 @@
 /**
- * Utilities for handling local installation
+ * @fileoverview localInstaller.ts — 本地安装工具
+ * Local Installation Utilities
+ *
+ * 设计意图：
+ * - 管理 Claude Code 的本地安装（~/.claude/local/）
+ * - 提供本地安装环境的设置、CLI 包安装、本地安装存在性检查等功能
+ *
+ * 惰性初始化的原因：getClaudeConfigHomeDir() 会读取 process.env.CLAUDE_CONFIG_DIR，
+ * 但在 main() 执行前，entrypoints（如 hfi.tsx）可能尚未设置此变量。
+ * 在模块作用域求值会捕获过期值，影响所有 150+ 调用方。
+ *
+ * Design intent:
+ * - Manages Claude Code local installation (~/.claude/local/)
+ * - Provides local installation environment setup, CLI package installation, existence check
+ *
+ * Lazy getter rationale: getClaudeConfigHomeDir() is memoized and reads process.env.
+ * Evaluating at module scope would capture the value before entrypoints like
+ * hfi.tsx get a chance to set CLAUDE_CONFIG_DIR in main(), and would also
+ * populate the memoize cache with that stale value for all 150+ other callers.
  */
 
 import { access, chmod, writeFile } from 'fs/promises'

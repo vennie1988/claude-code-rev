@@ -1,3 +1,19 @@
+/**
+ * @fileoverview useIdeSelection.ts — IDE text selection tracking hook
+ * IDE文本选择跟踪hook：通过MCP客户端注册selection_changed通知处理器。
+ * Tracks IDE text selection via MCP client selection_changed notifications.
+ *
+ * @design
+ * - 通过MCP客户端注册selection_changed通知处理器
+ * - 将0基行号转换为1基（用户友好）
+ * - 处理IDE客户端切换时重新注册处理器
+ * - 不需要清理（MCP客户端管理自己的生命周期）
+ *
+ * @design Registers selection_changed notification handler with MCP client
+ * @design Converts 0-based to 1-based line numbers
+ * @design Re-registers handler when IDE client changes
+ * @design No cleanup needed (MCP clients manage own lifecycle)
+ */
 import { useEffect, useRef } from 'react'
 import { logError } from 'src/utils/log.js'
 import { z } from 'zod/v4'

@@ -1,3 +1,19 @@
+/**
+ * @fileoverview message.ts — Core message types for Claude Code
+ *
+ * Defines the core message types used throughout Claude Code:
+ * - UserMessage: User input messages
+ * - AssistantMessage: Claude's responses
+ * - SystemMessage: Internal system messages
+ * - AttachmentMessage: File attachments
+ * - ProgressMessage: Tool execution progress
+ *
+ * 设计说明：
+ * - message.ts 定义 Claude Code 使用的核心消息类型
+ * - 包括用户消息、助手消息、系统消息、附件消息和进度消息
+ * - 这些类型在整个代码库中广泛使用
+ */
+
 export type MessageOrigin = {
   kind?: string
   [key: string]: unknown

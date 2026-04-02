@@ -1,3 +1,16 @@
+/**
+ * @fileoverview fileChangedWatcher.ts — 文件变更监视器 / File change watcher
+ *
+ * ## 功能说明 (Description)
+ * 使用 chokidar 监视文件系统的文件变更事件。
+ * 支持静态路径（来自 Hook 配置）和动态路径（来自 Hook 输出）。
+ * 用于触发 FileChanged 和 CwdChanged Hook。
+ *
+ * Uses chokidar to watch filesystem file change events.
+ * Supports both static paths (from hook config) and dynamic paths (from hook output).
+ * Used to trigger FileChanged and CwdChanged hooks.
+ */
+
 import chokidar, { type FSWatcher } from 'chokidar'
 import { isAbsolute, join } from 'path'
 import { registerCleanup } from '../cleanupRegistry.js'

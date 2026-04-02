@@ -1,3 +1,12 @@
+/**
+ * @fileoverview prompt.ts — WebSearchTool 常量定义
+ * Defines constants for WebSearchTool.
+ *
+ * 常量说明：
+ * - WEB_SEARCH_TOOL_NAME: 工具名称
+ * - getWebSearchPrompt(): 获取工具提示词函数
+ */
+
 import { getLocalMonthYear } from 'src/constants/common.js'
 
 export const WEB_SEARCH_TOOL_NAME = 'WebSearch'

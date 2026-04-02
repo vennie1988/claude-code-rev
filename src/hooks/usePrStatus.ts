@@ -1,3 +1,21 @@
+/**
+ * @fileoverview usePrStatus.ts — GitHub PR status polling hook
+ * GitHub PR状态轮询hook：定期检查PR审核状态，支持空闲停止和慢速禁用。
+ * Polls PR review status every 60s while the session is active.
+ *
+ * @design
+ * - 每60秒轮询一次PR状态（通过gh命令）
+ * - 空闲60分钟后自动停止轮询
+ * - fetch超过4秒自动禁用轮询
+ * - turn边界调度下一次轮询，避免重复触发
+ * - 支持enabled开关完全禁用轮询
+ *
+ * @design Polls PR status every 60s via gh command
+ * @design Stops polling after 60 min idle
+ * @design Permanently disables if fetch exceeds 4s
+ * @design Schedules next poll relative to last fetch time
+ * @design Supports enabled flag to disable polling
+ */
 import { useEffect, useRef, useState } from 'react'
 import { getLastInteractionTime } from '../bootstrap/state.js'
 import { fetchPrStatus, type PrReviewState } from '../utils/ghPrStatus.js'

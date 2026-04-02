@@ -1,3 +1,26 @@
+/**
+ * @fileoverview FileEditToolUseRejectedMessage - Displays message when file edit is rejected
+ * @fileoverview FileEditToolUseRejectedMessage - 显示文件编辑被拒绝时的消息
+ *
+ * @remarks
+ * This component shows a message when the user rejects a file edit operation.
+ * For rejected writes, it displays a preview of the content that would have been written.
+ * For rejected updates, it can show a diff of the changes. The display can be
+ * condensed (brief) or verbose (full details).
+ *
+ * 此组件在用户拒绝文件编辑操作时显示消息。
+ * 对于被拒绝的写入，它显示将要写入的内容预览。
+ * 对于被拒绝的更新，它可以显示更改的差异。显示可以是简洁的或详细的。
+ *
+ * @param Props.file_path - Path to the file / 文件路径
+ * @param Props.operation - Type of operation ('write' for new file, 'update' for edit) / 操作类型（'write' 新建文件，'update' 编辑）
+ * @param Props.patch - For updates, the diff patch / 对于更新，要显示的差异补丁
+ * @param Props.firstLine - First line of the file / 文件的第一行
+ * @param Props.fileContent - Current file content / 当前文件内容
+ * @param Props.content - For writes, the content that would have been written / 对于写入，将要写入的内容
+ * @param Props.style - 'condensed' for brief display / 'condensed' 简洁显示
+ * @param Props.verbose - Show full details / 显示完整详情
+ */
 import { c as _c } from "react/compiler-runtime";
 import type { StructuredPatchHunk } from 'diff';
 import { relative } from 'path';
@@ -12,11 +35,11 @@ const MAX_LINES_TO_RENDER = 10;
 type Props = {
   file_path: string;
   operation: 'write' | 'update';
-  // For updates - show diff
+  // For updates - show diff / 对于更新 - 显示差异
   patch?: StructuredPatchHunk[];
   firstLine: string | null;
   fileContent?: string;
-  // For new file creation - show content preview
+  // For new file creation - show content preview / 对于新文件创建 - 显示内容预览
   content?: string;
   style?: 'condensed';
   verbose: boolean;

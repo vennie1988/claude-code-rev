@@ -1,3 +1,27 @@
+/**
+ * @fileoverview
+ * Shell command execution wrapper / Shell 命令执行封装
+ *
+ * Provides the ShellCommand interface wrapping child_process spawning,
+ * StreamWrapper for real-time stdout/stderr streaming, and output size limits
+ * for bash commands.
+ *
+ * 提供 ShellCommand 接口封装子进程 spawning，StreamWrapper 用于实时 stdout/stderr 流式传输，
+ * 以及 bash 命令的输出大小限制。
+ *
+ * Key components:
+ * - ShellCommandImpl: Core implementation wrapping ChildProcess with timeout,
+ *   auto-backgrounding, and size watchdog for disk protection
+ * - StreamWrapper: Pipe wrapper for hook mode providing real-time stdout/stderr
+ * - AbortedShellCommand/FailedCommand: Static implementations for error cases
+ *
+ * 主要组件：
+ * - ShellCommandImpl：核心实现，封装 ChildProcess，支持超时、自动后台化、
+ *   以及用于磁盘保护的 size watchdog
+ * - StreamWrapper：管道封装，用于 hook 模式提供实时 stdout/stderr
+ * - AbortedShellCommand/FailedCommand：错误场景的静态实现
+ */
+
 import type { ChildProcess } from 'child_process'
 import { stat } from 'fs/promises'
 import type { Readable } from 'stream'

@@ -1,3 +1,21 @@
+/**
+ * @fileoverview memoryFileDetection.ts — 内存文件与目录检测 / Memory file and directory detection
+ *
+ * Detects whether paths belong to Claude-managed memory stores (auto-memory, agent memory,
+ * session memory, team memory). Used for collapse/badge logic where user-managed files
+ * (CLAUDE.md, .claude/rules/) should show full diffs.
+ *
+ * @note Shell command detection extracts absolute path tokens and checks them against
+ *       memory detection functions. Handles Unix, Windows, and MinGW path formats.
+ *
+ * 检测路径是否属于 Claude 管理的内存存储（自动记忆、代理记忆、
+ * 会话记忆、团队记忆）。用于折叠/徽章逻辑，
+ * 以区分用户管理的文件（CLAUDE.md、.claude/rules/）应显示完整差异。
+ *
+ * 注意：Shell 命令检测提取绝对路径标记并与内存检测函数进行核对。
+ *       支持 Unix、Windows 和 MinGW 路径格式。
+ */
+
 import { feature } from 'bun:bundle'
 import { normalize, posix, win32 } from 'path'
 import {

@@ -15,11 +15,15 @@ import { createPermissionRequestMessage } from '../../utils/permissions/permissi
 import { BashTool } from './BashTool.js'
 import { bashCommandIsSafeAsync_DEPRECATED } from './bashSecurity.js'
 
+// 命令身份检查器函数类型
+// Type definition for command identity checker functions.
 export type CommandIdentityCheckers = {
   isNormalizedCdCommand: (command: string) => boolean
   isNormalizedGitCommand: (command: string) => boolean
 }
 
+// 处理分段的命令（管道）进行权限检查
+// Process segmented commands (pipes) for permission checking.
 async function segmentedCommandPermissionResult(
   input: z.infer<typeof BashTool.inputSchema>,
   segments: string[],

@@ -1,3 +1,19 @@
+/**
+ * @fileoverview useInputBuffer.ts — Input buffer/undo history hook
+ * 输入缓冲/撤销历史hook：管理输入内容的缓冲和撤销操作。
+ * Manages input buffer and undo history for text input fields.
+ *
+ * @design
+ * - 缓冲最大maxBufferSize个条目，超出则删除最旧条目
+ * - 防抖：debounceMs内快速变化合并为一次推送
+ * - 支持撤销：返回到上一个缓冲条目
+ * - 清除缓冲区时重置所有状态
+ *
+ * @design Maximum maxBufferSize entries, oldest removed when full
+ * @design Debounce: rapid changes within debounceMs merged into one push
+ * @design Undo: returns to previous buffer entry
+ * @design Clear: resets all state
+ */
 import { useCallback, useRef, useState } from 'react'
 import type { PastedContent } from '../utils/config.js'
 

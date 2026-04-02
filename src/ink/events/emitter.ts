@@ -1,8 +1,14 @@
+/**
+ * Event Emitter / 事件发射器
+ *
+ * Similar to node's builtin EventEmitter, but is also aware of our `Event`
+ * class, and so `emit` respects `stopImmediatePropagation()`.
+ * 类似于 Node.js 内置的 EventEmitter，但也了解我们的 `Event` 类，
+ * 因此 `emit` 尊重 `stopImmediatePropagation()`。
+ */
+
 import { EventEmitter as NodeEventEmitter } from 'events'
 import { Event } from './event.js'
-
-// Similar to node's builtin EventEmitter, but is also aware of our `Event`
-// class, and so `emit` respects `stopImmediatePropagation()`.
 export class EventEmitter extends NodeEventEmitter {
   constructor() {
     super()

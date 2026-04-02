@@ -1,3 +1,15 @@
+/**
+ * @fileoverview bridgeApi.ts — Bridge API client implementation
+ *
+ * HTTP client for the Remote Bridge environments API.
+ * Handles environment registration, work polling, session management, and more.
+ *
+ * 设计说明：
+ * - bridgeApi.ts 是 Remote Bridge environments API 的 HTTP 客户端
+ * - 处理环境注册、工作轮询、会话管理等功能
+ * - 支持 OAuth 认证重试和错误处理
+ */
+
 import axios from 'axios'
 
 import { debugBody, extractErrorDetail } from './debugUtils.js'

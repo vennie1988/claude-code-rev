@@ -1,5 +1,21 @@
+/**
+ * @fileoverview prompt.ts — ListMcpResourcesTool 常量定义
+ * Defines constants for the ListMcpResources tool.
+ *
+ * 常量说明：
+ * - LIST_MCP_RESOURCES_TOOL_NAME: 工具唯一标识名称
+ * - DESCRIPTION: 工具描述和使用示例
+ * - PROMPT: 工具提示词
+ */
+
+/**
+ * ListMcpResources tool name — 列出 MCP 资源工具名称
+ */
 export const LIST_MCP_RESOURCES_TOOL_NAME = 'ListMcpResourcesTool'
 
+/**
+ * Tool description — 工具描述
+ */
 export const DESCRIPTION = `
 Lists available resources from configured MCP servers.
 Each resource object includes a 'server' field indicating which server it's from.

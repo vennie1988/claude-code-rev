@@ -1,3 +1,14 @@
+/**
+ * @fileoverview doctor.tsx — Doctor screen renderer
+ * 医生屏幕渲染器：调用 Doctor 组件显示诊断界面
+ * Renders the Doctor diagnostic screen component. The Doctor component
+ * performs various health checks on the Claude Code installation.
+ *
+ * @param onDone - 完成回调
+ * @param _context - 命令上下文（未使用）
+ * @param _args - 命令参数（未使用）
+ * @returns Promise resolving to the Doctor React component
+ */
 import React from 'react';
 import { Doctor } from '../../screens/Doctor.js';
 import type { LocalJSXCommandCall } from '../../types/command.js';

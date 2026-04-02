@@ -1,8 +1,17 @@
 /**
- * DEC (Digital Equipment Corporation) Private Mode Sequences
+ * DEC (Digital Equipment Corporation) Private Mode Sequences / DEC 私有模式序列
  *
  * DEC private modes use CSI ? N h (set) and CSI ? N l (reset) format.
  * These are terminal-specific extensions to the ANSI standard.
+ *
+ * DEC 私有模式使用 CSI ? N h（设置）和 CSI ? N l（重置）格式。
+ * 这些是 ANSI 标准的终端特定扩展。
+ *
+ * Common modes include cursor visibility (25), alternate screen (47/1049),
+ * mouse tracking (1000-1006), and bracketed paste (2004).
+ *
+ * 常见模式包括光标可见性（25）、备用屏幕（47/1049）、
+ * 鼠标跟踪（1000-1006）和括号粘贴（2004）。
  */
 
 import { csi } from './csi.js'

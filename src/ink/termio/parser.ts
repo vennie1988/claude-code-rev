@@ -1,14 +1,22 @@
 /**
- * ANSI Parser - Semantic Action Generator
+ * ANSI Parser - Semantic Action Generator / ANSI 解析器 - 语义动作生成器
  *
  * A streaming parser for ANSI escape sequences that produces semantic actions.
  * Uses the tokenizer for escape sequence boundary detection, then interprets
  * each sequence to produce structured actions.
  *
+ * 面向流的 ANSI 转义序列解析器，生成语义动作。
+ * 使用分词器检测转义序列边界，然后解释每个序列以生成结构化动作。
+ *
  * Key design decisions:
  * - Streaming: can process input incrementally
  * - Semantic output: produces structured actions, not string tokens
  * - Style tracking: maintains current text style state
+ *
+ * 主要设计决策：
+ * - 流式处理：可以增量处理输入
+ * - 语义输出：生成结构化动作，而非字符串标记
+ * - 样式跟踪：维护当前文本样式状态
  */
 
 import { getGraphemeSegmenter } from '../../utils/intl.js'

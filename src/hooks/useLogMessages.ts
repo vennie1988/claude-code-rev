@@ -1,3 +1,19 @@
+/**
+ * @fileoverview useLogMessages.ts — Message transcript logging hook
+ * 消息记录hook：将消息追加记录到会话存储（transcript）。
+ * Appends messages to session storage transcript via recordTranscript.
+ *
+ * @design
+ * - 仅传递新的增量消息（避免每次setMessages时O(n)扫描）
+ * - 区分首次渲染/增量更新/相同头部收缩三种模式
+ * -  compaction后使用async返回的lastUuid作为parentHint
+ * - 异步写磁盘，不阻塞UI
+ *
+ * @design Passes only new incremental messages (avoids O(n) scan per setMessages)
+ * @design Distinguishes first-render/incremental/same-head-shrink modes
+ * @design After compaction, uses async-returned lastUuid as parentHint
+ * @design Async write to disk, non-blocking
+ */
 import type { UUID } from 'crypto'
 import { useEffect, useRef } from 'react'
 import { useAppState } from '../state/AppState.js'

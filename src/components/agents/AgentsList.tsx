@@ -1,3 +1,24 @@
+/**
+ * @fileoverview AgentsList - Displays a list of agents with selection capability
+ * @fileoverview AgentsList - 显示代理列表并支持选择功能
+ *
+ * @remarks
+ * This component displays a scrollable list of agents filtered by source.
+ * It supports keyboard navigation and shows agent details including model,
+ * memory settings, and override warnings. Built-in agents are displayed
+ * but cannot be selected for editing.
+ *
+ * 此组件显示按来源过滤的可滚动代理列表。
+ * 它支持键盘导航，并显示代理详细信息，包括模型、内存设置和覆盖警告。
+ * 内置代理会显示但不能选择进行编辑。
+ *
+ * @param Props.source - Filter agents by source (all, built-in, plugin, or specific SettingSource) / 按来源过滤代理
+ * @param Props.agents - List of agents to display / 要显示的代理列表
+ * @param Props.onBack - Callback when user goes back / 用户返回时的回调
+ * @param Props.onSelect - Callback when an agent is selected / 选择代理时的回调
+ * @param Props.onCreateNew - Optional callback for creating a new agent / 可选的创建新代理的回调
+ * @param Props.changes - Optional list of pending changes to highlight / 可选的要突出显示的待处理更改列表
+ */
 import { c as _c } from "react/compiler-runtime";
 import figures from 'figures';
 import * as React from 'react';

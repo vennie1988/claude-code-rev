@@ -1,12 +1,18 @@
-import { Event } from './event.js'
-
 /**
+ * Click Event / 点击事件
+ *
  * Mouse click event. Fired on left-button release without drag, only when
  * mouse tracking is enabled (i.e. inside <AlternateScreen>).
+ * 鼠标点击事件。在鼠标跟踪启用时（即在 <AlternateScreen> 内），
+ * 在左键释放且无拖动时触发。
  *
  * Bubbles from the deepest hit node up through parentNode. Call
  * stopImmediatePropagation() to prevent ancestors' onClick from firing.
+ * 从最深的命中节点通过 parentNode 向上冒泡。调用
+ * stopImmediatePropagation() 可防止祖先的 onClick 触发。
  */
+
+import { Event } from './event.js'
 export class ClickEvent extends Event {
   /** 0-indexed screen column of the click */
   readonly col: number

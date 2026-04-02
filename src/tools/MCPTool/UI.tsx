@@ -1,3 +1,14 @@
+/**
+ * @fileoverview UI.tsx — MCPTool React 渲染组件
+ * React components for rendering MCPTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染 MCP 工具调用消息
+ * - renderToolResultMessage: 渲染 MCP 工具调用结果
+ * - renderToolUseProgressMessage: 渲染 MCP 工具调用进度
+ * - renderToolUseErrorMessage: 渲染 MCP 工具调用错误
+ */
+
 import { c as _c } from "react/compiler-runtime";
 import { feature } from 'bun:bundle';
 import figures from 'figures';

@@ -1,3 +1,14 @@
+/**
+ * @fileoverview execAgentHook.ts — 代理型 Hook 执行器 / Agent-based hook executor
+ *
+ * ## 功能说明 (Description)
+ * 执行基于代理的 Hook，使用多轮 LLM 查询进行验证。
+ * 支持最多 50 轮对话，使用结构化输出工具返回结果。
+ *
+ * Executes agent-based hooks using multi-turn LLM queries for verification.
+ * Supports up to 50 conversation turns with structured output tool for results.
+ */
+
 import { randomUUID } from 'crypto'
 import type { HookEvent } from 'src/entrypoints/agentSdkTypes.js'
 import { query } from '../../query.js'

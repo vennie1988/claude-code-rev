@@ -1,3 +1,10 @@
+/**
+ * @fileoverview srun.ts — Command specification for SLURM srun
+ *
+ * 定义 SLURM 集群作业调度器 srun 命令的规范。
+ * srun 用于在 SLURM 集群节点上启动作业。
+ */
+
 import type { CommandSpec } from '../registry.js'
 
 const srun: CommandSpec = {

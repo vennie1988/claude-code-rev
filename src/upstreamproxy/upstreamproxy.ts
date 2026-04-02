@@ -1,4 +1,15 @@
 /**
+ * @fileoverview upstreamproxy.ts — CCR upstream proxy container-side wiring
+ *
+ * CCR upstreamproxy — container-side wiring.
+ * Manages MITM proxy setup for CCR session containers.
+ *
+ * 设计说明：
+ * - upstreamproxy.ts 管理 CCR 会话容器的 MITM 代理设置
+ * - 处理代理证书下载、SSL 配置和连接中继
+ */
+
+/**
  * CCR upstreamproxy — container-side wiring.
  *
  * When running inside a CCR session container with upstreamproxy configured,

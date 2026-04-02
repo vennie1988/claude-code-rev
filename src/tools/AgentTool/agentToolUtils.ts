@@ -59,6 +59,8 @@ import { getTokenCountFromUsage } from '../../utils/tokens.js'
 import { EXIT_PLAN_MODE_V2_TOOL_NAME } from '../ExitPlanModeTool/constants.js'
 import { AGENT_TOOL_NAME, LEGACY_AGENT_TOOL_NAME } from './constants.js'
 import type { AgentDefinition } from './loadAgentsDir.js'
+// 代理工具解析结果类型
+// Result type for resolving agent tools
 export type ResolvedAgentTools = {
   hasWildcard: boolean
   validTools: string[]

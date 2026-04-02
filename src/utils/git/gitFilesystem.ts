@@ -1,4 +1,11 @@
 /**
+ * @fileoverview gitFilesystem.ts — Git 文件系统状态读取 / Filesystem-based Git state reading
+ *
+ * ## 功能说明 (Description)
+ * 通过直接读取 .git 目录文件获取 Git 状态，避免调用 git 子进程。
+ * 支持解析 .git 目录（包括 worktree 和 submodule）、HEAD 解析、
+ * 通过 loose refs 和 packed-refs 解析 refs。
+ *
  * Filesystem-based git state reading — avoids spawning git subprocesses.
  *
  * Covers: resolving .git directories (including worktrees/submodules),

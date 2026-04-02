@@ -1,3 +1,11 @@
+/**
+ * @fileoverview TeamCreateTool.ts — 创建团队工具
+ * Team creation tool for setting up multi-agent teams.
+ *
+ * 功能说明：
+ * - TeamCreateTool: 创建团队并注册成员
+ */
+
 import { z } from 'zod/v4'
 import { getSessionId } from '../../bootstrap/state.js'
 import { logEvent } from '../../services/analytics/index.js'

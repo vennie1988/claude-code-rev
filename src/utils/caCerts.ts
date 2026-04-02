@@ -1,30 +1,30 @@
-import memoize from 'lodash-es/memoize.js'
-import { logForDebugging } from './debug.js'
-import { hasNodeOption } from './envUtils.js'
-import { getFsImplementation } from './fsOperations.js'
-
 /**
- * Load CA certificates for TLS connections.
+ * @fileoverview caCerts.ts — CA 证书加载模块 / CA certificates loader for TLS connections
  *
- * Since setting `ca` on an HTTPS agent replaces the default certificate store,
- * we must always include base CAs (either system or bundled Mozilla) when returning.
+ * Provides CA (Certificate Authority) certificate loading for HTTPS/TLS connections.
+ * Since setting `ca` on an HTTPS agent replaces the default certificate store, we must always
+ * include base CAs (either system or bundled Mozilla) when returning custom certificates.
  *
- * Returns undefined when no custom CA configuration is needed, allowing the
- * runtime's default certificate handling to apply.
+ * 设计决策 / Design decisions:
+ * - Memoized for performance — call clearCACertsCache() to invalidate after env var changes
+ * - Reads ONLY `process.env.NODE_EXTRA_CA_CERTS` — config-free to avoid circular dependencies
+ * - `caCertsConfig.ts` populates the env var from settings.json at CLI init
  *
- * Behavior:
+ * 行为 / Behavior:
  * - Neither NODE_EXTRA_CA_CERTS nor --use-system-ca/--use-openssl-ca set: undefined (runtime defaults)
  * - NODE_EXTRA_CA_CERTS only: bundled Mozilla CAs + extra cert file contents
  * - --use-system-ca or --use-openssl-ca only: system CAs
  * - --use-system-ca + NODE_EXTRA_CA_CERTS: system CAs + extra cert file contents
  *
- * Memoized for performance. Call clearCACertsCache() to invalidate after
- * environment variable changes (e.g., after trust dialog applies settings.json).
- *
- * Reads ONLY `process.env.NODE_EXTRA_CA_CERTS`. `caCertsConfig.ts` populates
- * that env var from settings.json at CLI init; this module stays config-free
- * so `proxy.ts`/`mtls.ts` don't transitively pull in the command registry.
+ * @note Bun's node:tls module eagerly materializes ~150 Mozilla root certificates (~750KB heap)
+ * on import. Most users hit the early return, so we defer this cost until custom CA handling
+ * is actually needed.
  */
+
+import memoize from 'lodash-es/memoize.js'
+import { logForDebugging } from './debug.js'
+import { hasNodeOption } from './envUtils.js'
+import { getFsImplementation } from './fsOperations.js'
 export const getCACertificates = memoize((): string[] | undefined => {
   const useSystemCA =
     hasNodeOption('--use-system-ca') || hasNodeOption('--use-openssl-ca')
@@ -105,9 +105,15 @@ export const getCACertificates = memoize((): string[] | undefined => {
 })
 
 /**
- * Clear the CA certificates cache.
- * Call this when environment variables that affect CA certs may have changed
- * (e.g., NODE_EXTRA_CA_CERTS, NODE_OPTIONS).
+ * clearCACertsCache — 清除 CA 证书缓存 / Clear the CA certificates memoization cache
+ *
+ * Call this when environment variables that affect CA certs may have changed,
+ * such as after the trust dialog applies settings.json changes.
+ *
+ * @note This only clears the memoized result. The actual TLS certificate store
+ * is cached by Bun/Node at process boot and cannot be invalidated at runtime.
+ *
+ * @see getCACerts() — the memoized function this clears
  */
 export function clearCACertsCache(): void {
   getCACertificates.cache.clear?.()

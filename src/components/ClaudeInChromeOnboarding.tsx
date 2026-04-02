@@ -1,3 +1,17 @@
+/**
+ * @fileoverview ClaudeInChromeOnboarding.tsx — Onboarding dialog for Chrome extension
+ * ClaudeInChromeOnboarding.tsx — Chrome扩展的入门对话框
+ *
+ * @description
+ * - Displays information about Claude in Chrome extension
+ * - Checks if Chrome extension is already installed
+ * - Provides links to install extension and manage permissions
+ * - User can dismiss with Enter key
+ * - 显示Claude in Chrome扩展的信息
+ * - 检查Chrome扩展是否已安装
+ * - 提供安装扩展和管理权限的链接
+ * - 用户可以使用Enter键关闭
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { logEvent } from 'src/services/analytics/index.js';
@@ -6,11 +20,32 @@ import { Box, Link, Newline, Text, useInput } from '../ink.js';
 import { isChromeExtensionInstalled } from '../utils/claudeInChrome/setup.js';
 import { saveGlobalConfig } from '../utils/config.js';
 import { Dialog } from './design-system/Dialog.js';
+
+/** Chrome extension URL for installation / 用于安装的Chrome扩展URL */
 const CHROME_EXTENSION_URL = 'https://claude.ai/chrome';
+/** Chrome permissions URL / Chrome权限URL */
 const CHROME_PERMISSIONS_URL = 'https://clau.de/chrome/permissions';
+
+/** Props — ClaudeInChromeOnboarding component properties / ClaudeInChromeOnboarding 组件属性 */
 type Props = {
-  onDone(): void;
+  onDone(): void; // Callback when onboarding is dismissed / 入门对话框关闭时的回调
 };
+/**
+ * ClaudeInChromeOnboarding — Onboarding dialog for Chrome extension
+ * ClaudeInChromeOnboarding — Chrome扩展的入门对话框
+ *
+ * @description
+ * - Shows when user hasn't completed Chrome extension onboarding
+ * - Displays installation and permissions links
+ * - Detects if extension is already installed
+ * - Dismissable with Enter key
+ * - 当用户未完成Chrome扩展入门时显示
+ * - 显示安装和权限链接
+ * - 检测扩展是否已安装
+ * - 可使用Enter键关闭
+ *
+ * @returns Dialog with extension info and links / 带有扩展信息和链接的对话框
+ */
 export function ClaudeInChromeOnboarding(t0) {
   const $ = _c(20);
   const {

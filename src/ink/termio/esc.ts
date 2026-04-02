@@ -1,7 +1,14 @@
 /**
- * ESC Sequence Parser
+ * ESC Sequence Parser / ESC 序列解析器
  *
- * Handles simple escape sequences: ESC + one or two characters
+ * Handles simple escape sequences: ESC + one or two characters.
+ * 处理简单的转义序列：ESC + 一个或两个字符。
+ *
+ * Supported sequences include RIS (full reset), DECSC/DECRC (cursor save/restore),
+ * IND/NEL (cursor movement), and charset selection.
+ *
+ * 支持的序列包括 RIS（完全重置）、DECSC/DECRC（光标保存/恢复）、
+ * IND/NEL（光标移动）和字符集选择。
  */
 
 import type { Action } from './types.js'

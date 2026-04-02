@@ -2,6 +2,8 @@ import chalk from 'chalk'
 import type { Color, TextStyles } from './styles.js'
 
 /**
+ * Chalk Color Enhancement / Chalk 颜色增强
+ *
  * xterm.js (VS Code, Cursor, code-server, Coder) has supported truecolor
  * since 2017, but code-server/Coder containers often don't set
  * COLORTERM=truecolor. chalk's supports-color doesn't recognize
@@ -9,13 +11,24 @@ import type { Color, TextStyles } from './styles.js'
  * through to the -256color regex → level 2. At level 2, chalk.rgb()
  * downgrades to the nearest 6×6×6 cube color: rgb(215,119,87) (Claude
  * orange) → idx 174 rgb(215,135,135) — washed-out salmon.
+ * xterm.js（VS Code、Cursor、code-server、Coder）自 2017 年以来支持真彩色，
+ * 但 code-server/Coder 容器通常不设置 COLORTERM=truecolor。
+ * chalk 的 supports-color 不识别 TERM_PROGRAM=vscode（只知道 iTerm.app/Apple_Terminal），
+ * 因此会通过 -256color 正则表达式 → level 2。在 level 2 下，
+ * chalk.rgb() 降级为最近的 6×6×6 立方体颜色：
+ * rgb(215,119,87)（Claude 橙色）→ idx 174 rgb(215,135,135)——褪色的 salmon。
  *
  * Gated on level === 2 (not < 3) to respect NO_COLOR / FORCE_COLOR=0 —
  * those yield level 0 and are an explicit "no colors" request. Desktop VS
  * Code sets COLORTERM=truecolor itself, so this is a no-op there (already 3).
+ * 在 level === 2（不是 < 3）时启用，以尊重 NO_COLOR / FORCE_COLOR=0——
+ * 这些产生 level 0，是明确的"无颜色"请求。
+ * 桌面 VS Code 自己设置 COLORTERM=truecolor，所以这在那里是空操作（已经是 3）。
  *
  * Must run BEFORE the tmux clamp — if tmux is running inside a VS Code
  * terminal, tmux's passthrough limitation wins and we want level 2.
+ * 必须在 tmux 限制之前运行——如果 tmux 在 VS Code 终端内运行，
+ * tmux 的传递限制优先，我们需要 level 2。
  */
 function boostChalkLevelForXtermJs(): boolean {
   if (process.env.TERM_PROGRAM === 'vscode' && chalk.level === 2) {

@@ -1,3 +1,13 @@
+/**
+ * @fileoverview status.tsx — Status display component
+ * 状态显示组件：渲染 Settings 组件并默认打开"状态"标签页
+ * Renders the Settings component with the Status tab pre-selected.
+ * Displays Claude Code version, model, account, API connectivity, and tool statuses.
+ *
+ * @param onDone - 完成回调
+ * @param context - 命令上下文
+ * @returns Promise resolving to Settings component
+ */
 import * as React from 'react';
 import type { LocalJSXCommandContext } from '../../commands.js';
 import { Settings } from '../../components/Settings/Settings.js';

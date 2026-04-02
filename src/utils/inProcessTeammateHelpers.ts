@@ -1,12 +1,20 @@
 /**
- * In-Process Teammate Helpers
+ * @fileoverview inProcessTeammateHelpers.ts — 进程内队友辅助工具
+ * In-Process Teammate Helper Utilities
  *
- * Helper functions for in-process teammate integration.
- * Provides utilities to:
- * - Find task ID by agent name
- * - Handle plan approval responses
- * - Update awaitingPlanApproval state
- * - Detect permission-related messages
+ * 设计意图：
+ * - 提供进程内队友集成的辅助函数
+ * - 支持通过代理名称查找任务 ID
+ * - 处理计划审批响应
+ * - 更新 awaitingPlanApproval 状态
+ * - 检测权限相关消息
+ *
+ * Design intent:
+ * - Provides helper functions for in-process teammate integration
+ * - Supports finding task ID by agent name
+ * - Handles plan approval responses
+ * - Updates awaitingPlanApproval state
+ * - Detects permission-related messages
  */
 
 import type { AppState } from '../state/AppState.js'

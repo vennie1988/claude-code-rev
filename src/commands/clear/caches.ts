@@ -1,6 +1,13 @@
 /**
- * Session cache clearing utilities.
- * This module is imported at startup by main.tsx, so keep imports minimal.
+ * @fileoverview caches.ts — Session cache clearing utilities
+ * 会话缓存清除工具
+ *
+ * 功能说明：
+ * - 清除所有会话相关的缓存
+ * - 包括上下文缓存、命令缓存、提示缓存等
+ * - 支持保留特定代理 ID 的状态
+ *
+ * 注意：此模块由 main.tsx 在启动时导入，需保持最小导入
  */
 import { feature } from 'bun:bundle'
 import {

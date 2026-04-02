@@ -1,3 +1,12 @@
+/**
+ * @fileoverview prompt.ts — TaskGetTool 提示词定义
+ * Defines prompt and description for TaskGetTool.
+ *
+ * 常量说明：
+ * - DESCRIPTION: 工具描述
+ * - PROMPT: 工具提示词
+ */
+
 export const DESCRIPTION = 'Get a task by ID from the task list'
 
 export const PROMPT = `Use this tool to retrieve a task by its ID from the task list.

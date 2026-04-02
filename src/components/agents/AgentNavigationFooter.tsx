@@ -1,3 +1,18 @@
+/**
+ * @fileoverview AgentNavigationFooter - Navigation footer component for agent dialogs
+ * @fileoverview 代理导航底部组件，用于代理对话框的导航说明
+ *
+ * @remarks
+ * This component displays contextual navigation instructions and handles the exit state
+ * when the user presses Ctrl+C. It provides a consistent footer experience across
+ * all agent-related dialogs.
+ *
+ * 此组件显示上下文导航说明，并在用户按 Ctrl+C 时处理退出状态。
+ * 它为所有代理相关对话框提供一致的底部体验。
+ *
+ * @param Props.instructions - Optional custom navigation hint text / 可选的自定义导航提示文本
+ * @returns Navigation footer element / 导航底部元素
+ */
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { useExitOnCtrlCDWithKeybindings } from '../../hooks/useExitOnCtrlCDWithKeybindings.js';

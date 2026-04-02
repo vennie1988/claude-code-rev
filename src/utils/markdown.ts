@@ -1,3 +1,13 @@
+/**
+ * @fileoverview markdown.ts — Markdown 渲染与 MCP 内容截断 / Markdown rendering and MCP content truncation
+ *
+ * Handles Markdown rendering with ANSI-stripped text formatting, hyperlink creation,
+ * and MCP tool output size management (token counting, truncation, compression).
+ *
+ * 处理带 ANSI 剥离文本格式的 Markdown 渲染、超链接创建，
+ * 以及 MCP 工具输出大小管理（令牌计数、截断、压缩）。
+ */
+
 import chalk from 'chalk'
 import { marked, type Token, type Tokens } from 'marked'
 import stripAnsi from 'strip-ansi'

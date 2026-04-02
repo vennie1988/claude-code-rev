@@ -1,3 +1,19 @@
+/**
+ * @fileoverview AppState.tsx — Application state management
+ *
+ * Main application state provider using React context and external store.
+ * Manages global application state including:
+ * - Session state and history
+ * - Tool permissions and settings
+ * - MCP server connections
+ * - Voice mode context
+ *
+ * 设计说明：
+ * - AppState.tsx 使用 React context 和外部存储管理应用程序状态
+ * - 管理全局状态，包括会话状态、工具权限、设置和 MCP 服务器连接
+ * - 提供状态订阅和更新机制
+ */
+
 import { c as _c } from "react/compiler-runtime";
 import { feature } from 'bun:bundle';
 import React, { useContext, useEffect, useEffectEvent, useState, useSyncExternalStore } from 'react';

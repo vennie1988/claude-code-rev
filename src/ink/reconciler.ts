@@ -1,3 +1,10 @@
+/**
+ * React Reconciler / React 协调器
+ *
+ * React reconciler integration for terminal UI rendering.
+ * 终端 UI 渲染的 React 协调器集成。
+ */
+
 /* eslint-disable custom-rules/no-top-level-side-effects */
 
 import { appendFileSync } from 'fs'

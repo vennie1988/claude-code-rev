@@ -1,6 +1,11 @@
 /**
  * @fileoverview CreatingStep.tsx — Workflow creation progress step
- * Shows progress during GitHub Actions workflow creation.
+ * 工作流创建进度步骤
+ *
+ * 功能说明：
+ * - 显示工作流创建进度
+ * - 展示每个步骤的完成状态
+ * - 支持跳过工作流创建的简化流程
  */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';

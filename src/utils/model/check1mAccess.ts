@@ -1,3 +1,13 @@
+/**
+ * @fileoverview check1mAccess.ts — 1M 上下文访问检查 / 1M context access checking
+ *
+ * Checks if users have access to 1M context window models (Opus 1M, Sonnet 1M).
+ * Handles subscriber vs PAYG access logic and extra usage provisioning.
+ *
+ * 检查用户是否有权访问 1M 上下文窗口模型（Opus 1M、Sonnet 1M）。
+ * 处理订阅者与 PAYG 访问逻辑以及额外使用量配置。
+ */
+
 import type { OverageDisabledReason } from 'src/services/claudeAiLimits.js'
 import { isClaudeAISubscriber } from '../auth.js'
 import { getGlobalConfig } from '../config.js'

@@ -1,3 +1,15 @@
+/**
+ * @fileoverview ClickableImageRef.tsx — Clickable image reference link
+ * ClickableImageRef.tsx — 可点击的图片引用链接
+ *
+ * @description
+ * - Renders an image reference like [Image #1] as a clickable link
+ * - Opens the stored image file in the default viewer when clicked
+ * - Falls back to styled text if terminal doesn't support hyperlinks or image not found
+ * - 将图片引用（如[Image #1]）渲染为可点击的链接
+ * - 点击时在默认查看器中打开存储的图像文件
+ * - 如果终端不支持超链接或找不到图像，则回退到样式文本
+ */
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { pathToFileURL } from 'url';
@@ -6,19 +18,27 @@ import { supportsHyperlinks } from '../ink/supports-hyperlinks.js';
 import { Text } from '../ink.js';
 import { getStoredImagePath } from '../utils/imageStore.js';
 import type { Theme } from '../utils/theme.js';
+
+/** Props — ClickableImageRef component properties / ClickableImageRef 组件属性 */
 type Props = {
-  imageId: number;
-  backgroundColor?: keyof Theme;
-  isSelected?: boolean;
+  imageId: number;                  // ID of the stored image / 存储图像的ID
+  backgroundColor?: keyof Theme;    // Background color theme key / 背景颜色主题键
+  isSelected?: boolean;             // Whether this image is selected / 此图像是否被选中
 };
 
 /**
- * Renders an image reference like [Image #1] as a clickable link.
- * When clicked, opens the stored image file in the default viewer.
+ * ClickableImageRef — Renders a clickable image reference link
+ * ClickableImageRef — 渲染可点击的图片引用链接
  *
- * Falls back to styled text if:
- * - Terminal doesn't support hyperlinks
- * - Image file is not found in the store
+ * @description
+ * - Displays [Image #N] as a clickable hyperlink
+ * - Opens image in default viewer when clicked
+ * - Falls back to styled/inverted text if hyperlinks unsupported or image missing
+ * - 将[Image #N]显示为可点击的超链接
+ * - 点击时在默认查看器中打开图像
+ * - 如果超链接不支持或图像丢失，则回退到样式/反转文本
+ *
+ * @returns Clickable link to image or styled text fallback / 可点击的图像链接或样式文本回退
  */
 export function ClickableImageRef(t0) {
   const $ = _c(13);

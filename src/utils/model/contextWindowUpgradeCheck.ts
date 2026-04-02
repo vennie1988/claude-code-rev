@@ -1,3 +1,16 @@
+/**
+ * @fileoverview contextWindowUpgradeCheck.ts — 上下文窗口升级检测 / Context window upgrade detection
+ *
+ * Checks if the current model supports a 1M context upgrade path and returns
+ * upgrade information (alias, name, multiplier) if available.
+ *
+ * @note @[MODEL LAUNCH]: Add a branch for the new model if it supports a 1M context upgrade path.
+ *
+ * 检查当前模型是否支持 1M 上下文升级路径，并在可用时返回升级信息（别名、名称、倍数）。
+ *
+ * 注意：@[MODEL LAUNCH]：如果新模型支持 1M 上下文升级路径，请为此添加分支。
+ */
+
 import { checkOpus1mAccess, checkSonnet1mAccess } from './check1mAccess.js'
 import { getUserSpecifiedModelSetting } from './model.js'
 

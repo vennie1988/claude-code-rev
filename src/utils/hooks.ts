@@ -1,3 +1,16 @@
+/**
+ * @fileoverview hooks.ts — Hook 执行引擎 / Hook execution engine
+ *
+ * ## 功能说明 (Description)
+ * 核心 Hook 执行引擎，负责注册、匹配和执行各类 Hook。
+ * 支持命令型、提示词型、代理型和 HTTP 型 Hook。
+ * 提供统一的 Hook 结果聚合和错误处理机制。
+ *
+ * Core hook execution engine responsible for registering, matching,
+ * and executing various hook types. Supports command, prompt, agent,
+ * and HTTP hooks with unified result aggregation and error handling.
+ */
+
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 /**
  * Hooks are user-defined shell commands that can be executed at various points

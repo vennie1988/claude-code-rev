@@ -1,3 +1,11 @@
+/**
+ * @fileoverview TaskUpdateTool.ts — 更新任务工具
+ * Task update tool for modifying task properties.
+ *
+ * 功能说明：
+ * - TaskUpdateTool: 更新任务属性（状态、描述、负责人等）
+ */
+
 import { feature } from 'bun:bundle'
 import { z } from 'zod/v4'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'

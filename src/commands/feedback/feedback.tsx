@@ -1,10 +1,31 @@
+/**
+ * @fileoverview feedback.tsx — Feedback component renderer
+ * 反馈组件渲染器：渲染 Feedback 组件用于提交产品反馈
+ * Renders the Feedback component which handles user-submitted bug reports
+ * and feature feedback. Integrates with the message context for session history.
+ *
+ * @param onDone - 完成回调，传递结果和显示选项
+ * @param context - 本地 JSX 命令上下文，包含 abortController 和 messages
+ * @param args - 可选的初始描述文本
+ * @returns 渲染的 React 节点
+ */
 import * as React from 'react';
 import type { CommandResultDisplay, LocalJSXCommandContext } from '../../commands.js';
 import { Feedback } from '../../components/Feedback.js';
 import type { LocalJSXCommandOnDone } from '../../types/command.js';
 import type { Message } from '../../types/message.js';
 
-// Shared function to render the Feedback component
+/**
+ * renderFeedbackComponent — 渲染反馈组件的共享函数
+ * Renders the Feedback component with provided context and props.
+ *
+ * @param onDone - 完成回调函数
+ * @param abortSignal - 中止信号用于取消操作
+ * @param messages - 当前会话消息历史
+ * @param initialDescription - 可选的初始描述
+ * @param backgroundTasks - 后台任务映射表
+ * @returns React 节点
+ */
 export function renderFeedbackComponent(onDone: (result?: string, options?: {
   display?: CommandResultDisplay;
 }) => void, abortSignal: AbortSignal, messages: Message[], initialDescription: string = '', backgroundTasks: {
@@ -18,6 +39,17 @@ export function renderFeedbackComponent(onDone: (result?: string, options?: {
 } = {}): React.ReactNode {
   return <Feedback abortSignal={abortSignal} messages={messages} initialDescription={initialDescription} onDone={onDone} backgroundTasks={backgroundTasks} />;
 }
+
+/**
+ * call — 反馈命令入口点
+ * Entry point for the /feedback command. Initializes the Feedback component
+ * with the current session context.
+ *
+ * @param onDone - 完成回调
+ * @param context - 命令上下文
+ * @param args - 可选的用户输入参数
+ * @returns Promise resolving to the Feedback component
+ */
 export async function call(onDone: LocalJSXCommandOnDone, context: LocalJSXCommandContext, args?: string): Promise<React.ReactNode> {
   const initialDescription = args || '';
   return renderFeedbackComponent(onDone, context.abortController.signal, context.messages, initialDescription);

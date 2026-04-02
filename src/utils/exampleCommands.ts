@@ -35,6 +35,7 @@ function isCoreFile(path: string): boolean {
 /**
  * Counts occurrences of items in an array and returns the top N items
  * sorted by count in descending order, formatted as a string.
+ * 计算数组中项目的出现次数，并以降序返回前 N 个按计数排序的项目，格式化为字符串。
  */
 export function countAndSortItems(items: string[], topN: number = 20): string {
   const counts = new Map<string, number>()
@@ -52,6 +53,8 @@ export function countAndSortItems(items: string[], topN: number = 20): string {
  * Picks up to `want` basenames from a frequency-sorted list of paths,
  * skipping non-core files and spreading across different directories.
  * Returns empty array if fewer than `want` core files are available.
+ * 从频率排序的路径列表中挑选最多 `want` 个基本名称，
+ * 跳过非核心文件并跨不同目录展开。如果可用核心文件少于 `want` 则返回空数组。
  */
 export function pickDiverseCoreFiles(
   sortedPaths: string[],

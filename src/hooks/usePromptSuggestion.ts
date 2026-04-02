@@ -1,3 +1,17 @@
+/**
+ * @fileoverview usePromptSuggestion.ts — Prompt suggestion tracking hook
+ * 提示建议跟踪hook：管理提示建议的显示/接受/忽略并记录遥测。
+ * Manages prompt suggestion display/accept/ignore and logs telemetry.
+ *
+ * @design
+ * - 跟踪建议的显示、接受和忽略事件
+ * - 记录首次击键时间、接受方法（Tab/Enter）、接受速度等遥测
+ * - 提供markShown/markAccepted/logOutcomeAtSubmission接口
+ *
+ * @design Tracks suggestion shown/accepted/ignored events
+ * @design Logs telemetry: first keystroke time, accept method (Tab/Enter), accept speed
+ * @design Provides markShown/markAccepted/logOutcomeAtSubmission interface
+ */
 import { useCallback, useRef } from 'react'
 import { useTerminalFocus } from '../ink/hooks/use-terminal-focus.js'
 import {

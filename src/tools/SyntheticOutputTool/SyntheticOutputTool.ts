@@ -1,3 +1,11 @@
+/**
+ * @fileoverview SyntheticOutputTool.ts — 结构化输出工具
+ * Synthetic output tool for structured results in non-interactive sessions.
+ *
+ * 功能说明：
+ * - SyntheticOutputTool: 结构化输出工具（非交互式会话使用）
+ */
+
 import { Ajv } from 'ajv'
 import { z } from 'zod/v4'
 import type { Tool, ToolInputJSONSchema } from '../../Tool.js'

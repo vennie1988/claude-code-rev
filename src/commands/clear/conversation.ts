@@ -1,6 +1,14 @@
 /**
- * Conversation clearing utility.
- * This module has heavier dependencies and should be lazy-loaded when possible.
+ * @fileoverview conversation.ts — Conversation clearing utility
+ * 对话清除工具
+ *
+ * 功能说明：
+ * - 执行会话结束钩子
+ * - 清除所有会话相关缓存
+ * - 生成新的 session ID
+ * - 执行会话开始钩子
+ *
+ * 注意：此模块依赖较多，应尽可能延迟加载
  */
 import { feature } from 'bun:bundle'
 import { randomUUID, type UUID } from 'crypto'

@@ -1,3 +1,14 @@
+/**
+ * @fileoverview execPromptHook.ts — 提示词型 Hook 执行器 / Prompt-based hook executor
+ *
+ * ## 功能说明 (Description)
+ * 执行基于提示词的 Hook，使用 LLM 判断条件是否满足。
+ * 使用 Haiku 模型进行快速推理，支持超时控制。
+ *
+ * Executes prompt-based hooks using an LLM to evaluate whether conditions are met.
+ * Uses Haiku model for fast inference with timeout control.
+ */
+
 import { randomUUID } from 'crypto'
 import type { HookEvent } from 'src/entrypoints/agentSdkTypes.js'
 import { queryModelWithoutStreaming } from '../../services/api/claude.js'

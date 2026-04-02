@@ -1,3 +1,19 @@
+/**
+ * @fileoverview configs.ts — 所有提供商的模型配置常量 / Model configuration constants for all providers
+ *
+ * Defines model configs mapping first-party model IDs to their Bedrock, Vertex, and Foundry equivalents.
+ * Each model has: firstParty, bedrock, vertex, foundry string identifiers.
+ *
+ * @note @[MODEL LAUNCH]: Add a new CLAUDE_*_CONFIG constant here when launching a new model.
+ *       Also add to CANONICAL_ID_TO_KEY and MODEL_COSTS.
+ *
+ * 定义将第一方模型 ID 映射到其 Bedrock、Vertex 和 Foundry 等效项的模型配置。
+ * 每个模型都有：firstParty、bedrock、vertex、foundry 字符串标识符。
+ *
+ * 注意：@[MODEL LAUNCH]：发布新模型时在此处添加新的 CLAUDE_*_CONFIG 常量。
+ *       同时添加到 CANONICAL_ID_TO_KEY 和 MODEL_COSTS。
+ */
+
 import type { ModelName } from './model.js'
 import type { APIProvider } from './providers.js'
 

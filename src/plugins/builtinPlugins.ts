@@ -1,4 +1,15 @@
 /**
+ * @fileoverview builtinPlugins.ts — Built-in plugin registry
+ *
+ * Manages built-in plugins that ship with the CLI.
+ * Users can enable/disable them via the /plugin UI.
+ *
+ * 设计说明：
+ * - builtinPlugins.ts 管理随 CLI 捆绑的内置插件
+ * - 用户可以通过 /plugin UI 启用/禁用它们
+ */
+
+/**
  * Built-in Plugin Registry
  *
  * Manages built-in plugins that ship with the CLI and can be enabled/disabled

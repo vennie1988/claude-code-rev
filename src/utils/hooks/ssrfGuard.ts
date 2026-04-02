@@ -3,6 +3,21 @@ import { lookup as dnsLookup } from 'dns'
 import { isIP } from 'net'
 
 /**
+ * @fileoverview ssrfGuard.ts — SSRF 防护 / SSRF (Server-Side Request Forgery) guard
+ *
+ * ## 功能说明 (Description)
+ * HTTP Hook 的 SSRF 防护模块。
+ * 阻止对私有地址、链路本地地址和其他不可路由地址范围的请求，
+ * 防止项目配置的 HTTP Hook 访问云元数据端点或内部基础设施。
+ * 环回地址（127.0.0.0/8, ::1）明确允许，用于本地开发。
+ *
+ * SSRF guard for HTTP hooks. Blocks requests to private, link-local,
+ * and other non-routable address ranges to prevent HTTP hooks from reaching
+ * cloud metadata endpoints (169.254.169.254) or internal infrastructure.
+ * Loopback (127.0.0.0/8, ::1) is intentionally allowed for local dev.
+ */
+
+/**
  * SSRF guard for HTTP hooks.
  *
  * Blocks private, link-local, and other non-routable address ranges to prevent

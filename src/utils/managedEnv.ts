@@ -1,3 +1,30 @@
+/**
+ * @fileoverview managedEnv.ts — 环境变量安全管理
+ * Environment Variable Management and Security
+ *
+ * 设计意图：
+ * - 管理从设置源（settings.json）到 process.env 的环境变量应用
+ * - 区分可信源（userSettings、flagSettings、policySettings）和不可信源
+ * - 在 CCD 模式下保护主机设置的环境变量不被覆盖
+ * - 在提供商托管模式下保护路由配置不被用户设置覆盖
+ *
+ * 安全模型：
+ * - 可信源：userSettings、flagSettings、policySettings — 可在信任对话框前应用
+ * - 项目级源（projectSettings、localSettings）— 仅在信任对话框后应用安全变量
+ * - CCD 主机设置的环境变量（OTEL_LOGS_EXPORTER 等）— 不可被设置覆盖
+ *
+ * Design intent:
+ * - Manages environment variable application from settings sources to process.env
+ * - Distinguishes trusted sources (userSettings, flagSettings, policySettings)
+ * - Protects CCD host environment variables from being overridden
+ * - Protects provider routing config when CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST is set
+ *
+ * Security model:
+ * - Trusted sources: applied before trust dialog
+ * - Project-level sources: only safe env vars applied after trust is established
+ * - CCD host vars: protected from settings override
+ */
+
 import { isRemoteManagedSettingsEligible } from '../services/remoteManagedSettings/syncCache.js'
 import { clearCACertsCache } from './caCerts.js'
 import { getGlobalConfig } from './config.js'
@@ -15,6 +42,7 @@ import {
 } from './settings/settings.js'
 
 /**
+ * withoutSSHTunnelVars — 剥离 SSH 隧道相关的占位环境变量
  * `claude ssh` remote: ANTHROPIC_UNIX_SOCKET routes auth through a -R forwarded
  * socket to a local proxy, and the launcher sets a handful of placeholder auth
  * env vars that the remote's ~/.claude settings.env MUST NOT clobber (see

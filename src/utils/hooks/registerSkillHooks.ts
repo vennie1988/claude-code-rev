@@ -5,6 +5,18 @@ import type { HooksSettings } from '../settings/types.js'
 import { addSessionHook, removeSessionHook } from './sessionHooks.js'
 
 /**
+ * @fileoverview registerSkillHooks.ts — Skill Hook 注册 / Skill hook registration
+ *
+ * ## 功能说明 (Description)
+ * 将 skill 的 frontmatter 中的 Hook 注册为会话级 Hook。
+ * Hook 在会话期间保持活跃，如果设置了 `once: true`，则在首次成功执行后自动移除。
+ *
+ * Registers hooks from a skill's frontmatter as session-scoped hooks.
+ * Hooks persist for the duration of the session. If `once: true` is set,
+ * the hook is automatically removed after its first successful execution.
+ */
+
+/**
  * Registers hooks from a skill's frontmatter as session hooks.
  *
  * Hooks are registered as session-scoped hooks that persist for the duration

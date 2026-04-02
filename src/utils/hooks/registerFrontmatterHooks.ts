@@ -5,6 +5,18 @@ import type { HooksSettings } from '../settings/types.js'
 import { addSessionHook } from './sessionHooks.js'
 
 /**
+ * @fileoverview registerFrontmatterHooks.ts — Frontmatter Hook 注册 / Frontmatter hook registration
+ *
+ * ## 功能说明 (Description)
+ * 将 frontmatter（agent 或 skill）中的 Hook 注册为会话级 Hook。
+ * 这些 Hook 在会话/代理期间保持活跃，在会话/代理结束时清理。
+ *
+ * Registers hooks from frontmatter (agent or skill) as session-scoped hooks.
+ * These hooks remain active for the duration of the session/agent and are
+ * cleaned up when the session/agent ends.
+ */
+
+/**
  * Register hooks from frontmatter (agent or skill) into session-scoped hooks.
  * These hooks will be active for the duration of the session/agent and cleaned up
  * when the session/agent ends.

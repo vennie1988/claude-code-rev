@@ -1,3 +1,17 @@
+/**
+ * @fileoverview generateAgent - LLM-powered agent configuration generator
+ * @fileoverview generateAgent - 基于 LLM 的代理配置生成器
+ *
+ * @remarks
+ * This module uses an AI model to generate agent configurations based on user
+ * descriptions. The model creates a unique identifier, a whenToUse description,
+ * and a comprehensive system prompt following the AGENT_CREATION_SYSTEM_PROMPT template.
+ *
+ * 此模块使用 AI 模型根据用户描述生成代理配置。
+ * 模型创建一个唯一标识符、whenToUse 描述和遵循 AGENT_CREATION_SYSTEM_PROMPT 模板的综合系统提示。
+ *
+ * @module generateAgent
+ */
 import type { ContentBlock } from '@anthropic-ai/sdk/resources/index.mjs'
 import { getUserContext } from 'src/context.js'
 import { queryModelWithoutStreaming } from 'src/services/api/claude.js'
@@ -17,6 +31,13 @@ import {
 import { jsonParse } from '../../utils/slowOperations.js'
 import { asSystemPrompt } from '../../utils/systemPromptType.js'
 
+/**
+ * Represents the generated agent configuration
+ * @typedef {Object} GeneratedAgent
+ * @property {string} identifier - Unique identifier for the agent / 代理的唯一标识符
+ * @property {string} whenToUse - Description of when to use this agent / 何时使用此代理的描述
+ * @property {string} systemPrompt - The agent's system prompt / 代理的系统提示
+ */
 type GeneratedAgent = {
   identifier: string
   whenToUse: string

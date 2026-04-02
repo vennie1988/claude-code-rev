@@ -1,3 +1,20 @@
+/**
+ * @fileoverview attribution.ts — Commit and PR attribution utilities
+ *
+ * Generates attribution text for commits and PRs based on user settings.
+ * Handles dynamic model names, custom attribution settings, and remote mode.
+ *
+ * Key functions:
+ * - getAttributionTexts() — returns attribution text for commits and PRs
+ * - getEnhancedPRAttribution() — includes Claude contribution stats
+ * - countUserPromptsInMessages() — counts visible user prompts in transcript
+ *
+ * @note Remote mode returns session URL instead of Co-Authored-By
+ *
+ * 提交和 PR 归因文本生成工具。根据用户设置生成归因文本，处理动态模型名称、
+ * 自定义归因设置和远程模式。
+ */
+
 import { feature } from 'bun:bundle'
 import { stat } from 'fs/promises'
 import { getClientType } from '../bootstrap/state.js'

@@ -1,3 +1,15 @@
+/**
+ * @fileoverview store.ts — Minimal reactive store implementation
+ *
+ * A minimal reactive store with getState, setState, and subscribe.
+ * Used as the foundation for application state management.
+ *
+ * 设计说明：
+ * - store.ts 提供最小化的响应式存储实现
+ * - 支持 getState、setState 和 subscribe 操作
+ * - 用作应用程序状态管理的基础
+ */
+
 type Listener = () => void
 type OnChange<T> = (args: { newState: T; oldState: T }) => void
 

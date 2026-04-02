@@ -1,3 +1,14 @@
+/**
+ * @fileoverview postSamplingHooks.ts — 后采样 Hook / Post-sampling hooks
+ *
+ * ## 功能说明 (Description)
+ * 后采样 Hook 在模型采样完成后调用。
+ * 这是内部 API，不通过 settings.json 配置暴露，仅通过编程方式使用。
+ *
+ * Post-sampling hooks called after model sampling completes.
+ * Internal API not exposed through settings.json, used programmatically only.
+ */
+
 import type { QuerySource } from '../../constants/querySource.js'
 import type { ToolUseContext } from '../../Tool.js'
 import type { Message } from '../../types/message.js'

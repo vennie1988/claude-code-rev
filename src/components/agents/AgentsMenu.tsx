@@ -1,3 +1,31 @@
+/**
+ * @fileoverview AgentsMenu - Main agent management menu
+ * @fileoverview AgentsMenu - 主代理管理菜单
+ *
+ * @remarks
+ * This is the main entry point for agent management. It provides functionality to:
+ * - List and filter agents by source
+ * - View agent details
+ * - Create new agents via wizard
+ * - Edit existing custom agents
+ * - Delete custom agents
+ *
+ * This component manages its own state for the current mode (list, detail, edit, create)
+ * and coordinates with the global app state for agent definitions.
+ *
+ * 这是代理管理的主入口点。它提供以下功能：
+ * - 按来源列出和过滤代理
+ * - 查看代理详情
+ * - 通过向导创建新代理
+ * - 编辑现有自定义代理
+ * - 删除自定义代理
+ *
+ * 此组件管理自己当前模式的状态（列表、详情、编辑、创建），
+ * 并与全局应用状态协调代理定义。
+ *
+ * @param Props.tools - Available tools for the agent / 代理可用的工具
+ * @param Props.onExit - Callback when exiting the menu / 退出菜单时的回调
+ */
 import { c as _c } from "react/compiler-runtime";
 import chalk from 'chalk';
 import * as React from 'react';

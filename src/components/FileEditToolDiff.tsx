@@ -1,3 +1,20 @@
+/**
+ * @fileoverview FileEditToolDiff - Displays a diff view for file edits
+ * @fileoverview FileEditToolDiff - 显示文件编辑的差异视图
+ *
+ * @remarks
+ * This component renders a unified diff view showing the changes made to a file.
+ * It loads the file content and patch data asynchronously, displaying a placeholder
+ * while loading. The diff includes context lines around each change for better
+ * understanding of the modifications.
+ *
+ * 此组件渲染统一的差异视图，显示对文件所做的更改。
+ * 它异步加载文件内容和补丁数据，加载时显示占位符。
+ * 差异包含每个更改周围的上下文行，以便更好地理解修改。
+ *
+ * @param Props.file_path - Path to the file being edited / 被编辑文件的路径
+ * @param Props.edits - Array of file edits to display / 要显示的文件编辑数组
+ */
 import { c as _c } from "react/compiler-runtime";
 import type { StructuredPatchHunk } from 'diff';
 import * as React from 'react';

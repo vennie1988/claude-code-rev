@@ -1,4 +1,10 @@
 /**
+ * @fileoverview gitConfigParser.ts — Git 配置文件解析器 / Git config file parser
+ *
+ * ## 功能说明 (Description)
+ * 轻量级 .git/config 文件解析器，支持节名、子节名、键值对解析。
+ * 经过 git config.c 源码验证，确保与 git 官方行为一致。
+ *
  * Lightweight parser for .git/config files.
  *
  * Verified against git's config.c:

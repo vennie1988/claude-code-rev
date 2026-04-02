@@ -1,3 +1,15 @@
+/**
+ * @fileoverview CompactSummary.tsx — Summarized conversation display component
+ * CompactSummary.tsx — 精简对话显示组件
+ *
+ * @description
+ * - Displays a collapsed/summarized view of a conversation segment
+ * - Shows message text with black circle indicator
+ * - Includes expand shortcut hint (Ctrl+O)
+ * - 显示对话段的折叠/摘要视图
+ * - 使用黑色圆圈指示器显示消息文本
+ * - 包含展开快捷键提示（Ctrl+O）
+ */
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { BLACK_CIRCLE } from '../constants/figures.js';
@@ -7,10 +19,28 @@ import type { NormalizedUserMessage } from '../types/message.js';
 import { getUserMessageText } from '../utils/messages.js';
 import { ConfigurableShortcutHint } from './ConfigurableShortcutHint.js';
 import { MessageResponse } from './MessageResponse.js';
+
+/** Props — CompactSummary component properties / CompactSummary 组件属性 */
 type Props = {
-  message: NormalizedUserMessage;
-  screen: Screen;
+  message: NormalizedUserMessage; // The summarized message / 被摘要的消息
+  screen: Screen;                 // Current screen context / 当前屏幕上下文
 };
+/**
+ * CompactSummary — Renders a summarized/collapsed conversation segment
+ * CompactSummary — 渲染摘要/折叠的对话段
+ *
+ * @description
+ * - Displays collapsed message with black circle indicator
+ * - Shows truncated message text
+ * - Includes configurable shortcut hint to expand (Ctrl+O)
+ * - In transcript mode, shows full message content
+ * - 显示带有黑色圆圈指示器的折叠消息
+ * - 显示截断的消息文本
+ * - 包含可配置的展开快捷键提示（Ctrl+O）
+ * - 在转录模式下，显示完整的消息内容
+ *
+ * @returns Box with summarized message display / 带摘要消息显示的Box
+ */
 export function CompactSummary(t0) {
   const $ = _c(24);
   const {

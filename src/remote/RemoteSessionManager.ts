@@ -1,3 +1,14 @@
+/**
+ * @fileoverview RemoteSessionManager.ts — Remote session management
+ *
+ * Manages remote sessions for the Remote Bridge system.
+ * Handles WebSocket connections and session lifecycle.
+ *
+ * 设计说明：
+ * - RemoteSessionManager.ts 管理远程桥接系统的远程会话
+ * - 处理 WebSocket 连接和会话生命周期
+ */
+
 import type { SDKMessage } from '../entrypoints/agentSdkTypes.js'
 import type {
   SDKControlCancelRequest,

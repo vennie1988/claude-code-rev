@@ -1,3 +1,13 @@
+/**
+ * @fileoverview UI.tsx — LSPTool React 渲染组件
+ * React components for rendering LSPTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染 LSP 操作消息
+ * - renderToolResultMessage: 渲染 LSP 操作结果
+ * - renderToolUseProgressMessage: 渲染 LSP 操作进度
+ */
+
 import { c as _c } from "react/compiler-runtime";
 import type { ToolResultBlockParam } from '@anthropic-ai/sdk/resources/index.mjs';
 import React from 'react';

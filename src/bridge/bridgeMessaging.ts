@@ -1,4 +1,17 @@
 /**
+ * @fileoverview bridgeMessaging.ts — Bridge message handling utilities
+ *
+ * Shared transport-layer helpers for bridge message handling.
+ * Provides type guards, ingress routing, and control request handling
+ * for the Remote Bridge system.
+ *
+ * 设计说明：
+ * - bridgeMessaging.ts 提供桥接消息处理的传输层辅助函数
+ * - 包括类型守卫、入口路由和控制请求处理
+ * - 支持回声去重和控制响应管理
+ */
+
+/**
  * Shared transport-layer helpers for bridge message handling.
  *
  * Extracted from replBridge.ts so both the env-based core (initBridgeCore)

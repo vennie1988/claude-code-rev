@@ -1,3 +1,13 @@
+/**
+ * @fileoverview timeouts.ts — Timeout configuration for bash operations
+ *
+ * Provides utilities for retrieving default and maximum timeout values for bash
+ * operations. Supports environment variable overrides for production flexibility.
+ *
+ * @design bash 操作超时配置。提供获取默认和最大超时值的工具函数，
+ * 支持环境变量覆盖以便生产环境灵活配置。
+ */
+
 // Constants for timeout values
 const DEFAULT_TIMEOUT_MS = 120_000 // 2 minutes
 const MAX_TIMEOUT_MS = 600_000 // 10 minutes

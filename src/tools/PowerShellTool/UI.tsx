@@ -1,4 +1,16 @@
 import type { ToolResultBlockParam } from '@anthropic-ai/sdk/resources/index.mjs';
+/**
+ * @fileoverview UI.tsx — PowerShellTool React 渲染组件
+ * React components for rendering PowerShellTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染 PowerShell 执行消息
+ * - renderToolResultMessage: 渲染 PowerShell 执行结果
+ * - renderToolUseProgressMessage: 渲染 PowerShell 执行进度
+ * - renderToolUseRejectedMessage: 渲染 PowerShell 执行被拒绝消息
+ * - renderToolUseErrorMessage: 渲染 PowerShell 执行错误消息
+ */
+
 import * as React from 'react';
 import { KeyboardShortcutHint } from '../../components/design-system/KeyboardShortcutHint.js';
 import { FallbackToolUseErrorMessage } from '../../components/FallbackToolUseErrorMessage.js';

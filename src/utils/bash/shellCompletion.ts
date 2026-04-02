@@ -1,3 +1,17 @@
+/**
+ * @fileoverview shellCompletion.ts — Shell tab completion for CLI input
+ *
+ * Provides shell-aware tab completion for bash/zsh during user input.
+ * Uses shell native compgen (bash) / built-in pattern matching (zsh).
+ *
+ * Supported completion types:
+ * - command: Command name completion
+ * - variable: Environment variable completion
+ * - file: File path completion
+ *
+ * @note Only supports bash/zsh; returns empty array for other shells
+ */
+
 import type { SuggestionItem } from 'src/components/PromptInput/PromptInputFooterSuggestions.js'
 import {
   type ParseEntry,

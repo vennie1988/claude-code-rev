@@ -1,3 +1,19 @@
+/**
+ * @fileoverview agentFileUtils - File I/O utilities for agent definitions
+ * @fileoverview agentFileUtils - 代理定义的文件 I/O 工具函数
+ *
+ * @remarks
+ * This module provides utilities for reading, writing, updating, and deleting
+ * agent definition files. Agents are stored as markdown files with YAML frontmatter
+ * containing metadata (name, description, tools, model, etc.) and the system prompt
+ * as the body.
+ *
+ * 此模块提供用于读取、写入、更新和删除代理定义文件的工具函数。
+ * 代理存储为 markdown 文件，前 matter 包含元数据（名称、描述、工具、模型等），
+ * 系统提示作为正文。
+ *
+ * @module agentFileUtils
+ */
 import { mkdir, open, unlink } from 'fs/promises'
 import { join } from 'path'
 import type { SettingSource } from 'src/utils/settings/constants.js'
@@ -16,6 +32,15 @@ import { AGENT_PATHS } from './types.js'
 
 /**
  * Formats agent data as markdown file content
+ * @param agentType - The agent identifier / 代理标识符
+ * @param whenToUse - Description of when to use / 何时使用的描述
+ * @param tools - List of allowed tools / 允许的工具列表
+ * @param systemPrompt - The agent's system prompt / 代理的系统提示
+ * @param color - Optional color name / 可选的颜色名称
+ * @param model - Optional model name / 可选的模型名称
+ * @param memory - Optional memory scope / 可选的内存范围
+ * @param effort - Optional effort value / 可选的努力值
+ * @returns Markdown formatted string / Markdown 格式的字符串
  */
 export function formatAgentAsMarkdown(
   agentType: string,

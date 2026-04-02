@@ -1,3 +1,13 @@
+/**
+ * Layout Node Interface / 布局节点接口
+ *
+ * Defines the contract for layout nodes used by the Ink rendering system.
+ * Yoga (Facebook's flexbox layout engine) is the primary implementation.
+ *
+ * 定义 Ink 渲染系统使用的布局节点契约。
+ * Yoga（Facebook 的 flexbox 布局引擎）是主要实现。
+ */
+
 // --
 // Adapter interface for the layout engine (Yoga)
 

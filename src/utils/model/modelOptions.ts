@@ -1,3 +1,25 @@
+/**
+ * @fileoverview modelOptions.ts — 按用户层级构建的模型选择器选项 / Model picker options by user tier
+ *
+ * Builds model option lists for the /model picker, customized per user tier:
+ * - ANT: custom antModels config
+ * - Max/Team Premium: Opus default with Sonnet alternative
+ * - Pro/Team Standard/Enterprise: Sonnet default with Opus alternative
+ * - PAYG 1P: Sonnet + Opus + Haiku with 1M variants
+ * - PAYG 3P: Provider-specific defaults + custom model support
+ *
+ * @note @[MODEL LAUNCH]: Update model picker lists and default model descriptions for the new model.
+ *
+ * 为 /model 选择器构建模型选项列表，按用户层级定制：
+ * - ANT：自定义 antModels 配置
+ * - Max/Team Premium：Opus 默认，Sonnet 备选
+ * - Pro/Team Standard/Enterprise：Sonnet 默认，Opus 备选
+ * - PAYG 1P：Sonnet + Opus + Haiku，带 1M 变体
+ * - PAYG 3P：提供商特定默认值 + 自定义模型支持
+ *
+ * 注意：@[MODEL LAUNCH]：为新模型更新模型选择器列表和默认模型描述。
+ */
+
 // biome-ignore-all assist/source/organizeImports: ANT-ONLY import markers must not be reordered
 import { getInitialMainLoopModel } from '../../bootstrap/state.js'
 import {

@@ -4,13 +4,20 @@ import { FocusEvent } from './events/focus-event.js'
 const MAX_FOCUS_STACK = 32
 
 /**
+ * Focus Manager / 焦点管理器
+ *
  * DOM-like focus manager for the Ink terminal UI.
+ * Ink 终端 UI 的类 DOM 焦点管理器。
  *
  * Pure state — tracks activeElement and a focus stack. Has no reference
  * to the tree; callers pass the root when tree walks are needed.
+ * 纯状态——跟踪 activeElement 和焦点栈。不引用树；当需要树遍历时，
+ * 调用者传递根节点。
  *
  * Stored on the root DOMElement so any node can reach it by walking
  * parentNode (like browser's `node.ownerDocument`).
+ * 存储在根 DOMElement 上，以便任何节点可以通过遍历 parentNode
+ * 到达它（类似于浏览器中的 `node.ownerDocument`）。
  */
 export class FocusManager {
   activeElement: DOMElement | null = null

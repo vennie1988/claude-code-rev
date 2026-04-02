@@ -1,3 +1,20 @@
+/**
+ * @fileoverview authFileDescriptor.ts — File descriptor-based credential reader
+ *
+ * Provides FD-or-disk fallback for credentials in CCR (Claude Code Remote):
+ * - File descriptors from Go env-manager (via cmd.ExtraFiles)
+ * - Well-known files on disk for subprocess access
+ *
+ * The Go environment-manager creates /home/claude/.claude/remote/ and writes
+ * credential files there so subprocesses can find tokens without inheriting FDs
+ * (which don't cross tmux/shell boundaries).
+ *
+ * @note Outside CCR, these are no-ops — the paths don't exist
+ *
+ * CCR 中的文件描述符凭证读取工具。Go environment-manager 创建凭证文件到
+ * 已知位置，使子进程可以访问令牌而不必继承文件描述符。
+ */
+
 import { mkdirSync, writeFileSync } from 'fs'
 import {
   getApiKeyFromFd,

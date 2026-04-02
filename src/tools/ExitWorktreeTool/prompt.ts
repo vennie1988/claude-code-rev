@@ -1,3 +1,17 @@
+/**
+ * @fileoverview prompt.ts — ExitWorktreeTool 提示词定义
+ * Defines the prompt text for the ExitWorktree tool.
+ *
+ * 功能说明：
+ * - 提供退出工作树会话的工具使用说明
+ * - 说明工具的作用域限制（仅对当前会话中 EnterWorktree 创建的工作树生效）
+ * - 定义 action 参数（keep/remove）的行为差异
+ */
+
+/**
+ * 获取退出工作树工具的提示词
+ * Returns the prompt text for the ExitWorktree tool
+ */
 export function getExitWorktreeToolPrompt(): string {
   return `Exit a worktree session created by EnterWorktree and return the session to the original working directory.
 

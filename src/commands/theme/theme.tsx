@@ -1,3 +1,11 @@
+/**
+ * @fileoverview theme.tsx — Theme picker component
+ * 主题选择器组件：渲染 ThemePicker 组件用于选择 Claude Code 主题
+ * React component that renders the ThemePicker for selecting Claude Code's
+ * visual theme. Uses the useTheme hook to persist theme changes.
+ *
+ * @note 主题选择后立即生效，通过 useTheme hook 更新全局主题状态
+ */
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import type { CommandResultDisplay } from '../../commands.js';

@@ -1,4 +1,12 @@
 /**
+ * @fileoverview listSessionsImpl.ts — 会话列表实现（SDK 专用）
+ * Standalone listSessions Implementation for Agent SDK
+ *
+ * 设计意图：为 Agent SDK 提供独立的 listSessions 实现。
+ * 保持依赖最小化和可移植性 —— 不依赖 bootstrap/state.ts、
+ * 不依赖 analytics、不使用 bun:bundle、无模块级可变状态。
+ * 此模块可安全从 SDK 入口导入，不会触发 CLI 初始化或引入昂贵的依赖链。
+ *
  * Standalone implementation of listSessions for the Agent SDK.
  *
  * Dependencies are kept minimal and portable — no bootstrap/state.ts,

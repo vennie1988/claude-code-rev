@@ -1,14 +1,44 @@
+/**
+ * @fileoverview prompt.ts — FileEditTool description and constants
+ * Tool prompt template and formatting constants for the Edit tool.
+ *
+ * 设计说明:
+ * - 根据 compactLinePrefix 特性标志动态调整行号格式说明
+ * - 包含预读指令，要求在编辑前先读取文件
+ * - 针对 Ant 用户提供最小化 old_string 唯一性提示
+ *
+ * @see FileEditTool — 主工具实现
+ * @see FileEditTool/types.ts — 类型定义
+ */
 import { isCompactLinePrefixEnabled } from '../../utils/file.js'
 import { FILE_READ_TOOL_NAME } from '../FileReadTool/prompt.js'
 
+/**
+ * Returns the pre-read instruction requiring model to read files before editing.
+ * Ensures the model has the current file content before attempting edits.
+ *
+ * @returns Pre-read instruction string with FileReadTool name
+ */
 function getPreReadInstruction(): string {
   return `\n- You must use your \`${FILE_READ_TOOL_NAME}\` tool at least once in the conversation before editing. This tool will error if you attempt an edit without reading the file. `
 }
 
+/**
+ * Returns the full Edit tool description for the model.
+ * Entry point that delegates to the default description implementation.
+ *
+ * @returns Complete tool description string
+ */
 export function getEditToolDescription(): string {
   return getDefaultEditDescription()
 }
 
+/**
+ * Generates the default Edit tool description with dynamic formatting hints.
+ * Includes platform-specific line prefix format and Ant user optimizations.
+ *
+ * @returns Complete tool description with usage guidelines
+ */
 function getDefaultEditDescription(): string {
   const prefixFormat = isCompactLinePrefixEnabled()
     ? 'line number + tab'

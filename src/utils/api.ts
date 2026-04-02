@@ -1,3 +1,26 @@
+/**
+ * @fileoverview api.ts — API utilities for tool schemas and message handling
+ *
+ * Core utilities for transforming tools and messages for the Claude API:
+ * - toolToAPISchema(): Converts internal Tool definitions to API-compatible format
+ * - splitSysPromptPrefix(): Handles cache scoping for system prompt sections
+ * - normalizeToolInput(): Normalizes tool inputs for specific tool types
+ * - getAttributionTexts(): Generates attribution text for commits and PRs
+ *
+ * Key design decisions:
+ * - Tool schemas are cached per-session to prevent GrowthBook flip churn
+ * - Supports deferred tool loading via ToolSearchTool integration
+ * - Fine-grained tool streaming (FGTS) for improved UX on large tool inputs
+ * - Swarm fields are filtered from tool schemas when swarms are disabled
+ *
+ * @note The experimental betas kill switch (CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS)
+ * strips non-allowlisted fields at the single choke point all tool schemas pass through
+ *
+ * API 工具函数：工具模式转换和消息处理。
+ * 核心功能包括将内部工具定义转换为 API 兼容格式、处理系统提示词缓存作用域、
+ * 规范化工具输入、生成提交和 PR 的归因文本。
+ */
+
 import type Anthropic from '@anthropic-ai/sdk'
 import type {
   BetaTool,

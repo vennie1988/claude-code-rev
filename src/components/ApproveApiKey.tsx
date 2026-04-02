@@ -1,13 +1,31 @@
+/**
+ * @fileoverview ApproveApiKey.tsx — Dialog to approve or reject a custom API key
+ * ApproveApiKey.tsx — 批准或拒绝自定义API密钥的对话框
+ *
+ * @description
+ * - Displays a confirmation dialog when a custom API key is detected
+ * - User can approve (add to approved list) or reject (add to rejected list)
+ * - 当检测到自定义API密钥时显示确认对话框
+ * - 用户可以批准（添加到批准列表）或拒绝（添加到拒绝列表）
+ */
 import { c as _c } from "react/compiler-runtime";
 import React from 'react';
 import { Text } from '../ink.js';
 import { saveGlobalConfig } from '../utils/config.js';
 import { Select } from './CustomSelect/index.js';
 import { Dialog } from './design-system/Dialog.js';
+
+/** Props — ApproveApiKey component properties / ApproveApiKey 组件属性 */
 type Props = {
-  customApiKeyTruncated: string;
-  onDone(approved: boolean): void;
+  customApiKeyTruncated: string; // Truncated API key for display / 用于显示的截断API密钥
+  onDone(approved: boolean): void; // Callback when user makes a choice / 用户做出选择时的回调
 };
+/**
+ * ApproveApiKey — Renders a dialog to approve or reject a custom API key
+ * ApproveApiKey — 渲染批准或拒绝自定义API密钥的对话框
+ *
+ * @returns Dialog with Yes/No options / 带有是/否选项的对话框
+ */
 export function ApproveApiKey(t0) {
   const $ = _c(17);
   const {

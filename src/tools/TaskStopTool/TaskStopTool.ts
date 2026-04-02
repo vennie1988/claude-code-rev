@@ -1,3 +1,11 @@
+/**
+ * @fileoverview TaskStopTool.ts — 停止任务工具
+ * Task stop tool for terminating running background tasks.
+ *
+ * 功能说明：
+ * - TaskStopTool: 停止运行中的后台任务
+ */
+
 import { z } from 'zod/v4'
 import type { TaskStateBase } from '../../Task.js'
 import { buildTool, type ToolDef } from '../../Tool.js'

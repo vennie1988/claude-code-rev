@@ -1,3 +1,17 @@
+/**
+ * @fileoverview ContextVisualization.tsx — Token/context breakdown display
+ * ContextVisualization.tsx — Token/上下文分解显示
+ *
+ * @description
+ * - Displays token usage breakdown by category
+ * - Shows context collapse status and statistics
+ * - Displays optimization suggestions
+ * - Shows file path and source information
+ * - 按类别显示token使用分解
+ * - 显示上下文折叠状态和统计信息
+ * - 显示优化建议
+ * - 显示文件路径和源信息
+ */
 import { c as _c } from "react/compiler-runtime";
 import { feature } from 'bun:bundle';
 import * as React from 'react';
@@ -9,14 +23,23 @@ import { formatTokens } from '../utils/format.js';
 import { getSourceDisplayName, type SettingSource } from '../utils/settings/constants.js';
 import { plural } from '../utils/stringUtils.js';
 import { ContextSuggestions } from './ContextSuggestions.js';
+
+/** Reserved category name for autocompact buffer / 自动压缩缓冲区的保留类别名称 */
 const RESERVED_CATEGORY_NAME = 'Autocompact buffer';
 
 /**
- * One-liner for the legend header showing what context-collapse has done.
- * Returns null when nothing's summarized/staged so we don't add visual
- * noise in the common case. This is the one place a user can see that
- * their context was rewritten — the <collapsed> placeholders are isMeta
- * and don't appear in the conversation view.
+ * CollapseStatus — Shows context-collapse statistics in the legend
+ * CollapseStatus — 在图例中显示上下文折叠统计信息
+ *
+ * @description
+ * - One-liner showing what context-collapse has done
+ * - Returns null when nothing's summarized/staged to avoid visual noise
+ * - This is the only place users can see their context was rewritten
+ * - 显示上下文折叠所做工作的单行信息
+ * - 当没有摘要/暂存内容时返回null以避免视觉干扰
+ * - 这是用户唯一能看到其上下文被重写的地方
+ *
+ * @returns JSX with collapse stats or null / 带折叠统计的JSX或null
  */
 function CollapseStatus() {
   const $ = _c(2);

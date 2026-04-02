@@ -1,3 +1,15 @@
+/**
+ * @fileoverview sessionHooks.ts — 会话级 Hook 管理 / Session-level hook management
+ *
+ * ## 功能说明 (Description)
+ * 会话级 Hook 的注册和管理。这些 Hook 是临时的、仅内存存在的，在会话结束时清除。
+ * 支持命令型、提示词型和函数型 Hook。
+ *
+ * Registration and management of session-level hooks. These hooks are temporary,
+ * in-memory only, and cleared when the session ends.
+ * Supports command, prompt, and function hook types.
+ */
+
 import { HOOK_EVENTS, type HookEvent } from 'src/entrypoints/agentSdkTypes.js'
 import type { AppState } from 'src/state/AppState.js'
 import type { Message } from 'src/types/message.js'

@@ -1,3 +1,14 @@
+/**
+ * @fileoverview hooksSettings.ts — Hook 设置加载与分组 / Hook settings loading and grouping
+ *
+ * ## 功能说明 (Description)
+ * Hook 设置的加载、分组和优先级排序。
+ * 管理来自用户设置、项目设置、本地设置的 Hook 配置。
+ *
+ * Loading, grouping, and priority sorting of hook settings.
+ * Manages hook configurations from user, project, and local settings.
+ */
+
 import { resolve } from 'path'
 import type { HookEvent } from 'src/entrypoints/agentSdkTypes.js'
 import { getSessionId } from '../../bootstrap/state.js'

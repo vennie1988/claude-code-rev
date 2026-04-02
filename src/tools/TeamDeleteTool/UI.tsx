@@ -1,3 +1,12 @@
+/**
+ * @fileoverview UI.tsx — TeamDeleteTool React 渲染组件
+ * React components for rendering TeamDeleteTool messages.
+ *
+ * 组件说明：
+ * - renderToolUseMessage: 渲染删除团队消息
+ * - renderToolResultMessage: 渲染删除团队结果
+ */
+
 import React from 'react';
 import { jsonParse } from '../../utils/slowOperations.js';
 import type { Output } from './TeamDeleteTool.js';

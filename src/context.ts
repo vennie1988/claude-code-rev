@@ -1,3 +1,16 @@
+/**
+ * @fileoverview context.ts — System and user context generation
+ *
+ * Provides cached system and user context for conversations.
+ * System context includes git status, cache breakers, and environment info.
+ * User context includes CLAUDE.md content and current date.
+ *
+ * 设计说明：
+ * - context.ts 提供对话的缓存系统上下文和用户上下文
+ * - 系统上下文包括 git 状态、缓存破坏者和环境信息
+ * - 用户上下文包括 CLAUDE.md 内容和当前日期
+ */
+
 import { feature } from 'bun:bundle'
 import memoize from 'lodash-es/memoize.js'
 import {

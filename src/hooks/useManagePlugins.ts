@@ -1,3 +1,19 @@
+/**
+ * @fileoverview useManagePlugins.ts — Plugin state management hook
+ * 插件状态管理hook：管理插件加载、标记检测和AppState同步。
+ * Manages plugin loading, delisting enforcement, and AppState synchronization.
+ *
+ * @design
+ * - 挂载时加载所有插件、执行下架检测、填充AppState.plugins
+ * - needsRefresh时显示通知引导用户运行/reload-plugins
+ * - 不自动刷新（所有Layer-3交换通过/reload-plugins处理）
+ * - 加载命令/agents/hooks/MCP/LSP并收集错误
+ *
+ * @design Mount: loads all plugins, runs delisting, populates AppState.plugins
+ * @design needsRefresh: shows notification directing user to /reload-plugins
+ * @design No auto-refresh (all Layer-3 swaps go through /reload-plugins)
+ * @design Loads commands/agents/hooks/MCP/LSP and collects errors
+ */
 import { useCallback, useEffect } from 'react'
 import type { Command } from '../commands.js'
 import { useNotifications } from '../context/notifications.js'

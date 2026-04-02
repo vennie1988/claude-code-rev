@@ -1,3 +1,16 @@
+/**
+ * @fileoverview skillImprovement.ts — 技能自动改进系统 / Skill automatic improvement system
+ *
+ * ## 功能说明 (Description)
+ * 在技能执行过程中自动检测用户偏好和修正。
+ * 使用后采样 Hook 每 N 轮对话分析一次，通过 LLM 生成改进建议。
+ * 可选择性地将改进应用到技能定义文件中。
+ *
+ * Automatically detects user preferences and corrections during skill execution.
+ * Uses post-sampling hooks to analyze every N conversation turns via LLM.
+ * Optionally applies improvements to skill definition files.
+ */
+
 import { feature } from 'bun:bundle'
 import { getInvokedSkillsForAgent } from '../../bootstrap/state.js'
 import { getFeatureValue_CACHED_MAY_BE_STALE } from '../../services/analytics/growthbook.js'

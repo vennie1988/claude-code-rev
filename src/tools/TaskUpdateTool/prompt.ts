@@ -1,3 +1,12 @@
+/**
+ * @fileoverview prompt.ts — TaskUpdateTool 提示词定义
+ * Defines prompt and description for TaskUpdateTool.
+ *
+ * 常量说明：
+ * - DESCRIPTION: 工具描述
+ * - PROMPT: 工具提示词
+ */
+
 export const DESCRIPTION = 'Update a task in the task list'
 
 export const PROMPT = `Use this tool to update a task in the task list.
